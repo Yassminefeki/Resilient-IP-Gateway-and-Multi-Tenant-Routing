@@ -1,0 +1,13 @@
+---
+- name: Configure Resilient IP Gateways
+  hosts: gateways
+  # serial: 1 ensures rolling deployment — only one gateway is updated at a time,
+  # preventing simultaneous HAProxy/Keepalived restarts that would cause an outage.
+  serial: 1
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - interface_resolve
+    - keepalived
+    - haproxy

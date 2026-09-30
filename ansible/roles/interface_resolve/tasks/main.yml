@@ -1,0 +1,39 @@
+---
+- name: Determine edge interface name from ansible facts
+  ansible.builtin.set_fact:
+    interface_resolve_edge_interface: >-
+      {{
+        ansible_interfaces
+        | map('regex_replace', '^', 'ansible_')
+        | map('extract', hostvars[inventory_hostname])
+        | selectattr('ipv4', 'defined')
+        | selectattr('ipv4.address', 'defined')
+        | selectattr('ipv4.network', 'defined')
+        | selectattr('ipv4.network', 'equalto', '10.20.20.0')
+        | map(attribute='device')
+        | first | default('')
+      }}
+
+- name: Fallback resolution of edge interface using ip command
+  when: interface_resolve_edge_interface == ''
+  block:
+    - name: Query interface matching edge subnet 10.20.20.0/24
+      ansible.builtin.command:
+        cmd: "ip -o -4 addr show to 10.20.20.0/24"
+      register: interface_resolve_ip_query
+      changed_when: false
+
+    - name: Extract interface name from ip command output
+      ansible.builtin.set_fact:
+        interface_resolve_edge_interface: "{{ interface_resolve_ip_query.stdout.split()[1] }}"
+      when: interface_resolve_ip_query.stdout is defined and interface_resolve_ip_query.stdout != ''
+
+- name: Assert edge interface was successfully resolved
+  ansible.builtin.assert:
+    that:
+      - interface_resolve_edge_interface != ''
+    fail_msg: "Could not resolve network interface attached to 10.20.20.0/24 on {{ inventory_hostname }}"
+
+- name: Display resolved edge interface
+  ansible.builtin.debug:
+    msg: "Host {{ inventory_hostname }} edge network interface is {{ interface_resolve_edge_interface }}"

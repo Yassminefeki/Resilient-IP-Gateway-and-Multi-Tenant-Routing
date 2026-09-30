@@ -1,0 +1,142 @@
+---
+- name: Ensure HAProxy directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - /etc/haproxy
+    - /etc/haproxy/certs
+    - /etc/haproxy/backups
+    - /tmp/haproxy
+
+- name: Check if TLS certificate exists
+  ansible.builtin.stat:
+    path: "{{ haproxy_tls_cert_file | default('/etc/haproxy/certs/felcloud-gateway.pem') }}"
+  register: haproxy_cert_stat
+
+- name: Generate self-signed TLS certificate and private key for HAProxy
+  when: not haproxy_cert_stat.stat.exists
+  block:
+    - name: Create temporary OpenSSL directory
+      ansible.builtin.tempfile:
+        state: directory
+        prefix: haproxy_cert_
+      register: haproxy_temp_cert_dir
+
+    - name: Generate self-signed SSL certificate with wildcard SANs
+      ansible.builtin.command:
+        cmd: >
+          openssl req -x509 -newkey rsa:2048 -nodes
+          -keyout {{ haproxy_temp_cert_dir.path }}/server.key
+          -out {{ haproxy_temp_cert_dir.path }}/server.crt
+          -days 3650
+          -subj "/CN=*.felcloud.local/O=FelCloud/C=TN"
+          -addext "subjectAltName=DNS:*.felcloud.local,DNS:*.local,DNS:localhost,IP:{{ vip_address }},IP:{{ bastion_public_ip | default(lookup('env', 'BASTION_IP')) }}"
+      changed_when: true
+
+    - name: Combine private key and certificate into PEM bundle for HAProxy
+      ansible.builtin.shell:
+        cmd: >
+          cat {{ haproxy_temp_cert_dir.path }}/server.key
+          {{ haproxy_temp_cert_dir.path }}/server.crt
+          > {{ haproxy_tls_cert_file | default('/etc/haproxy/certs/felcloud-gateway.pem') }}
+      changed_when: true
+
+    - name: Set correct permissions on HAProxy PEM certificate
+      ansible.builtin.file:
+        path: "{{ haproxy_tls_cert_file | default('/etc/haproxy/certs/felcloud-gateway.pem') }}"
+        owner: root
+        group: haproxy
+        mode: "0640"
+
+    - name: Clean up temporary certificate directory
+      ansible.builtin.file:
+        path: "{{ haproxy_temp_cert_dir.path }}"
+        state: absent
+
+- name: Check if Data Plane API binary is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/dataplaneapi
+  register: haproxy_dataplaneapi_bin_stat
+
+- name: Install HAProxy Data Plane API binary
+  when: not haproxy_dataplaneapi_bin_stat.stat.exists
+  block:
+    - name: Download HAProxy Data Plane API tarball
+      ansible.builtin.get_url:
+        url: "https://github.com/haproxytech/dataplaneapi/releases/download/v2.9.4/dataplaneapi_2.9.4_linux_x86_64.tar.gz"
+        dest: /tmp/dataplaneapi.tar.gz
+        mode: "0644"
+        timeout: 30
+      register: haproxy_dpa_download
+      failed_when: haproxy_dpa_download.failed and haproxy_dataplaneapi_bin_stat.stat.exists is not defined
+
+    - name: Extract Data Plane API binary
+      when: haproxy_dpa_download is succeeded
+      ansible.builtin.unarchive:
+        src: /tmp/dataplaneapi.tar.gz
+        dest: /usr/local/bin/
+        remote_src: true
+        mode: "0755"
+        extra_opts:
+          - "--strip-components=1"
+          - "dataplaneapi"
+      register: haproxy_dpa_extract
+      failed_when: haproxy_dpa_extract.failed | default(false)
+
+    - name: Remove temporary Data Plane API tarball
+      ansible.builtin.file:
+        path: /tmp/dataplaneapi.tar.gz
+        state: absent
+
+- name: Deploy Data Plane API configuration
+  ansible.builtin.template:
+    src: dataplaneapi.yaml.j2
+    dest: /etc/haproxy/dataplaneapi.yaml
+    owner: root
+    group: root
+    mode: "0640"
+  notify: Restart dataplaneapi
+
+- name: Deploy Data Plane API systemd service unit
+  ansible.builtin.template:
+    src: dataplaneapi.service.j2
+    dest: /etc/systemd/system/dataplaneapi.service
+    owner: root
+    group: root
+    mode: "0644"
+  register: haproxy_dpa_unit_deploy
+  notify: Reload systemd daemon
+
+- name: Deploy HAProxy configuration template
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: "0644"
+    # Validates configuration against a temporary file before overwriting the live config.
+    validate: haproxy -c -f %s
+  notify: Reload haproxy
+
+- name: Validate HAProxy configuration syntax
+  ansible.builtin.command:
+    cmd: haproxy -c -f /etc/haproxy/haproxy.cfg
+  changed_when: false
+
+- name: Ensure HAProxy service is started and enabled
+  ansible.builtin.service:
+    name: haproxy
+    state: started
+    enabled: true
+
+- name: Ensure Data Plane API service is started and enabled
+  ansible.builtin.service:
+    name: dataplaneapi
+    state: started
+    enabled: true
+  register: haproxy_dpa_svc
+  failed_when: haproxy_dpa_svc.failed | default(false)

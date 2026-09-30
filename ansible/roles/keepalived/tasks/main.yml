@@ -1,0 +1,30 @@
+---
+- name: Ensure keepalived configuration directory exists
+  ansible.builtin.file:
+    path: /etc/keepalived
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Deploy Keepalived configuration template
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    owner: root
+    group: root
+    mode: "0640"
+    # Validates configuration against a temporary file before overwriting the live config.
+    validate: keepalived -t -f %s
+  notify: Restart keepalived
+
+- name: Validate Keepalived configuration
+  ansible.builtin.command:
+    cmd: keepalived -t -f /etc/keepalived/keepalived.conf
+  changed_when: false
+
+- name: Ensure Keepalived service is started and enabled
+  ansible.builtin.service:
+    name: keepalived
+    state: started
+    enabled: true

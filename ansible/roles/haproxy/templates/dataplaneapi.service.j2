@@ -1,0 +1,15 @@
+[Unit]
+Description=HAProxy Data Plane API
+After=network.target haproxy.service
+Requires=haproxy.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/dataplaneapi --config-file=/etc/haproxy/dataplaneapi.yaml
+Restart=always
+RestartSec=5s
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

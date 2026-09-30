@@ -1,0 +1,17 @@
+config:
+  openstack:cloud: felcloud
+  openstack:region: North-Africa
+  felcloud-infra:availabilityZone: TN-Carthage
+  # Replace with the actual image UUID from: openstack image show "<image-name>" -f value -c id
+  felcloud-infra:imageId: 00000000-0000-0000-0000-000000000000
+  felcloud-infra:gatewayFlavor: "1003"
+  felcloud-infra:sandboxFlavor: "1001"
+  felcloud-infra:keypairName: felcloud-resilient-v2
+  felcloud-infra:serverGroupName: felcloud-gateway-antiaffinity
+  # Replace with the actual external network UUID from: openstack network show <external-net> -f value -c id
+  felcloud-infra:externalNetworkId: 00000000-0000-0000-0000-000000000000
+  felcloud-infra:edgeCidr: 10.20.20.0/24
+  felcloud-infra:sandboxCidr: 10.20.30.0/24
+  felcloud-infra:mgmtCidr: 10.20.10.0/24
+  # REQUIRED: Set to your admin/bastion IP range. 0.0.0.0/0 is explicitly rejected at deploy time.
+  felcloud-infra:adminSshCidr: 203.0.113.0/24
