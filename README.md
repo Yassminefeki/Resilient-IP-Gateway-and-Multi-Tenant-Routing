@@ -1,4 +1,3 @@
-
 <div align="center">
 
 # FelCloud - Resilient IP Gateway and Multi-Tenant Routing
@@ -13,11 +12,15 @@
 ![HAProxy](https://img.shields.io/badge/HAProxy-L7%20Routing%20%2B%20TLS-106DA9?style=flat&logo=haproxy&logoColor=white&labelColor=555555)
 ![Keepalived](https://img.shields.io/badge/Keepalived-VRRP%20HA%20(Weight%2060)-2C7BB6?style=flat&labelColor=555555)
 ![Python](https://img.shields.io/badge/Python-IPAM%20%26%20REST%20API-3776AB?style=flat&logo=python&logoColor=white&labelColor=555555)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-4C9A2A?style=flat&labelColor=555555)
+![Status](https://img.shields.io/badge/Status-MVP%20(Phase%201)-F59E0B?style=flat&labelColor=555555)
 
 </div>
 
 > This document describes the actual architecture, implementation details, and verification runbooks of the **FelCloud Resilient IP Gateway** repository.
+
+> **⚠️ MVP Notice:** This repository is the **Phase 1 MVP**. Some
+> components use simpler, faster-to-deliver solutions. The **target architecture stays the same**;
+> only the implementation of selected components will be migrated.
 
 ---
 
@@ -25,6 +28,8 @@
 
 1. [Context and Objectives](#1-context-and-objectives)
 2. [Global Architecture](#2-global-architecture)
+   - [MVP vs Target Implementation](#mvp-vs-target-implementation)
+   - [Public Entry and DNS](#public-entry-and-dns)
 3. [Addressing Plan and Networks](#3-addressing-plan-and-networks)
 4. [High Availability & Failover](#4-high-availability)
 5. [L7 Routing & TLS with HAProxy](#5-l7-routing-with-haproxy)
@@ -35,9 +40,8 @@
 10. [File Reference](#10-file-reference)
 11. [Prerequisites and Getting Started](#11-prerequisites-and-getting-started)
 12. [Verification and Testing](#12-verification-and-testing)
-13. [Deliverables Checklist](#13-phase-1-deliverables-checklist)
-14. [Planned Evolutions](#14-planned-evolutions)
-15. [Glossary](#15-glossary)
+13. [Planned Evolutions](#14-planned-evolutions)
+14. [Glossary](#15-glossary)
 
 ---
 
@@ -75,7 +79,7 @@ Three isolated subnets partition the environment:
 ```mermaid
 flowchart TB
     Client["External Clients / Browser"]
-    PUB["Public Floating IP\n(set BASTION_IP in .env)"]
+    PUB["Public Floating IP\n"]
     Client -->|HTTP:80 / HTTPS:443| PUB
 
     subgraph EDGE["felcloud-edge - 10.20.20.0/24 (Router Attached)"]
@@ -90,7 +94,7 @@ flowchart TB
         GW1M["gw1 mgmt: 10.20.10.24<br/>(DPA: 5555)"]
         GW2M["gw2 mgmt: 10.20.10.164<br/>(DPA: 5555)"]
         BASM["bastion mgmt: 10.20.10.246"]
-        IPAM["IPAM Control Plane & REST API<br/>Port 8080"]
+        IPAM["Control Plane (MVP: Python + SQLite)<br/>Target: Go + PostgreSQL<br/>REST API Port 8080"]
     end
 
     subgraph SBX["felcloud-sandbox - 10.20.30.0/24 (Isolated)"]
@@ -125,6 +129,34 @@ flowchart TB
 4. HAProxy proxies traffic across the `felcloud-sandbox` network to the team VM on port 80.
 5. If no route matches, HAProxy returns a standard 503 Maintenance response.
 
+### MVP vs Target Implementation
+
+The network topology, HA model (VRRP), L7 routing and security model are **final**.
+Only the control-plane tooling changes.
+
+| Component | MVP (this repo) | Target | Why MVP differs |
+|---|---|---|---|
+| **Control plane** | Python (`ipam/ipam_control.py`) | Go service (API / orchestrator) on `10.20.10.50` | Faster to prototype under time constraints |
+| **State / IPAM DB** | SQLite (local file) | PostgreSQL on `10.20.10.30` | No extra VM or DB operations needed for the MVP |
+| **Gateway config sync** | Dual `haproxy -c` validation + `systemctl reload` | HAProxy Data Plane API transactions (port 5555) | DPA is deployed and ready, orchestration not yet wired |
+| **Sandbox VM lifecycle** | Pulumi / provisioning script | Managed by the Go control plane | Out of MVP scope |
+| **Quarantine reclaim** | Explicit `/ipam/leases/reclaim` call | Background reclaim worker | Simpler to test and demo |
+| **Ansible execution** | Operator machine | Bastion VM (Mgmt + Edge) | Operator access was sufficient for the MVP |
+
+**Migration principle:** the REST API contract (`/ipam/leases/*`, `/api/sandboxes/provision`,
+`/api/gateways/*`) is preserved, so scripts and tests keep working after the Go migration.
+
+### Public Entry and DNS
+
+A wildcard DNS record points all tenant hostnames to the public floating IP:
+
+| Record | Target |
+|---|---|
+| `*.cstam.felcloud.tn` | `197.5.133.119` (Public Floating IP → Neutron Router → Keepalived VIP) |
+
+Verified with `nslookup`: `cloudpulse.cstam.felcloud.tn` and `test.cloudpulse.cstam.felcloud.tn`
+both resolve to `197.5.133.119`.
+
 ---
 
 ## 3. Addressing Plan and Networks
@@ -147,6 +179,13 @@ flowchart TB
 | **Keepalived VIP** | — | **`10.20.20.246`** | — |
 | **`team1`** | — | — | `10.20.30.70` |
 | **`team2`** | — | — | `10.20.30.192` |
+
+### Target Addresses (Planned)
+
+| Entity (target) | Management (`10.20.10.0/24`) | Status |
+|---|---|---|
+| **Go Control Plane** | `10.20.10.50` | 🔜 Planned |
+| **PostgreSQL (IPAM / state)** | `10.20.10.30` | 🔜 Planned |
 
 ---
 
@@ -210,6 +249,10 @@ HAProxy Data Plane API (DPA) is installed as a systemd service listening on port
 - **Authentication:** Configured with administrative user credentials.
 - **Security Group:** Permitted over `felcloud-mgmt` network via `sg-management` (port 5555).
 
+> **MVP note:** In the MVP, the DPA is deployed and reachable, but route changes are applied through
+> the dual-gateway validation and `systemctl reload` flow below. Driving route changes through DPA
+> transactions from the Go control plane is part of the planned migration.
+
 ### Two-Gateway Pre-Validation and Commit Flow
 
 ```mermaid
@@ -242,11 +285,17 @@ flowchart LR
 | **`sg-sandbox`** | TCP 80, TCP 8080 strictly from `sg-gateway` | Tenant isolation; **blocks all East-West traffic between sandboxes** |
 | **`sg-management`** | TCP 5555 (DPA) and internal mgmt from `10.20.10.0/24`<br>TCP 22 via Bastion | Control plane and SSH access |
 
+> **Target note:** The Go control plane migration will additionally require control plane → PostgreSQL
+> (TCP 5432) and control plane → DPA (TCP 5555) paths within `sg-management`.
+
 ---
 
 ## 8. IPAM and Team Lifecycle
 
 The IPAM control plane ([ipam/ipam_control.py](ipam/ipam_control.py)) manages IP allocation, address quarantine, pre-flight health checks, and REST API access.
+
+> **MVP note:** This Python implementation (SQLite, single process) is the MVP control plane. It will be
+> replaced by a Go service backed by PostgreSQL, preserving the REST API contract below.
 
 ### Address Quarantine & Reclamation
 
@@ -279,57 +328,67 @@ Before opening a route in HAProxy:
 
 ## 9. Technology Stack
 
-| Component | Technology | Role |
-|---|---|---|
-| **Cloud** | OpenStack (Nova, Neutron) on FelCloud | Infrastructure compute and networking |
-| **IaC** | Pulumi in Go 1.22 (`pulumi-openstack` v5.1.0) | Infrastructure provisioning |
-| **Configuration** | Ansible with Ansible Vault | Gateway configuration and orchestration |
-| **High Availability** | Keepalived (VRRP v2, Weight 60) | Virtual IP failover cluster |
-| **Reverse Proxy** | HAProxy 2.8+ with TLS & DPA | L7 HTTP/HTTPS reverse proxy & Data Plane API |
-| **Control Plane & IPAM** | Python 3, SQLite, HTTP REST API | IP allocations, quarantine, health checks |
-| **Testing** | Bash, Python, Curl | Automated test suite & failover benchmarking |
+| Component | Technology (MVP) | Target | Role |
+|---|---|---|---|
+| **Cloud** | OpenStack (Nova, Neutron) on FelCloud | Same | Infrastructure compute and networking |
+| **IaC** | Pulumi in Go 1.22 (`pulumi-openstack` v5.1.0) | Same | Infrastructure provisioning |
+| **Configuration** | Ansible with Ansible Vault | Same (run from Bastion) | Gateway configuration and orchestration |
+| **High Availability** | Keepalived (VRRP v2, Weight 60) | Same | Virtual IP failover cluster |
+| **Reverse Proxy** | HAProxy 2.8+ with TLS & DPA | Same | L7 HTTP/HTTPS reverse proxy & Data Plane API |
+| **Control Plane & IPAM** | Python 3, SQLite, HTTP REST API | Go, PostgreSQL | IP allocations, quarantine, health checks |
+| **Testing** | Bash, Python, Curl | Same + Go tests | Automated test suite & failover benchmarking |
 
 ---
 
 ## 10. File Reference
 
-```
-ip_resilien/
-├── README.md                                  # Complete project documentation
-├── .env.example                               # Environment variable template
-├── ansible/
-│   ├── ansible.cfg                            # Ansible execution configuration
-│   ├── site.yml                               # Main gateway configuration playbook
-│   ├── inventory/
-│   │   ├── hosts.yml                          # Gateway cluster inventory
-│   │   └── generate_inventory.py              # Inventory generator from Pulumi outputs
-│   ├── group_vars/gateways/
-│   │   ├── vars.yml                           # Gateway variables & team list
-│   │   └── vault.yml                          # Encrypted VRRP secret
-│   └── roles/
-│       ├── common/tasks/main.yml              # Sysctl tuning, core packages, check script
-│       ├── interface_resolve/tasks/main.yml   # Dynamic edge interface detection
-│       ├── keepalived/                        # Keepalived tasks, template (weight 60), handler
-│       └── haproxy/                           # HAProxy & DPA tasks, TLS certs, templates, handlers
-├── output/                                    # Discovery dumps (gitignored, created at runtime)
-├── infra/                                     # Pulumi Go Infrastructure as Code
-│   ├── main.go                                # IaC stack entry point
-│   ├── network.go                             # Subnets & networks
-│   ├── router.go                              # Edge router & SNAT gateway
-│   ├── security.go                            # Security groups (sg-gateway, sg-sandbox, sg-mgmt)
-│   ├── vip.go                                 # Unbound VIP reservation port
-│   ├── gateways.go                            # Gateway instances & SSH keypair
-│   ├── bastion.go                             # Bastion jump host VM
-│   └── sandboxes.go                           # Demonstration team backend VMs
-├── ipam/
-│   └── ipam_control.py                        # IPAM CLI, quarantine logic, sync & REST API server
-└── scripts/
-    ├── run-all-tests.sh                       # Master automated test suite runner
-    ├── failover-test.sh                       # Measured VRRP failover benchmark
-    ├── recycle-test.sh                        # IP quarantine & recycling test
-    ├── provision-sandbox.sh                   # Sandbox provisioning & route activation
-    └── discover-felcloud.sh                   # OpenStack runtime discovery snapshot
-```
+Click any path to open the file or folder.
+
+### Root
+
+- [README.md](README.md) - Complete project documentation
+- [.env.example](.env.example) - Environment variable template
+- [output/](output/) - Discovery dumps (gitignored, created at runtime)
+
+### Ansible - [ansible/](ansible/)
+
+- [ansible/ansible.cfg](ansible/ansible.cfg) - Ansible execution configuration
+- [ansible/site.yml](ansible/site.yml) - Main gateway configuration playbook
+- [ansible/inventory/hosts.yml](ansible/inventory/hosts.yml) - Gateway cluster inventory
+- [ansible/inventory/generate_inventory.py](ansible/inventory/generate_inventory.py) - Inventory generator from Pulumi outputs
+- [ansible/group_vars/gateways/vars.yml](ansible/group_vars/gateways/vars.yml) - Gateway variables & team list
+- [ansible/group_vars/gateways/vault.yml](ansible/group_vars/gateways/vault.yml) - Encrypted VRRP secret
+- [ansible/roles/common/tasks/main.yml](ansible/roles/common/tasks/main.yml) - Sysctl tuning, core packages, check script
+- [ansible/roles/interface_resolve/tasks/main.yml](ansible/roles/interface_resolve/tasks/main.yml) - Dynamic edge interface detection
+- [ansible/roles/keepalived/](ansible/roles/keepalived/) - Keepalived tasks, template (weight 60), handler
+- [ansible/roles/haproxy/](ansible/roles/haproxy/) - HAProxy & DPA tasks, TLS certs, templates, handlers
+  - [dataplaneapi.yaml.j2](ansible/roles/haproxy/templates/dataplaneapi.yaml.j2) - DPA configuration template
+  - [dataplaneapi.service.j2](ansible/roles/haproxy/templates/dataplaneapi.service.j2) - DPA systemd unit template
+
+### Infrastructure as Code (Pulumi Go) - [infra/](infra/)
+
+- [infra/main.go](infra/main.go) - IaC stack entry point
+- [infra/Pulumi.dev.yaml](infra/Pulumi.dev.yaml) - Stack configuration
+- [infra/network.go](infra/network.go) - Subnets & networks
+- [infra/router.go](infra/router.go) - Edge router & SNAT gateway
+- [infra/security.go](infra/security.go) - Security groups (sg-gateway, sg-sandbox, sg-mgmt)
+- [infra/vip.go](infra/vip.go) - Unbound VIP reservation port
+- [infra/gateway_ports.go](infra/gateway_ports.go) - Gateway ports, allowed address pairs & anti-affinity
+- [infra/gateways.go](infra/gateways.go) - Gateway instances & SSH keypair
+- [infra/bastion.go](infra/bastion.go) - Bastion jump host VM
+- [infra/sandboxes.go](infra/sandboxes.go) - Demonstration team backend VMs
+
+### Control Plane (MVP) - [ipam/](ipam/)
+
+- [ipam/ipam_control.py](ipam/ipam_control.py) - MVP IPAM CLI, quarantine logic, sync & REST API server
+
+### Scripts - [scripts/](scripts/)
+
+- [scripts/run-all-tests.sh](scripts/run-all-tests.sh) - Master automated test suite runner
+- [scripts/failover-test.sh](scripts/failover-test.sh) - Measured VRRP failover benchmark
+- [scripts/recycle-test.sh](scripts/recycle-test.sh) - IP quarantine & recycling test
+- [scripts/provision-sandbox.sh](scripts/provision-sandbox.sh) - Sandbox provisioning & route activation
+- [scripts/discover-felcloud.sh](scripts/discover-felcloud.sh) - OpenStack runtime discovery snapshot
 
 ---
 
@@ -345,22 +404,22 @@ ip_resilien/
 ### Deployment Steps
 
 1. **Configure Stack:** Update [infra/Pulumi.dev.yaml](infra/Pulumi.dev.yaml) with your OpenStack settings.
-2. **Deploy Infrastructure:**
+2. **Deploy Infrastructure** ([infra/](infra/)):
    ```bash
    cd infra && pulumi up
    ```
-3. **Configure Gateways:**
+3. **Configure Gateways** ([ansible/site.yml](ansible/site.yml)):
    ```bash
    # Run from the repository root (not from ansible/)
    ansible-playbook -i ansible/inventory/hosts.yml ansible/site.yml \
      --vault-password-file ansible/.vault_pass
    ```
-4. **Initialize IPAM:**
+4. **Initialize IPAM** ([ipam/ipam_control.py](ipam/ipam_control.py), MVP Python control plane):
    ```bash
    python3 ipam/ipam_control.py init
    python3 ipam/ipam_control.py list
    ```
-5. **Start Control Plane REST API:**
+5. **Start Control Plane REST API (MVP):**
    ```bash
    python3 ipam/ipam_control.py serve --port 8080
    ```
@@ -369,13 +428,52 @@ ip_resilien/
 
 ## 12. Verification and Testing
 
-### Run Master Automated Test Suite
+This section is the demo runbook. It proves each Phase 1 requirement with a repeatable command and a clear pass criterion.
+
+### 12.1 Test Coverage Overview
+
+| # | Test | Requirement proven | Type | Script / command |
+|---|---|---|---|---|
+| 1 | IPAM quarantine & reclamation | A released IP is not reused until the cooldown expires | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 2 | Pre-flight health check | A route is opened only for a healthy backend (no 502/503) | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 3 | Syntax pre-validation & rollback | A bad config never reaches the gateways | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 4 | Keepalived weight review | HAProxy failure alone triggers failover (150 - 60 = 90 < 100) | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 5 | HTTPS 443 & Host-header routing | TLS termination and routing by Host header | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 6 | Data Plane API units | DPA config and systemd units are in place | Automated | [scripts/run-all-tests.sh](scripts/run-all-tests.sh) |
+| 7 | Measured VRRP failover | Real switchover time and packet loss on the live VIP | Live | [scripts/failover-test.sh](scripts/failover-test.sh) |
+| 8 | IP quarantine & recycling | End-to-end IP lifecycle against the running control plane | Live | [scripts/recycle-test.sh](scripts/recycle-test.sh) |
+
+Tests 1 to 6 are static and logic checks that run anywhere. Tests 7 and 8 need the deployed environment.
+
+### 12.2 Environment Check
+
+Confirm the platform is up before starting the demo.
+
+```bash
+# Control plane (MVP) is serving
+curl -s http://localhost:8080/health
+
+# Current leases and quarantine timers
+curl -s http://localhost:8080/ipam/leases
+
+# DNS resolves tenant hostnames to the public floating IP
+nslookup cloudpulse.cstam.felcloud.tn
+```
+
+| Check | Expected |
+|---|---|
+| `/health` | HTTP 200 with a healthy status |
+| `/ipam/leases` | JSON list of allocations |
+| `nslookup` | `197.5.133.119` |
+
+### 12.3 Automated Test Suite (Tests 1-6)
 
 ```bash
 ./scripts/run-all-tests.sh
 ```
 
-**Output:**
+**Expected output:**
+
 ```
 ========================================================================
           FELCLOUD RESILIENT GATEWAY AUTOMATED TEST SUITE               
@@ -406,22 +504,124 @@ Passed: 6 / 6
 ✅ ALL AUTOMATED TESTS COMPLETED SUCCESSFULLY!
 ```
 
-### Run Measured Failover Benchmark
+**Pass criterion:** `Passed: 6 / 6` and exit code `0`.
 
 ```bash
-# Test HAProxy-only failure switchover and packet loss
-FAILURE_MODE=haproxy-only VIP_IP=10.20.20.246 TARGET_URL=http://${BASTION_IP} ./scripts/failover-test.sh
+echo $?   # expect 0
 ```
 
-### Run Address Quarantine Test
+### 12.4 Live Routing Proof
+
+Show that the real traffic path works through the VIP, with HTTP, HTTPS and Host-header routing.
+
+```bash
+# HTTP, routed by Host header
+curl -i -H "Host: team1.local" http://${BASTION_IP}/
+curl -i -H "Host: team2.local" http://${BASTION_IP}/
+
+# HTTPS with TLS termination (self-signed certificate in the MVP, hence -k)
+curl -ik -H "Host: team1.felcloud.local" https://${BASTION_IP}/
+
+# Unknown host returns the maintenance response
+curl -i -H "Host: unknown.local" http://${BASTION_IP}/
+```
+
+| Request | Expected result |
+|---|---|
+| `team1.local` / `team2.local` | `200 OK` from the matching team VM |
+| `team1.felcloud.local` over HTTPS | `200 OK`, TLS handshake succeeds |
+| `unknown.local` | `503 Service Unavailable` |
+
+Optionally, show that the Data Plane API answers on the management network (run from the bastion):
+
+```bash
+curl -s -u <dpa_user>:<dpa_password> http://10.20.10.24:5555/v3/info
+```
+
+### 12.5 VRRP Failover Demo (Test 7)
+
+**Goal:** kill HAProxy on the active gateway and show the VIP moving to the backup with minimal loss.
+
+**Terminal 1: continuous traffic:**
+
+```bash
+while true; do
+  curl -s -o /dev/null -w "%{http_code} %{time_total}s\n" \
+    -H "Host: team1.local" http://${BASTION_IP}/
+  sleep 0.5
+done
+```
+
+**Terminal 2: run the measured benchmark:**
+
+```bash
+FAILURE_MODE=haproxy-only VIP_IP=10.20.20.246 TARGET_URL=http://${BASTION_IP} \
+  ./scripts/failover-test.sh
+```
+
+**Manual variant (to show it step by step):**
+
+```bash
+# On gw1 (MASTER): confirm it holds the VIP
+ip -4 addr | grep 10.20.20.246
+
+# On gw1: simulate the failure
+sudo systemctl stop haproxy
+
+# On gw2: the VIP should appear within seconds
+ip -4 addr | grep 10.20.20.246
+
+# On gw1: recover (the VIP returns to gw1 once priority is back to 150)
+sudo systemctl start haproxy
+```
+
+| Metric | What to show | Pass criterion |
+|---|---|---|
+| Priority drop | gw1: 150 → 90 after the check script fails | 90 < 100 (gw2) |
+| VIP owner | The VIP moves from gw1 to gw2 | VIP present on gw2 |
+| Switchover time | Reported by `failover-test.sh` | Record the measured value |
+| Packet loss / failed requests | Gap in Terminal 1 output | Short, bounded gap, then `200` resumes |
+| Recovery | After `start haproxy` on gw1 | Traffic keeps flowing, VIP returns to gw1 |
+
+### 12.6 Quarantine and Recycling Demo (Test 8)
 
 ```bash
 ./scripts/recycle-test.sh
 ```
 
----
+Or step by step through the REST API:
 
-## 13. Phase 1 Deliverables Checklist
+```bash
+# 1. Allocate a lease
+curl -s -X POST http://localhost:8080/ipam/leases/allocate
+
+# 2. Release it (the IP enters QUARANTINED)
+curl -s -X POST http://localhost:8080/ipam/leases/release \
+  -H "Content-Type: application/json" -d '{"ip": "<allocated_ip>"}'
+
+# 3. Allocate again immediately: a DIFFERENT IP must be returned
+curl -s -X POST http://localhost:8080/ipam/leases/allocate
+
+# 4. Check the quarantine timer
+curl -s http://localhost:8080/ipam/leases
+
+# 5. After the cooldown (e.g. 60s), reclaim: the IP returns to FREE
+curl -s -X POST http://localhost:8080/ipam/leases/reclaim
+```
+
+| Step | Expected |
+|---|---|
+| Right after release | IP status is `QUARANTINED` with a `quarantine_until` timestamp |
+| Immediate re-allocation | A different IP is returned (the quarantined one is skipped) |
+| After cooldown + reclaim | The IP is `FREE` and can be allocated again |
+
+
+> **MVP scope:** these tests validate the Python + SQLite control plane and the current gateway
+> sync flow. When the Go control plane and PostgreSQL are in place, the same scripts and REST
+> contract are reused as the regression suite (see [section 14](#14-planned-evolutions)).
+
+
+## 13. Phase 1 (MVP) Deliverables Checklist
 
 | Deliverable | Status |
 |---|---|
@@ -433,7 +633,7 @@ FAILURE_MODE=haproxy-only VIP_IP=10.20.20.246 TARGET_URL=http://${BASTION_IP} ./
 | TLS termination on port 443 with wildcard SANs | ✅ Implemented |
 | Host-header L7 routing per team | ✅ Implemented |
 | HAProxy Data Plane API (port 5555) | ✅ Implemented |
-| IPAM with address quarantine and reclamation | ✅ Implemented |
+| IPAM with address quarantine and reclamation (Python + SQLite MVP) | ✅ Implemented |
 | Pre-flight backend health checks | ✅ Implemented |
 | Zero-downtime reload with auto-rollback | ✅ Implemented |
 | Automated test suite (6 tests) | ✅ Implemented |
@@ -444,9 +644,15 @@ FAILURE_MODE=haproxy-only VIP_IP=10.20.20.246 TARGET_URL=http://${BASTION_IP} ./
 
 ## 14. Planned Evolutions
 
-- Integration of PostgreSQL backend for large-scale distributed deployments.
-- ACME / Let's Encrypt automated certificate renewals.
-- Centralized Prometheus metrics exporter & Grafana telemetry dashboard.
+The MVP validates the architecture end to end. Because of time constraints, the following
+migrations are planned next (the architecture itself does not change):
+
+1. **Go control plane** replacing the Python IPAM server (same REST API contract).
+2. **PostgreSQL** replacing SQLite (transactional allocation, concurrent replicas).
+3. **Data Plane API orchestration** replacing SSH + reload for route changes.
+4. **VM lifecycle management** integrated into the control plane.
+5. ACME / Let's Encrypt automated certificate renewals.
+6. Prometheus metrics exporter and Grafana dashboard.
 
 ---
 
@@ -454,6 +660,7 @@ FAILURE_MODE=haproxy-only VIP_IP=10.20.20.246 TARGET_URL=http://${BASTION_IP} ./
 
 | Term | Definition |
 |---|---|
+| **MVP** | Minimum Viable Product: the Phase 1 implementation delivered under time constraints |
 | **VIP** | Virtual IP address carried actively by the elected VRRP Master gateway |
 | **VRRP** | Virtual Router Redundancy Protocol for active/standby master election |
 | **Keepalived** | Daemon implementing VRRP and tracking process health check scripts |
