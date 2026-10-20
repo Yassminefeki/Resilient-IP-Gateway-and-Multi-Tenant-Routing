@@ -1,0 +1,20 @@
+# HAProxy Data Plane API Configuration
+# Managed by Ansible for FelCloud Resilient Gateway
+name: {{ inventory_hostname }}
+dataplaneapi:
+  host: "0.0.0.0"
+  port: {{ haproxy_dpa_port | default(5555) }}
+  transaction:
+    transaction_dir: "/tmp/haproxy"
+  user:
+    - name: "{{ haproxy_dpa_user | default('admin') }}"
+      insecure: true
+      password: "{{ haproxy_dpa_pass }}"
+
+haproxy:
+  config_file: "/etc/haproxy/haproxy.cfg"
+  haproxy_bin: "/usr/sbin/haproxy"
+  reload:
+    reload_cmd: "systemctl reload haproxy"
+    restart_cmd: "systemctl restart haproxy"
+    reload_strategy: "systemd"

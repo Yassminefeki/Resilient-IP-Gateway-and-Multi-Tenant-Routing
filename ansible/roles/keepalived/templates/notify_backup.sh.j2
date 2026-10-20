@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# notify_backup.sh — Called by Keepalived when this node transitions to BACKUP.
+# Deployed to /usr/local/bin/notify_backup.sh by the keepalived Ansible role.
+# Rules: never block keepalived, always exit 0, 2 s max on any network call.
+set -uo pipefail
+
+STATE="BACKUP"
+LOG_FILE="/var/log/keepalived-events.log"
+STATE_FILE="/run/keepalived/state"
+HOSTNAME="$(hostname -s 2>/dev/null || echo unknown)"
+TS_ISO="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+TS_MS="$(date -u +"%s%3N" 2>/dev/null || python3 -c 'import time; print(int(time.time()*1000))' 2>/dev/null || echo 0)"
+
+# ── 1. Append to event log ────────────────────────────────────────────────────
+echo "${TS_ISO} epoch_ms=${TS_MS} host=${HOSTNAME} state=${STATE}" >> "${LOG_FILE}" 2>/dev/null || true
+
+# ── 2. Ensure runtime dir exists and write current state (single word) ──────
+mkdir -p "$(dirname "${STATE_FILE}")" 2>/dev/null || true
+echo "${STATE}" > "${STATE_FILE}" 2>/dev/null || true
+
+# ── 3. Fire-and-forget POST to control-plane (optional) ──────────────────────
+CONTROL_PLANE_URL="{{ control_plane_url | default('') }}"
+if [[ -n "${CONTROL_PLANE_URL}" ]] && command -v curl > /dev/null 2>&1; then
+    PAYLOAD="{\"type\":\"keepalived_state\",\"state\":\"${STATE}\",\"host\":\"${HOSTNAME}\",\"ts_ms\":${TS_MS}}"
+    curl -s -o /dev/null \
+        --max-time 2 \
+        -X POST \
+        -H "Content-Type: application/json" \
+        ${CONTROL_PLANE_TOKEN:+-H "Authorization: Bearer ${CONTROL_PLANE_TOKEN}"} \
+        -d "${PAYLOAD}" \
+        "${CONTROL_PLANE_URL}/api/gateways/events" &
+fi
+
+exit 0

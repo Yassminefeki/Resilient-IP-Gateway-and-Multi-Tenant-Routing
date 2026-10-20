@@ -1,0 +1,78 @@
+---
+- name: Stage and validate candidate HAProxy configuration on every gateway
+  hosts: gateways
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+  tasks:
+    - name: Ensure generation backup directory exists
+      ansible.builtin.file:
+        path: /etc/haproxy/backups
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+    - name: Stage generation-specific HAProxy candidate
+      ansible.builtin.copy:
+        src: "{{ haproxy_candidate_sources[inventory_hostname] }}"
+        dest: /etc/haproxy/haproxy.cfg.candidate
+        owner: root
+        group: root
+        mode: "0644"
+    - name: Validate candidate remotely before changing live configuration
+      ansible.builtin.command:
+        argv:
+          - haproxy
+          - -c
+          - -f
+          - /etc/haproxy/haproxy.cfg.candidate
+      changed_when: false
+
+- name: Back up current live configuration on both gateways
+  hosts: gateways
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+  tasks:
+    - name: Save per-gateway live configuration before deployment
+      ansible.builtin.copy:
+        src: /etc/haproxy/haproxy.cfg
+        dest: "/etc/haproxy/backups/haproxy.cfg.{{ haproxy_generation_id }}"
+        remote_src: true
+        owner: root
+        group: root
+        mode: "0644"
+
+- name: Apply candidate on standby gateway first
+  hosts: gateways
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+  tasks:
+    - name: Atomically install candidate as live configuration
+      ansible.builtin.command:
+        argv: [mv, /etc/haproxy/haproxy.cfg.candidate, /etc/haproxy/haproxy.cfg]
+      changed_when: true
+      when: inventory_hostname == haproxy_standby_gateway
+    - name: Gracefully reload HAProxy on standby
+      ansible.builtin.service:
+        name: haproxy
+        state: reloaded
+      when: inventory_hostname == haproxy_standby_gateway
+
+- name: Apply candidate on active gateway second
+  hosts: gateways
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+  tasks:
+    - name: Atomically install candidate as live configuration
+      ansible.builtin.command:
+        argv: [mv, /etc/haproxy/haproxy.cfg.candidate, /etc/haproxy/haproxy.cfg]
+      changed_when: true
+      when: inventory_hostname == haproxy_active_gateway
+    - name: Gracefully reload HAProxy on active
+      ansible.builtin.service:
+        name: haproxy
+        state: reloaded
+      when: inventory_hostname == haproxy_active_gateway

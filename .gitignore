@@ -1,0 +1,69 @@
+# ==============================================================================
+# FelCloud Resilient IP Optimizer — .gitignore
+# ==============================================================================
+
+# Credentials, Secrets & Keys
+.env
+.env.*
+!.env.example
+.vault_pass
+.dashboard_status
+ansible/.vault_pass
+ansible/.ssh/
+*.pem
+*.key
+*.crt
+
+# Runtime Databases, Local State & Stray DSNs
+ipam/
+*.db
+*.db-*
+*.db.bak*
+*.sqlite
+*.sqlite3
+controlplane/?*
+*journal_mode=*
+
+# Python Bytecode, Caches & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Pulumi Local State & Stack Secrets
+.pulumi/
+infra/.pulumi/
+*.stack.json
+
+# Discovery Dumps, Logs & Test Outputs
+*.log
+scripts/*.log
+output/
+docs/evidence/
+
+# Editor & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.ansible/
+
+# Compiled Binaries
+controlplane/felcloud-controlplane
+controlplane/controlplane
+infra/infra
+felcloud-controlplane
+
+# Node & Dashboard Frontend
+node_modules/
+dashboard/node_modules/
+# dashboard/dist is intentionally tracked so the Go server can serve it
+# without a separate build step on the demo machine.
+!dashboard/dist/
+!dashboard/dist/**

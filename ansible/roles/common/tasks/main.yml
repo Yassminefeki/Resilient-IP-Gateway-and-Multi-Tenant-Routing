@@ -1,0 +1,48 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  register: common_apt_cache_update
+  # Non-fatal: apt cache failures are acceptable on air-gapped/offline hosts.
+  failed_when: common_apt_cache_update.failed | default(false)
+
+- name: Install required system packages
+  ansible.builtin.apt:
+    name:
+      - haproxy
+      - keepalived
+      - curl
+      - jq
+      - iproute2
+      - iputils-ping
+      - net-tools
+      - ca-certificates
+      - psmisc
+      - openssl
+    state: present
+
+- name: Configure sysctl settings for routing and non-local binding
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: true
+    sysctl_file: /etc/sysctl.d/99-resilient-gateway.conf
+  loop:
+    - { name: "net.ipv4.ip_forward", value: "1" }
+    - { name: "net.ipv4.ip_nonlocal_bind", value: "1" }
+    - { name: "net.ipv4.conf.all.rp_filter", value: "0" }
+    - { name: "net.ipv4.conf.default.rp_filter", value: "0" }
+
+- name: Deploy Keepalived HAProxy health check script
+  ansible.builtin.copy:
+    dest: /usr/local/bin/check_haproxy.sh
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/sh
+      # Primary: HTTP probe — catches dead/hung HAProxy even when PID still exists
+      /usr/bin/curl -s -m 1 -o /dev/null http://127.0.0.1:80/ || \
+      /usr/bin/killall -0 haproxy

@@ -1,0 +1,3 @@
+name: felcloud-infra
+runtime: go
+description: Pulumi infrastructure for FelCloud Resilient IP Optimizer
