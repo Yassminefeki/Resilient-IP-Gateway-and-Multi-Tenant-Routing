@@ -1,0 +1,175 @@
+{
+  "test": "T1_provisioning_latency",
+  "status": "EXECUTED",
+  "timestamp_utc": "2026-10-18T15:49:18.183Z",
+  "planned_runs": 30,
+  "n": 30,
+  "successful_runs": 27,
+  "failed_runs": 3,
+  "success_rate": 0.9,
+  "failure_reasons": [
+    {
+      "run_index": 2,
+      "team": "bench-t1-20261018t133258z-02",
+      "reason": "provision_http_status=502; provision_response_body={\"error\": \"gw1 HAProxy is not active\\nroute cleanup sync: context deadline exceeded\", \"sandbox_id\": \"bench-t1-20261018t133258z-02\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 145, \"health\": 153759, \"port\": 582, \"server_active\": 20170, \"sync\": 62621, \"total\": 237287}}; last_probe_status_code=NOT ATTEMPTED; probe_url=http://203.0.113.119/; probe_scheme=http; probe_host=203.0.113.119; Host=bench-t1-20261018t133258z-02.cloudpulse.sandbox.example.com; error=gw1 HAProxy is not active\nroute cleanup sync: context deadline exceeded; elapsed_ms_by_phase={\"dns_lookup\": \"NOT ATTEMPTED\", \"gateway_poll\": \"NOT ATTEMPTED\", \"provision_api\": 248142.85496500088, \"total\": 248143.05030499963}",
+      "provision_http_status": 502,
+      "provision_response_body_truncated": "{\"error\": \"gw1 HAProxy is not active\\nroute cleanup sync: context deadline exceeded\", \"sandbox_id\": \"bench-t1-20261018t133258z-02\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 145, \"health\": 153759, \"port\": 582, \"server_active\": 20170, \"sync\": 62621, \"total\": 237287}}",
+      "last_probe_status_code": "NOT ATTEMPTED",
+      "probe_url": "http://203.0.113.119/",
+      "probe_url_scheme": "http",
+      "probe_url_host": "203.0.113.119",
+      "probe_host_header": "bench-t1-20261018t133258z-02.cloudpulse.sandbox.example.com",
+      "probe_error": "NOT ATTEMPTED",
+      "elapsed_ms_by_phase": {
+        "provision_api": 248142.85496500088,
+        "dns_lookup": "NOT ATTEMPTED",
+        "gateway_poll": "NOT ATTEMPTED",
+        "total": 248143.05030499963
+      }
+    },
+    {
+      "run_index": 13,
+      "team": "bench-t1-20261018t133258z-13",
+      "reason": "provision_http_status=502; provision_response_body={\"error\": \"baseline gateway health failed: VIP health check failed: status=0 error=Get \\\"http://203.0.113.119/\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\\nroute cleanup sync: baseline gateway health failed: VIP health check failed: status=0 error=Get \\\"http://203.0.113.119/\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\", \"sandbox_id\": \"bench-t1-20261018t133258z-13\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 130, \"health\": 144373, \"port\": 624, \"server_active\": 20930, \"sync\": 3737, \"total\": 169807}}; last_probe_status_code=NOT ATTEMPTED; probe_url=http://203.0.113.119/; probe_scheme=http; probe_host=203.0.113.119; Host=bench-t1-20261018t133258z-13.cloudpulse.sandbox.example.com; error=baseline gateway health failed: VIP health check failed: status=0 error=Get \"http://203.0.113.119/\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\nroute cleanup sync: baseline gateway health failed: VIP health check failed: status=0 error=Get \"http://203.0.113.119/\": context deadline exceeded (Client.Timeout exceeded while awaiting headers); elapsed_ms_by_phase={\"dns_lookup\": \"NOT ATTEMPTED\", \"gateway_poll\": \"NOT ATTEMPTED\", \"provision_api\": 173053.29539300146, \"total\": 173053.44066600082}",
+      "provision_http_status": 502,
+      "provision_response_body_truncated": "{\"error\": \"baseline gateway health failed: VIP health check failed: status=0 error=Get \\\"http://203.0.113.119/\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\\nroute cleanup sync: baseline gateway health failed: VIP health check failed: status=0 error=Get \\\"http://203.0.113.119/\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\", \"sandbox_id\": \"bench-t1-20261018t133258z-13\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 130, \"health\": 144373, \"port\": 624, \"server_active\": 20930, \"sync\": 3737, \"total\": 169807}}",
+      "last_probe_status_code": "NOT ATTEMPTED",
+      "probe_url": "http://203.0.113.119/",
+      "probe_url_scheme": "http",
+      "probe_url_host": "203.0.113.119",
+      "probe_host_header": "bench-t1-20261018t133258z-13.cloudpulse.sandbox.example.com",
+      "probe_error": "NOT ATTEMPTED",
+      "elapsed_ms_by_phase": {
+        "provision_api": 173053.29539300146,
+        "dns_lookup": "NOT ATTEMPTED",
+        "gateway_poll": "NOT ATTEMPTED",
+        "total": 173053.44066600082
+      }
+    },
+    {
+      "run_index": 30,
+      "team": "bench-t1-20261018t133258z-30",
+      "reason": "provision_http_status=502; provision_response_body={\"error\": \"gw1 HAProxy is not active\\nroute cleanup sync: context deadline exceeded\", \"sandbox_id\": \"bench-t1-20261018t133258z-30\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 226, \"health\": 145691, \"port\": 612, \"server_active\": 19923, \"sync\": 59841, \"total\": 226311}}; last_probe_status_code=NOT ATTEMPTED; probe_url=http://203.0.113.119/; probe_scheme=http; probe_host=203.0.113.119; Host=bench-t1-20261018t133258z-30.cloudpulse.sandbox.example.com; error=gw1 HAProxy is not active\nroute cleanup sync: context deadline exceeded; elapsed_ms_by_phase={\"dns_lookup\": \"NOT ATTEMPTED\", \"gateway_poll\": \"NOT ATTEMPTED\", \"provision_api\": 237836.12696199998, \"total\": 237836.26810699934}",
+      "provision_http_status": 502,
+      "provision_response_body_truncated": "{\"error\": \"gw1 HAProxy is not active\\nroute cleanup sync: context deadline exceeded\", \"sandbox_id\": \"bench-t1-20261018t133258z-30\", \"step\": \"gateway_sync\", \"timings_ms\": {\"allocate\": 226, \"health\": 145691, \"port\": 612, \"server_active\": 19923, \"sync\": 59841, \"total\": 226311}}",
+      "last_probe_status_code": "NOT ATTEMPTED",
+      "probe_url": "http://203.0.113.119/",
+      "probe_url_scheme": "http",
+      "probe_url_host": "203.0.113.119",
+      "probe_host_header": "bench-t1-20261018t133258z-30.cloudpulse.sandbox.example.com",
+      "probe_error": "NOT ATTEMPTED",
+      "elapsed_ms_by_phase": {
+        "provision_api": 237836.12696199998,
+        "dns_lookup": "NOT ATTEMPTED",
+        "gateway_poll": "NOT ATTEMPTED",
+        "total": 237836.26810699934
+      }
+    }
+  ],
+  "metrics_ms": {
+    "api_elapsed": {
+      "n": 30,
+      "min": 173053.2954,
+      "mean": 219079.2967,
+      "std": 11581.3496,
+      "p50": 217063.6704,
+      "p90": 229503.2536,
+      "p95": 234406.169,
+      "p99": 245153.9038,
+      "max": 248142.855
+    },
+    "client_post_to_first_http_200": {
+      "n": 27,
+      "min": 211213.3869,
+      "mean": 219141.7284,
+      "std": 5131.0897,
+      "p50": 217136.0074,
+      "p90": 226122.3011,
+      "p95": 228863.5533,
+      "p99": 230176.5459,
+      "max": 230374.4951
+    },
+    "total_latency_to_first_http_200": {
+      "n": 27,
+      "min": 211213.811,
+      "mean": 219141.9489,
+      "std": 5131.0536,
+      "p50": 217136.1419,
+      "p90": 226122.3868,
+      "p95": 228863.8692,
+      "p99": 230176.7194,
+      "max": 230374.5843
+    },
+    "dns_lookup": {
+      "n": 27,
+      "min": 21.7107,
+      "mean": 38.8351,
+      "std": 22.6645,
+      "p50": 33.8405,
+      "p90": 49.8602,
+      "p95": 69.1529,
+      "p99": 123.8143,
+      "max": 140.6294
+    },
+    "ipam_allocate": {
+      "n": 30,
+      "min": 126,
+      "mean": 185.3,
+      "std": 37.2005,
+      "p50": 180.0,
+      "p90": 228.0,
+      "p95": 254.25,
+      "p99": 266.68,
+      "max": 269
+    },
+    "neutron_port": {
+      "n": 30,
+      "min": 492,
+      "mean": 620.2,
+      "std": 83.4967,
+      "p50": 625.0,
+      "p90": 724.4,
+      "p95": 741.95,
+      "p99": 785.76,
+      "max": 802
+    },
+    "nova_active": {
+      "n": 30,
+      "min": 19824,
+      "mean": 20656.5667,
+      "std": 2227.4915,
+      "p50": 19933.5,
+      "p90": 20945.7,
+      "p95": 23793.55,
+      "p99": 29571.49,
+      "max": 31027
+    },
+    "health_probe": {
+      "n": 30,
+      "min": 140270,
+      "mean": 146579.1,
+      "std": 4135.2676,
+      "p50": 145160.0,
+      "p90": 153818.8,
+      "p95": 154361.4,
+      "p99": 154795.97,
+      "max": 154972
+    },
+    "gateway_rule": {
+      "n": 30,
+      "min": 3737,
+      "mean": 50157.3667,
+      "std": 9090.7957,
+      "p50": 50991.0,
+      "p90": 53631.5,
+      "p95": 57409.2,
+      "p99": 61814.8,
+      "max": 62621
+    }
+  },
+  "stage_absolute_timestamps": "Unavailable: API returns stage durations in timings_ms, not stage event timestamps.",
+  "cold_warm_status": "NOT EXECUTED: image cache state cannot be controlled or verified by this harness.",
+  "raw_csv": "bench/results/raw/t1_provisioning_20261018T133258Z.csv",
+  "chart_png": "bench/results/charts/t1_provisioning_stages_20261018T133258Z.png",
+  "chart_generated": true
+}

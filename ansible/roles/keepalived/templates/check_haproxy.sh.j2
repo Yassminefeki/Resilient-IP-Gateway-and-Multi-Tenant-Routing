@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# check_haproxy.sh — Keepalived health-check script.
+# Deployed to /usr/local/bin/check_haproxy.sh by the keepalived Ansible role.
+# Exit 0  → haproxy is healthy (keepalived keeps / gains priority)
+# Exit !0 → haproxy is unhealthy (weight penalty applied)
+#
+# Stage 1: service must be active.
+# Stage 2: loopback health endpoint must respond 200.
+# Stage 3: backend-aware socket check. If HAProxy has servers and all of them are
+# DOWN, the node is considered unhealthy. A missing socket or missing backend
+# report is treated as healthy so a single admin-socket outage does not trigger
+# a false failover.
+set -uo pipefail
+
+HAPROXY_HEALTH_URL="${HAPROXY_HEALTH_URL:-http://127.0.0.1:9000/healthz}"
+HAPROXY_STAT_FILE="${HAPROXY_STAT_FILE:-/run/haproxy/admin.sock}"
+CURL_TIMEOUT=1
+
+# ── Stage 1: service unit must be active ──────────────────────────────────────
+if ! systemctl is-active --quiet haproxy; then
+    exit 1
+fi
+
+# ── Stage 2: HTTP probe against internal health endpoint ──────────────────────
+if command -v curl > /dev/null 2>&1; then
+    HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+        --max-time "${CURL_TIMEOUT}" \
+        "${HAPROXY_HEALTH_URL}" 2>/dev/null || echo "000")
+    if [[ "${HTTP_CODE}" != "200" ]]; then
+        exit 1
+    fi
+fi
+
+# ── Stage 3: backend-aware check ────────────────────────────────────────────────
+if command -v python3 > /dev/null 2>&1; then
+    python3 - "$HAPROXY_STAT_FILE" <<'PY'
+import csv
+import os
+import socket
+import sys
+
+path = sys.argv[1]
+
+def read_csv_file(csv_path: str):
+    try:
+        with open(csv_path, newline="", encoding="utf-8") as handle:
+            rows = list(csv.reader(handle))
+    except OSError:
+        return []
+    return rows
+
+def read_socket_data(sock_path: str):
+    try:
+        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        sock.settimeout(0.5)
+        sock.connect(sock_path)
+        sock.sendall(b"show stat\n")
+        chunks = []
+        while True:
+            try:
+                data = sock.recv(4096)
+            except socket.timeout:
+                break
+            if not data:
+                break
+            chunks.append(data)
+            if len(data) < 4096:
+                break
+        sock.close()
+        return b"".join(chunks).decode("utf-8", "replace")
+    except (OSError, socket.timeout):
+        return ""
+
+raw = ""
+if path.endswith(".sock") or path.endswith("/admin.sock"):
+    raw = read_socket_data(path)
+elif os.path.exists(path) and os.path.isfile(path):
+    raw = "\n".join(read_csv_file(path))
+else:
+    raw = ""
+
+if not raw:
+    raise SystemExit(0)
+
+rows = [line for line in raw.splitlines() if line.strip()]
+if not rows:
+    raise SystemExit(0)
+
+reader = csv.reader(rows)
+header = next(reader, None)
+if not header:
+    raise SystemExit(0)
+try:
+    px_index = header.index("pxname")
+    sv_index = header.index("svname")
+    status_index = header.index("status")
+except ValueError:
+    raise SystemExit(0)
+
+servers = []
+for row in reader:
+    if len(row) <= max(px_index, sv_index, status_index):
+        continue
+    pxname = row[px_index].strip()
+    svname = row[sv_index].strip()
+    status = row[status_index].strip()
+    if pxname == "default_maintenance":
+        continue
+    if pxname in {"FRONTEND", "BACKEND"} or svname in {"FRONTEND", "BACKEND"}:
+        continue
+    if svname:
+        servers.append((pxname, svname, status))
+
+if not servers:
+    raise SystemExit(0)
+
+all_down = all(status == "DOWN" for _, _, status in servers)
+raise SystemExit(1 if all_down else 0)
+PY
+    result=$?
+    exit "$result"
+fi
+
+exit 0

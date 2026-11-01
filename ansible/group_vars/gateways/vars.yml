@@ -1,0 +1,19 @@
+---
+virtual_router_id: 51
+haproxy_dpa_port: 5555
+haproxy_dpa_user: admin
+# haproxy_dpa_pass is defined in group_vars/gateways/vault.yml (Ansible Vault AES-256).
+# If vault.yml is not yet configured, falls back to HAPROXY_DPA_PASSWORD or placeholder.
+haproxy_dpa_pass: "{{ vault_haproxy_dpa_pass | default(lookup('env', 'HAPROXY_DPA_PASSWORD') | default('CHANGE_ME', true)) }}"
+haproxy_tls_cert_dir: /etc/haproxy/certs
+haproxy_tls_cert_file: /etc/haproxy/certs/felcloud-gateway.pem
+keepalived_script_user: root
+keepalived_check_interval: 1
+keepalived_check_fall: 1
+keepalived_check_rise: 2
+keepalived_check_weight: -60
+keepalived_advert_int: 1
+
+routing_domain: "{{ lookup('env', 'ROUTING_DOMAIN') | default('sandbox.example.com', true) }}"
+
+teams: []

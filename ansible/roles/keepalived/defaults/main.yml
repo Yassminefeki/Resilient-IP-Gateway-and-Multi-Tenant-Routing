@@ -1,0 +1,7 @@
+---
+keepalived_script_user: root
+keepalived_check_interval: 1
+keepalived_check_fall: 1
+keepalived_check_rise: 2
+keepalived_check_weight: -60
+keepalived_advert_int: 1

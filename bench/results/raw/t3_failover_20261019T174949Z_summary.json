@@ -1,0 +1,1381 @@
+{
+  "artifacts": {
+    "chart": "bench/results/charts/t3_failover_20261019T174949Z.png",
+    "raw_csv": "bench/results/raw/t3_failover_20261019T174949Z.csv",
+    "summary_json": "bench/results/raw/t3_failover_20261019T174949Z_summary.json"
+  },
+  "clock_offset": {
+    "corrected": false,
+    "stated_uncertainty": "Bastion minus harness clock: median +11.7 ms; samples -1.2 to +15.7 ms; uncertainty about +/-55 ms. Recorded as stated; no correction."
+  },
+  "hard_stop_scenario": {
+    "reason": "requires --include-hard-stop",
+    "status": "NOT EXECUTED"
+  },
+  "preflight_stable_state": {
+    "gateways": {
+      "gw1": {
+        "backends": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "baseline_backends_exact": true,
+        "command_returncode": 0,
+        "gateway": "gw1",
+        "haproxy_active": true,
+        "haproxy_config_valid": true,
+        "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+        "keepalived_active": true,
+        "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+        "vip_present": true
+      },
+      "gw2": {
+        "backends": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "baseline_backends_exact": true,
+        "command_returncode": 0,
+        "gateway": "gw2",
+        "haproxy_active": true,
+        "haproxy_config_valid": true,
+        "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+        "keepalived_active": true,
+        "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+        "vip_present": false
+      }
+    },
+    "passed": true,
+    "team1_probe": {
+      "error": "",
+      "gateway_id": "gw1",
+      "latency_ms": 1154.042,
+      "status": 200
+    }
+  },
+  "scenarios": [
+    {
+      "action": {},
+      "derived_expectation": "60 seconds of probing; no action",
+      "primary_samples": [],
+      "restore": {
+        "action": {
+          "output": "Warning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+          "returncode": 0
+        },
+        "passed": true
+      },
+      "sample_summary": {
+        "primary_bastion": {
+          "429_count": 0,
+          "connection_error_count": 0,
+          "failed_sample_count": 0,
+          "gateway_id_counts": {
+            "gw1": 661,
+            "gw2": 0
+          },
+          "non_200_count": 0,
+          "sample_count": 661
+        },
+        "secondary_wan": {
+          "429_count": 0,
+          "connection_error_count": 0,
+          "failed_sample_count": 0,
+          "gateway_id_counts": {
+            "gw1": 558,
+            "gw2": 0
+          },
+          "non_200_count": 0,
+          "sample_count": 558
+        }
+      },
+      "scenario": "baseline",
+      "secondary_samples": [],
+      "stable_state_after": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 78.06,
+          "status": 200
+        }
+      },
+      "stable_state_before": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 57.137,
+          "status": 200
+        }
+      },
+      "status": "COMPLETED"
+    },
+    {
+      "action": {
+        "returned_utc": "2026-10-19T17:48:45.903Z",
+        "started_utc": "2026-10-19T17:48:45.721Z",
+        "stdout": ""
+      },
+      "derived_expectation": "derived expectation: about 3 to 6 seconds",
+      "failback_first_gw1_secondary": {
+        "error": "",
+        "gateway_id": "gw1",
+        "latency_ms": 109.5629920000647,
+        "status": 200,
+        "timestamp_utc": "2026-10-19T17:49:09.353Z"
+      },
+      "failover_first_gw2_secondary": {
+        "error": "",
+        "gateway_id": "gw2",
+        "latency_ms": 158.39960599987535,
+        "status": 200,
+        "timestamp_utc": "2026-10-19T17:48:52.175Z"
+      },
+      "failover_under_3_seconds": false,
+      "measurements": {
+        "primary_bastion": {
+          "action_to_last_failed_sample_ms": 5462.0,
+          "clock_basis": "primary_bastion",
+          "failback": {
+            "clock_basis": "primary_bastion",
+            "failed_sample_count": 0,
+            "failed_samples": [],
+            "first_gw1_sample_utc": "2026-10-19T17:49:06.511Z",
+            "last_failed_sample_utc": null,
+            "restore_to_first_gw1_ms": 5920.0
+          },
+          "failed_sample_count": 53,
+          "failed_samples": [
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7223190041258931,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:45.974Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.866059010149911,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.074Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7345190097112209,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.174Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8671079995110631,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.274Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9468480129726231,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.374Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8888389857020229,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.474Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8261190087068826,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.575Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8327589894179255,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.675Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8383080130442977,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.775Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.737260008463636,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.875Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8658599981572479,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.975Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9474490070715547,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.076Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8487690065521747,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.176Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7867880049161613,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.276Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8700089820194989,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.376Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8403290121350437,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.476Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.943358987569809,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.576Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 1.0998569778166711,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.677Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8477400115225464,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.777Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8953289943747222,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.877Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8434790070168674,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.977Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8420890080742538,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.077Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9114379936363548,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.178Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.6922699976712465,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.278Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9553590207360685,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.378Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8468489977531135,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.478Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.991977984085679,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.578Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 1.014798996038735,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.679Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 1.0111189913004637,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.779Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8749790140427649,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.879Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8500480034854263,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.979Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8123500156216323,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.079Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7084399985615164,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.179Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8742290083318949,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.280Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 1.0105380206368864,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.380Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7221300038509071,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.480Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9598300093784928,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.580Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.9310389868915081,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.680Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.6670079892501235,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.780Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.913467985810712,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.881Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8348690171260387,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.981Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8267889788839966,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.081Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.6112089904490858,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.181Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8941779960878193,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.281Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8670499955769628,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.381Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.964659993769601,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.482Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 1.028288999805227,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.582Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.6368790054693818,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.682Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.733260007109493,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.782Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.5231589893810451,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.882Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.7873279973864555,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.982Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8751779969315976,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:51.083Z"
+            },
+            {
+              "error": "URLError: <urlopen error [Errno 111] Connection refused>",
+              "gateway_id": "",
+              "latency_ms": 0.8532000065315515,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:51.183Z"
+            }
+          ],
+          "failover_action_to_first_gw2_ms": 5562.0,
+          "failover_first_gw2_sample_utc": "2026-10-19T17:48:51.283Z",
+          "gw1_seen_before_action": true,
+          "last_failed_sample_utc": "2026-10-19T17:48:51.183Z",
+          "samples_during_action_window": 148
+        },
+        "secondary_wan": {
+          "action_to_last_failed_sample_ms": 5449.0,
+          "clock_basis": "secondary_wan",
+          "failback": {
+            "clock_basis": "secondary_wan",
+            "failed_sample_count": 3,
+            "failed_samples": [
+              {
+                "error": "ConnectTimeout: ",
+                "gateway_id": "",
+                "latency_ms": 1005.398833000072,
+                "status": 0,
+                "timestamp_utc": "2026-10-19T17:49:06.336Z"
+              },
+              {
+                "error": "ConnectTimeout: ",
+                "gateway_id": "",
+                "latency_ms": 1004.9826220001705,
+                "status": 0,
+                "timestamp_utc": "2026-10-19T17:49:07.342Z"
+              },
+              {
+                "error": "ConnectTimeout: ",
+                "gateway_id": "",
+                "latency_ms": 1005.1934710008936,
+                "status": 0,
+                "timestamp_utc": "2026-10-19T17:49:08.347Z"
+              }
+            ],
+            "first_gw1_sample_utc": "2026-10-19T17:49:09.353Z",
+            "last_failed_sample_utc": "2026-10-19T17:49:08.347Z",
+            "restore_to_first_gw1_ms": 8762.0
+          },
+          "failed_sample_count": 45,
+          "failed_samples": [
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 38.29738099921087,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:45.835Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 52.76535399934801,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:45.936Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 68.61239299905719,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.036Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 57.08712699924945,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.137Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 36.04654000082519,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.237Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 28.14364799996838,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.338Z"
+            },
+            {
+              "error": "ConnectTimeout: ",
+              "gateway_id": "",
+              "latency_ms": 1002.2015730010025,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:46.439Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 31.04704299948935,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.441Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 61.027233001368586,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.541Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 67.59411699931661,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.642Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 38.1759450010577,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.743Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 29.86841500023729,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.844Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 89.01167899966822,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:47.944Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 29.881705999287078,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.044Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 46.45390400037286,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.145Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 25.7137659991713,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.246Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 47.47897299967008,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.347Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 62.847647999660694,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.448Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 61.16817799920682,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.548Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 36.71819900046103,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.649Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 92.3072890000185,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.749Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 29.098740000335965,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.850Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 41.591723000237835,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:48.950Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 103.23535600036848,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.051Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 57.66697500075679,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.155Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 59.50016299902927,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.256Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 32.46315000069444,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.357Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 92.06457399886858,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.458Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 50.35028599922953,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.558Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 53.26498100112076,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.659Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 31.051216999912867,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.760Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 46.768459000304574,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.860Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 55.21509400023206,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:49.961Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 49.51409000022977,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.061Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 26.737538999441313,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.162Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 86.70357200026046,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.263Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 32.32656299951486,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.363Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 47.75133899966022,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.464Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 27.47067200107267,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.565Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 64.5500999999058,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.666Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 48.62449199936236,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.767Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 56.28749999959837,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.868Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 23.463186998924357,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:50.969Z"
+            },
+            {
+              "error": "ConnectError: All connection attempts failed",
+              "gateway_id": "",
+              "latency_ms": 80.90570599961211,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:51.070Z"
+            },
+            {
+              "error": "ConnectTimeout: ",
+              "gateway_id": "",
+              "latency_ms": 1004.6591780010203,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:48:51.170Z"
+            }
+          ],
+          "failover_action_to_first_gw2_ms": 6454.0,
+          "failover_first_gw2_sample_utc": "2026-10-19T17:48:52.175Z",
+          "gw1_seen_before_action": true,
+          "last_failed_sample_utc": "2026-10-19T17:48:51.170Z",
+          "samples_during_action_window": 126
+        }
+      },
+      "pass": false,
+      "primary_samples": [],
+      "restoration_started_utc": "2026-10-19T17:49:00.591Z",
+      "restore": {
+        "action": {
+          "returned_utc": "2026-10-19T17:49:00.800Z",
+          "started_utc": "2026-10-19T17:49:00.591Z",
+          "stdout": ""
+        },
+        "gw1_services_output": "Warning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+        "gw1_services_returncode": 0,
+        "passed": true
+      },
+      "sample_summary": {
+        "primary_bastion": {
+          "429_count": 0,
+          "connection_error_count": 53,
+          "failed_sample_count": 53,
+          "gateway_id_counts": {
+            "gw1": 94,
+            "gw2": 152
+          },
+          "non_200_count": 0,
+          "sample_count": 299
+        },
+        "secondary_wan": {
+          "429_count": 0,
+          "connection_error_count": 48,
+          "failed_sample_count": 48,
+          "gateway_id_counts": {
+            "gw1": 51,
+            "gw2": 132
+          },
+          "non_200_count": 0,
+          "sample_count": 231
+        }
+      },
+      "scenario": "stop_haproxy_gw1",
+      "secondary_samples": [],
+      "stable_state_after": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 92.784,
+          "status": 200
+        }
+      },
+      "stable_state_after_utc": "2026-10-19T17:49:14.440Z",
+      "stable_state_before": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 72.176,
+          "status": 200
+        }
+      },
+      "status": "FAILED",
+      "vip_location_after_failover": {
+        "gw1": {
+          "backends": [
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "baseline_backends_exact": true,
+          "command_returncode": 0,
+          "gateway": "gw1",
+          "haproxy_active": false,
+          "haproxy_config_valid": true,
+          "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+          "keepalived_active": true,
+          "raw_output": "HAPROXY=inactive\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+          "vip_present": false
+        },
+        "gw2": {
+          "backends": [
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "baseline_backends_exact": true,
+          "command_returncode": 0,
+          "gateway": "gw2",
+          "haproxy_active": true,
+          "haproxy_config_valid": true,
+          "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+          "keepalived_active": true,
+          "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+          "vip_present": true
+        }
+      },
+      "x_gateway_id_changed_gw1_to_gw2": true
+    },
+    {
+      "action": {
+        "returned_utc": "2026-10-19T17:49:27.527Z",
+        "started_utc": "2026-10-19T17:49:26.371Z",
+        "stdout": ""
+      },
+      "derived_expectation": "derived expectation: about 1 second",
+      "failback_first_gw1_secondary": {
+        "error": "",
+        "gateway_id": "gw1",
+        "latency_ms": 190.85570699826349,
+        "status": 200,
+        "timestamp_utc": "2026-10-19T17:49:40.557Z"
+      },
+      "failover_first_gw2_secondary": {
+        "error": "",
+        "gateway_id": "gw2",
+        "latency_ms": 96.33048899922869,
+        "status": 200,
+        "timestamp_utc": "2026-10-19T17:49:27.500Z"
+      },
+      "failover_under_3_seconds": true,
+      "measurements": {
+        "primary_bastion": {
+          "action_to_last_failed_sample_ms": 244.0,
+          "clock_basis": "primary_bastion",
+          "failback": {
+            "clock_basis": "primary_bastion",
+            "failed_sample_count": 0,
+            "failed_samples": [],
+            "first_gw1_sample_utc": "2026-10-19T17:49:40.644Z",
+            "last_failed_sample_utc": null,
+            "restore_to_first_gw1_ms": 3516.0
+          },
+          "failed_sample_count": 1,
+          "failed_samples": [
+            {
+              "error": "URLError: <urlopen error timed out>",
+              "gateway_id": "",
+              "latency_ms": 1001.6408310038969,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:49:26.615Z"
+            }
+          ],
+          "failover_action_to_first_gw2_ms": 1246.0,
+          "failover_first_gw2_sample_utc": "2026-10-19T17:49:27.617Z",
+          "gw1_seen_before_action": true,
+          "last_failed_sample_utc": "2026-10-19T17:49:26.615Z",
+          "samples_during_action_window": 98
+        },
+        "secondary_wan": {
+          "action_to_last_failed_sample_ms": 127.0,
+          "clock_basis": "secondary_wan",
+          "failback": {
+            "clock_basis": "secondary_wan",
+            "failed_sample_count": 0,
+            "failed_samples": [],
+            "first_gw1_sample_utc": "2026-10-19T17:49:40.557Z",
+            "last_failed_sample_utc": null,
+            "restore_to_first_gw1_ms": 3429.0
+          },
+          "failed_sample_count": 1,
+          "failed_samples": [
+            {
+              "error": "ConnectTimeout: ",
+              "gateway_id": "",
+              "latency_ms": 1002.4086180001177,
+              "status": 0,
+              "timestamp_utc": "2026-10-19T17:49:26.498Z"
+            }
+          ],
+          "failover_action_to_first_gw2_ms": 1129.0,
+          "failover_first_gw2_sample_utc": "2026-10-19T17:49:27.500Z",
+          "gw1_seen_before_action": true,
+          "last_failed_sample_utc": "2026-10-19T17:49:26.498Z",
+          "samples_during_action_window": 78
+        }
+      },
+      "pass": true,
+      "primary_samples": [],
+      "restoration_started_utc": "2026-10-19T17:49:37.128Z",
+      "restore": {
+        "action": {
+          "returned_utc": "2026-10-19T17:49:37.388Z",
+          "started_utc": "2026-10-19T17:49:37.128Z",
+          "stdout": ""
+        },
+        "gw1_services_output": "Warning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+        "gw1_services_returncode": 0,
+        "passed": true
+      },
+      "sample_summary": {
+        "primary_bastion": {
+          "429_count": 0,
+          "connection_error_count": 1,
+          "failed_sample_count": 1,
+          "gateway_id_counts": {
+            "gw1": 70,
+            "gw2": 130
+          },
+          "non_200_count": 0,
+          "sample_count": 201
+        },
+        "secondary_wan": {
+          "429_count": 0,
+          "connection_error_count": 1,
+          "failed_sample_count": 1,
+          "gateway_id_counts": {
+            "gw1": 48,
+            "gw2": 105
+          },
+          "non_200_count": 0,
+          "sample_count": 154
+        }
+      },
+      "scenario": "stop_keepalived_gw1",
+      "secondary_samples": [],
+      "stable_state_after": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 156.852,
+          "status": 200
+        }
+      },
+      "stable_state_after_utc": "2026-10-19T17:49:46.022Z",
+      "stable_state_before": {
+        "gateways": {
+          "gw1": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw1",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": true
+          },
+          "gw2": {
+            "backends": [
+              "default_maintenance",
+              "team1_backend",
+              "team2_backend"
+            ],
+            "baseline_backends_exact": true,
+            "command_returncode": 0,
+            "gateway": "gw2",
+            "haproxy_active": true,
+            "haproxy_config_valid": true,
+            "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+            "keepalived_active": true,
+            "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+            "vip_present": false
+          }
+        },
+        "passed": true,
+        "team1_probe": {
+          "error": "",
+          "gateway_id": "gw1",
+          "latency_ms": 170.926,
+          "status": 200
+        }
+      },
+      "status": "PASSED",
+      "vip_location_after_failover": {
+        "gw1": {
+          "backends": [
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "baseline_backends_exact": true,
+          "command_returncode": 0,
+          "gateway": "gw1",
+          "haproxy_active": true,
+          "haproxy_config_valid": true,
+          "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64",
+          "keepalived_active": false,
+          "raw_output": "HAPROXY=active\nKEEPALIVED=inactive\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.24/24 metric 100 fe80::f816:3eff:fe2c:61a/64 \nens4             UP             10.20.20.82/24 metric 100 fe80::f816:3eff:fe83:eff1/64 \nens5             UP             10.20.30.86/24 metric 100 fe80::f816:3eff:fe69:ec0d/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+          "vip_present": false
+        },
+        "gw2": {
+          "backends": [
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "baseline_backends_exact": true,
+          "command_returncode": 0,
+          "gateway": "gw2",
+          "haproxy_active": true,
+          "haproxy_config_valid": true,
+          "ip_br_addr": "lo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64",
+          "keepalived_active": true,
+          "raw_output": "HAPROXY=active\nKEEPALIVED=active\nADDR_BEGIN\nlo               UNKNOWN        127.0.0.1/8 ::1/128 \nens3             UP             10.20.10.164/24 metric 100 fe80::f816:3eff:fe2f:8c8/64 \nens4             UP             10.20.20.190/24 metric 100 10.20.20.246/24 fe80::f816:3eff:fee9:aafc/64 \nens5             UP             10.20.30.224/24 metric 100 fe80::f816:3eff:fe90:6b3/64 \nADDR_END\nHAPROXY_CHECK_BEGIN\nConfiguration file is valid\nHAPROXY_CHECK_END\nBACKENDS_BEGIN\nbackend default_maintenance\nbackend team1_backend\nbackend team2_backend\nBACKENDS_END\nWarning: Permanently added '203.0.113.10' (ED25519) to the list of known hosts.",
+          "vip_present": true
+        }
+      },
+      "x_gateway_id_changed_gw1_to_gw2": true
+    }
+  ],
+  "settings": {
+    "advert_int_seconds": 1,
+    "baseline_duration_seconds": 60,
+    "check_haproxy": "killall -0 haproxy; interval 2; fall 2; rise 2; weight 60",
+    "failback_observation_deadline_seconds": 60,
+    "failover_observation_deadline_seconds": 45,
+    "gw1_priority": 150,
+    "gw2_priority": 100,
+    "keepalived_version": "2.2.8",
+    "per_request_timeout_seconds": 1,
+    "primary_interval_ms": 100,
+    "secondary_interval_ms": 100,
+    "stable_state_deadline_after_vm_stop_seconds": 240,
+    "stable_state_deadline_seconds": 120,
+    "vrrp_id": 51
+  },
+  "ssh_dispatch_latency": "SSH dispatch latency adds a small, one-directional error; timestamps are recorded immediately before sending and after return; nothing is corrected.",
+  "status": "FAILED",
+  "test": "T3_gateway_failover",
+  "timestamp_utc": "2026-10-19T17:47:22.532Z"
+}

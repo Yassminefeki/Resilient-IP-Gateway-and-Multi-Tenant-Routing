@@ -1,0 +1,16 @@
+---
+# ==============================================================================
+# FelCloud - Gateway Secrets Template (Ansible Vault)
+# ==============================================================================
+# Copy this file to vault.yml and update the secrets:
+#   cp ansible/group_vars/gateways/vault.yml.example ansible/group_vars/gateways/vault.yml
+#
+# Then encrypt it with Ansible Vault:
+#   ansible-vault encrypt ansible/group_vars/gateways/vault.yml
+#
+# To provide the vault password during playbook execution:
+#   echo "your-vault-password" > ansible/.vault_pass
+#   chmod 600 ansible/.vault_pass
+# ==============================================================================
+
+vault_haproxy_dpa_pass: "CHANGE_ME"

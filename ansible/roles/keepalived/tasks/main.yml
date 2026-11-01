@@ -1,0 +1,100 @@
+---
+# ── Pre-requisites ─────────────────────────────────────────────────────────────
+
+- name: Ensure keepalived configuration directory exists
+  ansible.builtin.file:
+    path: /etc/keepalived
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Ensure /run/keepalived runtime directory exists
+  ansible.builtin.file:
+    path: /run/keepalived
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install tmpfiles.d entry to recreate /run/keepalived on boot
+  ansible.builtin.copy:
+    dest: /etc/tmpfiles.d/keepalived-run.conf
+    content: "d /run/keepalived 0755 root root -\n"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Ensure keepalived event log file exists
+  ansible.builtin.file:
+    path: /var/log/keepalived-events.log
+    state: touch
+    owner: root
+    group: root
+    mode: "0644"
+  # touch is always "changed"; only register as changed when the file is new.
+  changed_when: false
+
+# ── Health-check script ────────────────────────────────────────────────────────
+
+- name: Deploy check_haproxy.sh health-check script
+  ansible.builtin.template:
+    src: check_haproxy.sh.j2
+    dest: /usr/local/bin/check_haproxy.sh
+    owner: root
+    group: root
+    mode: "0755"
+  # Script change does not itself require a keepalived restart; keepalived
+  # re-reads the script path at each check interval automatically.
+
+# ── Notify scripts ─────────────────────────────────────────────────────────────
+
+- name: Deploy notify_master.sh
+  ansible.builtin.template:
+    src: notify_master.sh.j2
+    dest: /usr/local/bin/notify_master.sh
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Deploy notify_backup.sh
+  ansible.builtin.template:
+    src: notify_backup.sh.j2
+    dest: /usr/local/bin/notify_backup.sh
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Deploy notify_fault.sh
+  ansible.builtin.template:
+    src: notify_fault.sh.j2
+    dest: /usr/local/bin/notify_fault.sh
+    owner: root
+    group: root
+    mode: "0755"
+
+# ── Keepalived configuration ───────────────────────────────────────────────────
+
+- name: Deploy Keepalived configuration template
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    owner: root
+    group: root
+    mode: "0640"
+    # Validates configuration against a temporary file before overwriting the live config.
+    validate: keepalived -t -f %s
+  notify: Restart keepalived
+
+- name: Validate live Keepalived configuration
+  ansible.builtin.command:
+    cmd: keepalived -t -f /etc/keepalived/keepalived.conf
+  changed_when: false
+
+# ── Service ────────────────────────────────────────────────────────────────────
+
+- name: Ensure Keepalived service is started and enabled
+  ansible.builtin.service:
+    name: keepalived
+    state: started
+    enabled: true

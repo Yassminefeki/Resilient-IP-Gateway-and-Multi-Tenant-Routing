@@ -1,0 +1,269 @@
+{
+  "IP_QUARANTINE_SECONDS_used": "unset",
+  "artifacts": {
+    "chart": "bench/results/charts/t4_ip_recycling_20261018T214746Z.png",
+    "raw_csv": "bench/results/raw/t4_ip_recycling_20261018T214746Z.csv",
+    "summary_json": "bench/results/raw/t4_ip_recycling_20261018T214746Z_summary.json"
+  },
+  "cycle_plan": {
+    "default": 1,
+    "short": 2
+  },
+  "final_sanity": {
+    "gateways": {
+      "gw1": {
+        "backend_names": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "baseline_backends_untouched": true,
+        "haproxy_config_valid": true,
+        "status": "READ"
+      },
+      "gw2": {
+        "backend_names": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "baseline_backends_untouched": true,
+        "haproxy_config_valid": true,
+        "status": "READ"
+      }
+    },
+    "port_8082_free_after": true,
+    "source_db_signature_unchanged": true,
+    "temporary_directory_removed": true
+  },
+  "isolated_child_environment": {
+    "IP_QUARANTINE_SECONDS": "unset",
+    "REAPER_INTERVAL_SECONDS": "2000000000"
+  },
+  "live_db_written": false,
+  "phases": {
+    "default": {
+      "429_counts": {
+        "allocate": 0,
+        "read": 0,
+        "reclaim": 0,
+        "release": 0,
+        "total": 0
+      },
+      "allocation_latency_p50_ms": 208.0449939967366,
+      "allocation_latency_p95_ms": 208.0449939967366,
+      "cycles": [
+        {
+          "cycle": 1,
+          "default_quarantine_observed_seconds": 59.55,
+          "errors": [],
+          "free_observed_utc": "2026-10-18T21:48:53.308Z",
+          "free_state_observed": true,
+          "immediate_status": "QUARANTINED",
+          "initial_allocation_latency_ms": 201.43615899723954,
+          "initial_ip_address": "10.20.30.73",
+          "initial_sandbox_id": "bench-t4-20261018t214746z-default-01-a",
+          "last_observed_status": "FREE",
+          "negative_control_checks": [
+            {
+              "elapsed_seconds": 0.514,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 0.5,
+              "violation": false
+            },
+            {
+              "elapsed_seconds": 5.02,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 5,
+              "violation": false
+            },
+            {
+              "elapsed_seconds": 30.029,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 30,
+              "violation": false
+            },
+            {
+              "elapsed_seconds": 55.03,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 55,
+              "violation": false
+            }
+          ],
+          "negative_control_elapsed_seconds": 0.514,
+          "negative_control_status": "QUARANTINED",
+          "negative_control_violation": false,
+          "phase": "default",
+          "quarantine_state_seen_immediately": true,
+          "quarantine_time_resolution": "1 second",
+          "quarantine_until": "2026-10-18 21:48:53",
+          "quarantine_until_minus_release_seconds": 59.55,
+          "reallocated_ip_address": "10.20.30.74",
+          "reallocation_latency_ms": 208.0449939967366,
+          "reallocation_quarantine_until": "2026-10-18 21:48:54",
+          "reallocation_release_status": "QUARANTINED",
+          "reallocation_sandbox_id": "bench-t4-20261018t214746z-default-01-b",
+          "release_response_utc": "2026-10-18T21:47:53.450Z",
+          "release_status": "QUARANTINED",
+          "release_to_free_deadline_seconds": 120,
+          "release_to_free_seconds": 59.858,
+          "release_to_free_time_resolution": "approximately 1 second (1-second polling)",
+          "requested_cooldown_seconds": "omitted (control-plane default)",
+          "same_ip_reused": false,
+          "status": "COMPLETED"
+        }
+      ],
+      "default_quarantine_observed_seconds": [
+        59.55
+      ],
+      "errors": [],
+      "expected_to_fail_by_design": true,
+      "n": 1,
+      "negative_control_violations": 0,
+      "quarantine_state_seen_immediately": 1,
+      "quarantine_time_resolution": "1 second",
+      "release_to_free_deadline_seconds": 120,
+      "release_to_free_deadline_seconds_by_cycle": [
+        120
+      ],
+      "release_to_free_max_seconds": 59.858,
+      "release_to_free_p50_seconds": 59.858,
+      "release_to_free_p95_seconds": 59.858,
+      "release_to_free_time_resolution": "approximately 1 second (1-second polling)",
+      "release_to_free_timeout_count": 0,
+      "requested_cycles": 1,
+      "same_ip_reuse_count": 0,
+      "status": "FAILED",
+      "target": "IP recycling under 5 s",
+      "target_met": false
+    },
+    "short": {
+      "429_counts": {
+        "allocate": 0,
+        "read": 0,
+        "reclaim": 0,
+        "release": 0,
+        "total": 0
+      },
+      "allocation_latency_p50_ms": 200.34153050073655,
+      "allocation_latency_p95_ms": 201.16486714905477,
+      "cycles": [
+        {
+          "cycle": 1,
+          "errors": [],
+          "free_observed_utc": "2026-10-18T21:47:49.624Z",
+          "free_state_observed": true,
+          "immediate_status": "QUARANTINED",
+          "initial_allocation_latency_ms": 3.9864499995019287,
+          "initial_ip_address": "10.20.30.2",
+          "initial_sandbox_id": "bench-t4-20261018t214746z-short-01-a",
+          "last_observed_status": "FREE",
+          "negative_control_checks": [
+            {
+              "elapsed_seconds": 0.505,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 0.5,
+              "violation": false
+            }
+          ],
+          "negative_control_elapsed_seconds": 0.505,
+          "negative_control_status": "QUARANTINED",
+          "negative_control_violation": false,
+          "phase": "short",
+          "quarantine_state_seen_immediately": true,
+          "quarantine_time_resolution": "1 second",
+          "quarantine_until": "2026-10-18 21:47:49",
+          "quarantine_until_minus_release_seconds": 1.581,
+          "reallocated_ip_address": "10.20.30.15",
+          "reallocation_latency_ms": 201.2563489988679,
+          "reallocation_quarantine_until": "2026-10-18 21:47:51",
+          "reallocation_release_status": "QUARANTINED",
+          "reallocation_sandbox_id": "bench-t4-20261018t214746z-short-01-b",
+          "release_response_utc": "2026-10-18T21:47:47.418Z",
+          "release_status": "QUARANTINED",
+          "release_to_free_deadline_seconds": 15,
+          "release_to_free_seconds": 2.206,
+          "release_to_free_time_resolution": "approximately 1 second (1-second polling)",
+          "requested_cooldown_seconds": 2,
+          "same_ip_reused": false,
+          "status": "COMPLETED"
+        },
+        {
+          "cycle": 2,
+          "errors": [],
+          "free_observed_utc": "2026-10-18T21:47:52.637Z",
+          "free_state_observed": true,
+          "immediate_status": "QUARANTINED",
+          "initial_allocation_latency_ms": 201.47453099343693,
+          "initial_ip_address": "10.20.30.31",
+          "initial_sandbox_id": "bench-t4-20261018t214746z-short-02-a",
+          "last_observed_status": "FREE",
+          "negative_control_checks": [
+            {
+              "elapsed_seconds": 0.505,
+              "status": "QUARANTINED",
+              "target_elapsed_seconds": 0.5,
+              "violation": false
+            }
+          ],
+          "negative_control_elapsed_seconds": 0.505,
+          "negative_control_status": "QUARANTINED",
+          "negative_control_violation": false,
+          "phase": "short",
+          "quarantine_state_seen_immediately": true,
+          "quarantine_time_resolution": "1 second",
+          "quarantine_until": "2026-10-18 21:47:52",
+          "quarantine_until_minus_release_seconds": 1.569,
+          "reallocated_ip_address": "10.20.30.37",
+          "reallocation_latency_ms": 199.4267120026052,
+          "reallocation_quarantine_until": "2026-10-18 21:47:54",
+          "reallocation_release_status": "QUARANTINED",
+          "reallocation_sandbox_id": "bench-t4-20261018t214746z-short-02-b",
+          "release_response_utc": "2026-10-18T21:47:50.430Z",
+          "release_status": "QUARANTINED",
+          "release_to_free_deadline_seconds": 15,
+          "release_to_free_seconds": 2.207,
+          "release_to_free_time_resolution": "approximately 1 second (1-second polling)",
+          "requested_cooldown_seconds": 2,
+          "same_ip_reused": false,
+          "status": "COMPLETED"
+        }
+      ],
+      "default_quarantine_observed_seconds": [],
+      "errors": [],
+      "expected_to_fail_by_design": false,
+      "n": 2,
+      "negative_control_violations": 0,
+      "quarantine_state_seen_immediately": 2,
+      "quarantine_time_resolution": "1 second",
+      "release_to_free_deadline_seconds": 15,
+      "release_to_free_deadline_seconds_by_cycle": [
+        15,
+        15
+      ],
+      "release_to_free_max_seconds": 2.207,
+      "release_to_free_p50_seconds": 2.2065,
+      "release_to_free_p95_seconds": 2.20695,
+      "release_to_free_time_resolution": "approximately 1 second (1-second polling)",
+      "release_to_free_timeout_count": 0,
+      "requested_cycles": 2,
+      "same_ip_reuse_count": 0,
+      "status": "PASSED",
+      "target": "IP recycling under 5 s",
+      "target_met": true
+    }
+  },
+  "pool_size_from_control_plane_db": 252,
+  "port_8082_free_after": true,
+  "port_8082_free_before": true,
+  "reaper_interval_seconds": 2000000000,
+  "recycle_target_seconds": 5,
+  "source_db_path": "controlplane/ipam/ipam.db",
+  "source_db_signature_after": "7501b7897a220cd1d037cf7abe73309c7ff891e35652af91a2f49dc0f26acc95",
+  "source_db_signature_before": "7501b7897a220cd1d037cf7abe73309c7ff891e35652af91a2f49dc0f26acc95",
+  "source_db_signature_unchanged": true,
+  "status": "EXECUTED",
+  "temporary_directory_removed": true,
+  "test": "T4_ip_recycling",
+  "timestamp_utc": "2026-10-18T21:48:57.943Z"
+}

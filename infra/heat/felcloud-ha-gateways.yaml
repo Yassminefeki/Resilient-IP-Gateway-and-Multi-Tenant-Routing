@@ -1,0 +1,288 @@
+heat_template_version: 2021-04-16
+
+description: >
+  FelCloud Resilient IP Optimizer - High-Availability Dual Gateway Architecture
+  Declarative Heat Orchestration Template (HOT) for CSTAM-FELCLOUD Challenge.
+  Provisions anti-affinity dual edge gateways, Keepalived VRRP VIP with allowed_address_pairs,
+  multi-tenant isolated networks, and security groups.
+
+parameters:
+  public_net_id:
+    type: string
+    description: UUID or Name of external provider network for Floating IP access
+    default: public
+
+  gateway_flavor:
+    type: string
+    description: Nova flavor for HA gateways
+    default: m1.small
+
+  gateway_image:
+    type: string
+    description: Glance image for HA gateways
+    default: ubuntu-22.04
+
+  key_name:
+    type: string
+    description: SSH Keypair for bastion and gateway access
+    default: felcloud-key
+
+  vip_address:
+    type: string
+    description: Virtual IP address for Keepalived VRRP cluster on edge network
+    default: 10.20.20.246
+
+resources:
+  # ============================================================================
+  # 1. NETWORKS & SUBNETS
+  # ============================================================================
+  net_edge:
+    type: OS::Neutron::Net
+    properties:
+      name: felcloud-edge
+      admin_state_up: true
+
+  subnet_edge:
+    type: OS::Neutron::Subnet
+    properties:
+      name: felcloud-edge-sub
+      network_id: { get_resource: net_edge }
+      cidr: 10.20.20.0/24
+      gateway_ip: 10.20.20.1
+      allocation_pools:
+        - start: 10.20.20.50
+          end: 10.20.20.245
+      enable_dhcp: true
+
+  net_mgmt:
+    type: OS::Neutron::Net
+    properties:
+      name: felcloud-mgmt
+      admin_state_up: true
+
+  subnet_mgmt:
+    type: OS::Neutron::Subnet
+    properties:
+      name: felcloud-mgmt-sub
+      network_id: { get_resource: net_mgmt }
+      cidr: 10.20.10.0/24
+      gateway_ip: 10.20.10.1
+      enable_dhcp: true
+
+  net_sandbox:
+    type: OS::Neutron::Net
+    properties:
+      name: felcloud-sandbox
+      admin_state_up: true
+
+  subnet_sandbox:
+    type: OS::Neutron::Subnet
+    properties:
+      name: felcloud-sandbox-sub
+      network_id: { get_resource: net_sandbox }
+      cidr: 10.20.30.0/24
+      gateway_ip: 10.20.30.1
+      allocation_pools:
+        - start: 10.20.30.50
+          end: 10.20.30.250
+      enable_dhcp: true
+
+  # ============================================================================
+  # 2. EDGE ROUTER (Connected only to Edge network and External Provider)
+  # ============================================================================
+  edge_router:
+    type: OS::Neutron::Router
+    properties:
+      name: felcloud-edge-router
+      external_gateway_info:
+        network: { get_param: public_net_id }
+
+  router_interface_edge:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: edge_router }
+      subnet_id: { get_resource: subnet_edge }
+
+  # ============================================================================
+  # 3. ANTI-AFFINITY SERVER GROUP
+  # Ensures Primary (gw1) and Standby (gw2) run on separate hypervisors
+  # ============================================================================
+  gateway_server_group:
+    type: OS::Nova::ServerGroup
+    properties:
+      name: felcloud-gateway-anti-affinity
+      policies: ['anti-affinity']
+
+  # ============================================================================
+  # 4. SECURITY GROUPS
+  # ============================================================================
+  sg_edge:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: felcloud-sg-edge
+      description: Ingress HTTP/HTTPS to VIP, and VRRP heartbeat exchange
+      rules:
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 80
+          port_range_max: 80
+          remote_ip_prefix: 0.0.0.0/0
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 443
+          port_range_max: 443
+          remote_ip_prefix: 0.0.0.0/0
+        - direction: ingress
+          protocol: 112 # VRRP protocol
+          remote_ip_prefix: 10.20.20.0/24
+
+  sg_mgmt:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: felcloud-sg-mgmt
+      description: Internal management, SSH jump host, and HAProxy DataPlane API
+      rules:
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 22
+          port_range_max: 22
+          remote_ip_prefix: 10.20.10.0/24
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 5555
+          port_range_max: 5555
+          remote_ip_prefix: 10.20.10.0/24
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 8081
+          port_range_max: 8081
+          remote_ip_prefix: 10.20.10.0/24
+
+  sg_sandbox:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: felcloud-sg-sandbox
+      description: Tenant backend isolation - only admits traffic from Gateways
+      rules:
+        - direction: ingress
+          protocol: tcp
+          port_range_min: 80
+          port_range_max: 80
+          remote_ip_prefix: 10.20.30.0/24
+        - direction: ingress
+          protocol: icmp
+          remote_ip_prefix: 10.20.30.0/24
+
+  # ============================================================================
+  # 5. KEEPALIVED VIP NEUTRON PORT
+  # Uses allowed_address_pairs to permit VIP migration between gw1 and gw2
+  # ============================================================================
+  vip_port:
+    type: OS::Neutron::Port
+    properties:
+      name: felcloud-vip-port
+      network_id: { get_resource: net_edge }
+      fixed_ips:
+        - ip_address: { get_param: vip_address }
+      security_groups:
+        - { get_resource: sg_edge }
+
+  # ============================================================================
+  # 6. GATEWAY 1 (PRIMARY) PORTS & INSTANCE
+  # ============================================================================
+  gw1_port_edge:
+    type: OS::Neutron::Port
+    properties:
+      name: gw1-edge-port
+      network_id: { get_resource: net_edge }
+      allowed_address_pairs:
+        - ip_address: { get_param: vip_address }
+      security_groups:
+        - { get_resource: sg_edge }
+
+  gw1_port_mgmt:
+    type: OS::Neutron::Port
+    properties:
+      name: gw1-mgmt-port
+      network_id: { get_resource: net_mgmt }
+      security_groups:
+        - { get_resource: sg_mgmt }
+
+  gw1_port_sandbox:
+    type: OS::Neutron::Port
+    properties:
+      name: gw1-sandbox-port
+      network_id: { get_resource: net_sandbox }
+      security_groups:
+        - { get_resource: sg_sandbox }
+
+  gw1_instance:
+    type: OS::Nova::Server
+    properties:
+      name: gw1
+      flavor: { get_param: gateway_flavor }
+      image: { get_param: gateway_image }
+      key_name: { get_param: key_name }
+      scheduler_hints:
+        group: { get_resource: gateway_server_group }
+      networks:
+        - port: { get_resource: gw1_port_edge }
+        - port: { get_resource: gw1_port_mgmt }
+        - port: { get_resource: gw1_port_sandbox }
+
+  # ============================================================================
+  # 7. GATEWAY 2 (STANDBY) PORTS & INSTANCE
+  # ============================================================================
+  gw2_port_edge:
+    type: OS::Neutron::Port
+    properties:
+      name: gw2-edge-port
+      network_id: { get_resource: net_edge }
+      allowed_address_pairs:
+        - ip_address: { get_param: vip_address }
+      security_groups:
+        - { get_resource: sg_edge }
+
+  gw2_port_mgmt:
+    type: OS::Neutron::Port
+    properties:
+      name: gw2-mgmt-port
+      network_id: { get_resource: net_mgmt }
+      security_groups:
+        - { get_resource: sg_mgmt }
+
+  gw2_port_sandbox:
+    type: OS::Neutron::Port
+    properties:
+      name: gw2-sandbox-port
+      network_id: { get_resource: net_sandbox }
+      security_groups:
+        - { get_resource: sg_sandbox }
+
+  gw2_instance:
+    type: OS::Nova::Server
+    properties:
+      name: gw2
+      flavor: { get_param: gateway_flavor }
+      image: { get_param: gateway_image }
+      key_name: { get_param: key_name }
+      scheduler_hints:
+        group: { get_resource: gateway_server_group }
+      networks:
+        - port: { get_resource: gw2_port_edge }
+        - port: { get_resource: gw2_port_mgmt }
+        - port: { get_resource: gw2_port_sandbox }
+
+outputs:
+  vip_address:
+    description: Virtual IP managed by Keepalived VRRP
+    value: { get_param: vip_address }
+  gw1_edge_ip:
+    description: Primary gateway edge interface IP
+    value: { get_attr: [gw1_port_edge, fixed_ips, 0, ip_address] }
+  gw2_edge_ip:
+    description: Standby gateway edge interface IP
+    value: { get_attr: [gw2_port_edge, fixed_ips, 0, ip_address] }
+  server_group_id:
+    description: UUID of anti-affinity server group
+    value: { get_resource: gateway_server_group }

@@ -1,0 +1,38 @@
+global_defs {
+    router_id {{ inventory_hostname }}
+    enable_script_security
+    script_user {{ keepalived_script_user | default('root') }}
+}
+
+vrrp_script check_haproxy {
+    script "/usr/local/bin/check_haproxy.sh"
+    interval {{ keepalived_check_interval | default(1) }}
+    weight {{ keepalived_check_weight | default(-60) }}
+    fall {{ keepalived_check_fall | default(1) }}
+    rise {{ keepalived_check_rise | default(2) }}
+}
+
+vrrp_instance VI_1 {
+    state {{ keepalived_role }}
+    interface {{ interface_resolve_edge_interface | default(edge_interface) }}
+    virtual_router_id {{ virtual_router_id }}
+    priority {{ keepalived_priority }}
+    advert_int {{ keepalived_advert_int | default(1) }}
+
+    authentication {
+        auth_type PASS
+        auth_pass {{ keepalived_auth_pass }}
+    }
+
+    virtual_ipaddress {
+        {{ vip_address }}/24 dev {{ interface_resolve_edge_interface | default(edge_interface) }}
+    }
+
+    track_script {
+        check_haproxy
+    }
+
+    notify_master  "/usr/local/bin/notify_master.sh"
+    notify_backup  "/usr/local/bin/notify_backup.sh"
+    notify_fault   "/usr/local/bin/notify_fault.sh"
+}

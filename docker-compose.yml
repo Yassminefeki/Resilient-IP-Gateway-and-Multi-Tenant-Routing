@@ -1,0 +1,117 @@
+services:
+  controlplane:
+    build:
+      context: .
+      target: runtime-mock
+    image: felcloud/controlplane:mock
+    container_name: felcloud-controlplane
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8081"
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-dev-mock-token-must-be-at-least-24-chars}
+      - LISTEN_ADDR=0.0.0.0
+      - PORT=8081
+      - IPAM_DB_PATH=/data/ipam.db
+      - DASHBOARD_DIR=/app/dashboard
+      - PROVISIONER=mock
+      - MOCK_GATEWAYS=true
+      - VIP_ADDRESS=10.20.20.246
+      - ROUTING_DOMAIN=sandbox.example.com
+    volumes:
+      - felcloud-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8081/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  controlplane-live:
+    profiles:
+      - live
+    build:
+      context: .
+      target: runtime-live
+    image: felcloud/controlplane:live
+    container_name: felcloud-controlplane-live
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8081"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-}
+      - LISTEN_ADDR=0.0.0.0
+      - PORT=8081
+      - IPAM_DB_PATH=/data/ipam.db
+      - DASHBOARD_DIR=/app/dashboard
+      - PROVISIONER=openstack
+      - MOCK_GATEWAYS=false
+      - ANSIBLE_INVENTORY=/app/ansible/inventory/hosts.yml
+      - HAPROXY_TRANSACTION_PLAYBOOK=/app/ansible/haproxy-transaction.yml
+      - ANSIBLE_VAULT_PASS=/secrets/vault_pass
+    volumes:
+      - felcloud-data:/data
+      - ./secrets:/secrets:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8081/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  bench:
+    profiles:
+      - bench
+    build:
+      context: .
+      target: bench
+    image: felcloud/bench:latest
+    container_name: felcloud-bench
+    depends_on:
+      controlplane:
+        condition: service_healthy
+    environment:
+      - CONTROL_PLANE_BASE_URL=http://controlplane:8081
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-dev-mock-token-must-be-at-least-24-chars}
+      - MPLBACKEND=Agg
+      - MPLCONFIGDIR=/tmp/matplotlib
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./bench/results:/app/bench/results
+
+  seed:
+    profiles:
+      - seed
+    build:
+      context: .
+      target: runtime-mock
+    image: felcloud/controlplane:mock
+    container_name: felcloud-seed
+    depends_on:
+      controlplane:
+        condition: service_healthy
+    environment:
+      - CONTROL_PLANE_BASE_URL=http://controlplane:8081
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-dev-mock-token-must-be-at-least-24-chars}
+    volumes:
+      - ./scripts:/app/scripts:ro
+    entrypoint: ["bash", "/app/scripts/seed-demo.sh"]
+
+volumes:
+  felcloud-data:
+    name: felcloud-data

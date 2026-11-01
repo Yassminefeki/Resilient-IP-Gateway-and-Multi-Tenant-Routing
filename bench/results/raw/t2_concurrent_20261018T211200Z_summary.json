@@ -1,0 +1,1961 @@
+{
+  "GATEWAY_PROBE_TIMEOUT_SECONDS": "30",
+  "HEALTH_REGRESSION_WINDOW_SECONDS": "5",
+  "MAX_CONCURRENT_PROVISIONS": "15",
+  "PROVISION_TIMEOUT_SECONDS": "360",
+  "RATE_LIMIT_PER_MIN": "120",
+  "artifacts": {
+    "chart": "bench/results/charts/t2_concurrent_20261018T211200Z.png",
+    "raw_csv": "bench/results/raw/t2_concurrent_20261018T211200Z.csv",
+    "summary_json": "bench/results/raw/t2_concurrent_20261018T211200Z_summary.json"
+  },
+  "bursts": [
+    {
+      "burst_size": 10,
+      "cleanup": [
+        {
+          "error": "Nova server f9f02e85-660c-4e7e-aac3-3e85aa96e63b still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server a2882772-2dd1-4365-b4a2-27107425f908 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server f8f014b1-3186-4fb7-a544-4e6e256444e4 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-03",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 0aedd6f9-d369-4850-9466-3ebc959f4af8 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-04",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 435b9ce6-237e-433f-9bee-d2cbe5e277e8 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-05",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server b2cf7f6e-1c01-48fd-8117-d1996fa30170 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-06",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 8e84502b-075c-4772-8a7e-fda91d27d1d9 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-07",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 4c052645-724f-4e45-804e-f8a10819a92a still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-08",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 16707e6e-64b5-4ee1-a4e4-14f89a737c14 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-09",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 2aa551d8-9c3d-431c-a837-b7754db45b19 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-10-10",
+          "status_code": 502
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 0,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t211200z-10-01_backend",
+            "bench-t2-20261018t211200z-10-02_backend",
+            "bench-t2-20261018t211200z-10-03_backend",
+            "bench-t2-20261018t211200z-10-04_backend",
+            "bench-t2-20261018t211200z-10-05_backend",
+            "bench-t2-20261018t211200z-10-06_backend",
+            "bench-t2-20261018t211200z-10-07_backend",
+            "bench-t2-20261018t211200z-10-08_backend",
+            "bench-t2-20261018t211200z-10-09_backend",
+            "bench-t2-20261018t211200z-10-10_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t211200z-10-01": true,
+            "bench-t2-20261018t211200z-10-02": true,
+            "bench-t2-20261018t211200z-10-03": true,
+            "bench-t2-20261018t211200z-10-04": true,
+            "bench-t2-20261018t211200z-10-05": true,
+            "bench-t2-20261018t211200z-10-06": true,
+            "bench-t2-20261018t211200z-10-07": true,
+            "bench-t2-20261018t211200z-10-08": true,
+            "bench-t2-20261018t211200z-10-09": true,
+            "bench-t2-20261018t211200z-10-10": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t211200z-10-01_backend",
+            "bench-t2-20261018t211200z-10-02_backend",
+            "bench-t2-20261018t211200z-10-03_backend",
+            "bench-t2-20261018t211200z-10-04_backend",
+            "bench-t2-20261018t211200z-10-05_backend",
+            "bench-t2-20261018t211200z-10-06_backend",
+            "bench-t2-20261018t211200z-10-07_backend",
+            "bench-t2-20261018t211200z-10-08_backend",
+            "bench-t2-20261018t211200z-10-09_backend",
+            "bench-t2-20261018t211200z-10-10_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t211200z-10-01": true,
+            "bench-t2-20261018t211200z-10-02": true,
+            "bench-t2-20261018t211200z-10-03": true,
+            "bench-t2-20261018t211200z-10-04": true,
+            "bench-t2-20261018t211200z-10-05": true,
+            "bench-t2-20261018t211200z-10-06": true,
+            "bench-t2-20261018t211200z-10-07": true,
+            "bench-t2-20261018t211200z-10-08": true,
+            "bench-t2-20261018t211200z-10-09": true,
+            "bench-t2-20261018t211200z-10-10": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 178,
+        "config_generations_count_before": 173,
+        "events_status": 200,
+        "failure_count": 0,
+        "failures": [],
+        "provision_failed_rows": [],
+        "push_count_delta": 5
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t211200z-10-01": "10.20.30.58",
+          "bench-t2-20261018t211200z-10-02": "10.20.30.54",
+          "bench-t2-20261018t211200z-10-03": "10.20.30.50",
+          "bench-t2-20261018t211200z-10-04": "10.20.30.55",
+          "bench-t2-20261018t211200z-10-05": "10.20.30.56",
+          "bench-t2-20261018t211200z-10-06": "10.20.30.51",
+          "bench-t2-20261018t211200z-10-07": "10.20.30.53",
+          "bench-t2-20261018t211200z-10-08": "10.20.30.49",
+          "bench-t2-20261018t211200z-10-09": "10.20.30.57",
+          "bench-t2-20261018t211200z-10-10": "10.20.30.52"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t211200z-10-01": "10.20.30.58",
+            "bench-t2-20261018t211200z-10-02": "10.20.30.54",
+            "bench-t2-20261018t211200z-10-03": "10.20.30.50",
+            "bench-t2-20261018t211200z-10-04": "10.20.30.55",
+            "bench-t2-20261018t211200z-10-05": "10.20.30.56",
+            "bench-t2-20261018t211200z-10-06": "10.20.30.51",
+            "bench-t2-20261018t211200z-10-07": "10.20.30.53",
+            "bench-t2-20261018t211200z-10-08": "10.20.30.49",
+            "bench-t2-20261018t211200z-10-09": "10.20.30.57",
+            "bench-t2-20261018t211200z-10-10": "10.20.30.52"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 204.50280755150015,
+      "p95_provisioning_seconds": 232.61287456560132,
+      "sandbox_ids": [
+        "bench-t2-20261018t211200z-10-01",
+        "bench-t2-20261018t211200z-10-02",
+        "bench-t2-20261018t211200z-10-03",
+        "bench-t2-20261018t211200z-10-04",
+        "bench-t2-20261018t211200z-10-05",
+        "bench-t2-20261018t211200z-10-06",
+        "bench-t2-20261018t211200z-10-07",
+        "bench-t2-20261018t211200z-10-08",
+        "bench-t2-20261018t211200z-10-09",
+        "bench-t2-20261018t211200z-10-10"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.58"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:25.403Z",
+          "fixed_ip": "10.20.30.58",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.58",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.58",
+          "post_first_http_200_ms": 204202.79843399476,
+          "post_started_utc": "2026-10-18T21:12:01.263Z",
+          "provision_elapsed_ms": 203461.93819199834,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.58",
+            "hostname": "bench-t2-20261018t211200z-10-01.cloudpulse.sandbox.example.com",
+            "port_id": "b339fdfe-8d86-4141-9492-22c277a386f1",
+            "sandbox_id": "bench-t2-20261018t211200z-10-01",
+            "server_id": "f9f02e85-660c-4e7e-aac3-3e85aa96e63b",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-01",
+            "timings_ms": {
+              "allocate": 321,
+              "health": 153331,
+              "port": 932,
+              "server_active": 37772,
+              "sync": 11073,
+              "total": 203451
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-01",
+          "stages_ms": {
+            "allocate": 321,
+            "health": 153331,
+            "port": 932,
+            "server_active": 37772,
+            "sync": 11073,
+            "total": 203451
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.54"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:25.805Z",
+          "fixed_ip": "10.20.30.54",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.54",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.54",
+          "post_first_http_200_ms": 204616.65562499547,
+          "post_started_utc": "2026-10-18T21:12:01.264Z",
+          "provision_elapsed_ms": 203462.8257220029,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.54",
+            "hostname": "bench-t2-20261018t211200z-10-02.cloudpulse.sandbox.example.com",
+            "port_id": "ac9b640d-fcf1-46f7-b555-1914fc1206cc",
+            "sandbox_id": "bench-t2-20261018t211200z-10-02",
+            "server_id": "a2882772-2dd1-4365-b4a2-27107425f908",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-02",
+            "timings_ms": {
+              "allocate": 276,
+              "health": 144566,
+              "port": 477,
+              "server_active": 27115,
+              "sync": 30951,
+              "total": 203450
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-02",
+          "stages_ms": {
+            "allocate": 276,
+            "health": 144566,
+            "port": 477,
+            "server_active": 27115,
+            "sync": 30951,
+            "total": 203450
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.50"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:53.714Z",
+          "fixed_ip": "10.20.30.50",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.50",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.50",
+          "post_first_http_200_ms": 232510.73810700473,
+          "post_started_utc": "2026-10-18T21:12:01.264Z",
+          "provision_elapsed_ms": 231872.3453040002,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.50",
+            "hostname": "bench-t2-20261018t211200z-10-03.cloudpulse.sandbox.example.com",
+            "port_id": "8b481ea8-f704-4a5e-8fd9-197782e507b0",
+            "sandbox_id": "bench-t2-20261018t211200z-10-03",
+            "server_id": "f8f014b1-3186-4fb7-a544-4e6e256444e4",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-03",
+            "timings_ms": {
+              "allocate": 256,
+              "health": 143841,
+              "port": 1324,
+              "server_active": 71609,
+              "sync": 14747,
+              "total": 231861
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-03",
+          "stages_ms": {
+            "allocate": 256,
+            "health": 143841,
+            "port": 1324,
+            "server_active": 71609,
+            "sync": 14747,
+            "total": 231861
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.55"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:53.312Z",
+          "fixed_ip": "10.20.30.55",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.55",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.55",
+          "post_first_http_200_ms": 232093.81572499842,
+          "post_started_utc": "2026-10-18T21:12:01.264Z",
+          "provision_elapsed_ms": 231870.42807599937,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.55",
+            "hostname": "bench-t2-20261018t211200z-10-04.cloudpulse.sandbox.example.com",
+            "port_id": "a90ac723-a4cf-4e4e-a448-5686e43149d3",
+            "sandbox_id": "bench-t2-20261018t211200z-10-04",
+            "server_id": "0aedd6f9-d369-4850-9466-3ebc959f4af8",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-04",
+            "timings_ms": {
+              "allocate": 285,
+              "health": 147964,
+              "port": 1085,
+              "server_active": 54723,
+              "sync": 27747,
+              "total": 231858
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-04",
+          "stages_ms": {
+            "allocate": 285,
+            "health": 147964,
+            "port": 1085,
+            "server_active": 54723,
+            "sync": 27747,
+            "total": 231858
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.56"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:25.001Z",
+          "fixed_ip": "10.20.30.56",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.56",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.56",
+          "post_first_http_200_ms": 203807.10115299735,
+          "post_started_utc": "2026-10-18T21:12:01.265Z",
+          "provision_elapsed_ms": 203459.00939199782,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.56",
+            "hostname": "bench-t2-20261018t211200z-10-05.cloudpulse.sandbox.example.com",
+            "port_id": "e9cf6b19-ca1f-4e74-8b90-e832d568fc3d",
+            "sandbox_id": "bench-t2-20261018t211200z-10-05",
+            "server_id": "435b9ce6-237e-433f-9bee-d2cbe5e277e8",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-05",
+            "timings_ms": {
+              "allocate": 312,
+              "health": 143820,
+              "port": 800,
+              "server_active": 43893,
+              "sync": 14594,
+              "total": 203445
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-05",
+          "stages_ms": {
+            "allocate": 312,
+            "health": 143820,
+            "port": 800,
+            "server_active": 43893,
+            "sync": 14594,
+            "total": 203445
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.51"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:53.513Z",
+          "fixed_ip": "10.20.30.51",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.51",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.51",
+          "post_first_http_200_ms": 232319.50300400058,
+          "post_started_utc": "2026-10-18T21:12:01.265Z",
+          "provision_elapsed_ms": 231870.93762299628,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.51",
+            "hostname": "bench-t2-20261018t211200z-10-06.cloudpulse.sandbox.example.com",
+            "port_id": "27e3a02e-c2c1-44ba-ae2b-1bedf6df3cde",
+            "sandbox_id": "bench-t2-20261018t211200z-10-06",
+            "server_id": "b2cf7f6e-1c01-48fd-8117-d1996fa30170",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-06",
+            "timings_ms": {
+              "allocate": 266,
+              "health": 145906,
+              "port": 1257,
+              "server_active": 59694,
+              "sync": 24661,
+              "total": 231858
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-06",
+          "stages_ms": {
+            "allocate": 266,
+            "health": 145906,
+            "port": 1257,
+            "server_active": 59694,
+            "sync": 24661,
+            "total": 231858
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.53"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:53.914Z",
+          "fixed_ip": "10.20.30.53",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.53",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.53",
+          "post_first_http_200_ms": 232696.4407589985,
+          "post_started_utc": "2026-10-18T21:12:01.265Z",
+          "provision_elapsed_ms": 231871.5253190021,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.53",
+            "hostname": "bench-t2-20261018t211200z-10-07.cloudpulse.sandbox.example.com",
+            "port_id": "ff6feb9c-353a-425f-b264-f707239ed984",
+            "sandbox_id": "bench-t2-20261018t211200z-10-07",
+            "server_id": "8e84502b-075c-4772-8a7e-fda91d27d1d9",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-07",
+            "timings_ms": {
+              "allocate": 269,
+              "health": 144541,
+              "port": 1236,
+              "server_active": 66704,
+              "sync": 19040,
+              "total": 231857
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-07",
+          "stages_ms": {
+            "allocate": 269,
+            "health": 144541,
+            "port": 1236,
+            "server_active": 66704,
+            "sync": 19040,
+            "total": 231857
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.49"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:25.604Z",
+          "fixed_ip": "10.20.30.49",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.49",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.49",
+          "post_first_http_200_ms": 204388.95947800484,
+          "post_started_utc": "2026-10-18T21:12:01.265Z",
+          "provision_elapsed_ms": 203460.16206600325,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.49",
+            "hostname": "bench-t2-20261018t211200z-10-08.cloudpulse.sandbox.example.com",
+            "port_id": "85fbd2c9-2a7a-4b5e-9383-8034075d9039",
+            "sandbox_id": "bench-t2-20261018t211200z-10-08",
+            "server_id": "4c052645-724f-4e45-804e-f8a10819a92a",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-08",
+            "timings_ms": {
+              "allocate": 250,
+              "health": 141433,
+              "port": 1100,
+              "server_active": 48640,
+              "sync": 11932,
+              "total": 203445
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-08",
+          "stages_ms": {
+            "allocate": 250,
+            "health": 141433,
+            "port": 1100,
+            "server_active": 48640,
+            "sync": 11932,
+            "total": 203445
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.57"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:24.800Z",
+          "fixed_ip": "10.20.30.57",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.57",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.57",
+          "post_first_http_200_ms": 203602.02155300067,
+          "post_started_utc": "2026-10-18T21:12:01.267Z",
+          "provision_elapsed_ms": 203454.49781500065,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.57",
+            "hostname": "bench-t2-20261018t211200z-10-09.cloudpulse.sandbox.example.com",
+            "port_id": "8849bc45-a7d9-486b-b7ef-af3f2f64cd00",
+            "sandbox_id": "bench-t2-20261018t211200z-10-09",
+            "server_id": "16707e6e-64b5-4ee1-a4e4-14f89a737c14",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-09",
+            "timings_ms": {
+              "allocate": 313,
+              "health": 146621,
+              "port": 592,
+              "server_active": 20988,
+              "sync": 34880,
+              "total": 203443
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-09",
+          "stages_ms": {
+            "allocate": 313,
+            "health": 146621,
+            "port": 592,
+            "server_active": 20988,
+            "sync": 34880,
+            "total": 203443
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.52"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:15:25.202Z",
+          "fixed_ip": "10.20.30.52",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.52",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.52",
+          "post_first_http_200_ms": 203999.21367900242,
+          "post_started_utc": "2026-10-18T21:12:01.268Z",
+          "provision_elapsed_ms": 203456.61258600012,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.52",
+            "hostname": "bench-t2-20261018t211200z-10-10.cloudpulse.sandbox.example.com",
+            "port_id": "62be206e-6f81-4f49-8f18-3154df42ae87",
+            "sandbox_id": "bench-t2-20261018t211200z-10-10",
+            "server_id": "2aa551d8-9c3d-431c-a837-b7754db45b19",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-10-10",
+            "timings_ms": {
+              "allocate": 265,
+              "health": 143964,
+              "port": 504,
+              "server_active": 32064,
+              "sync": 26577,
+              "total": 203444
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-10-10",
+          "stages_ms": {
+            "allocate": 265,
+            "health": 143964,
+            "port": 504,
+            "server_active": 32064,
+            "sync": 26577,
+            "total": 203444
+          },
+          "status": "SUCCESS",
+          "success": true
+        }
+      ],
+      "success_rate": 1.0,
+      "successes": 10,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "burst_size": 15,
+      "cleanup": [
+        {
+          "error": "Nova server 39eccac0-31b2-4e15-8357-978061fa11ab still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server be63f797-971a-451d-a649-37cd2f32e098 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server f4f747e6-7675-48b0-934c-2eac3c9b1214 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-03",
+          "status_code": 502
+        },
+        {
+          "error": "gw2 HAProxy is not active",
+          "sandbox_id": "bench-t2-20261018t211200z-15-04",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 233eb8ed-f540-4f24-b51e-49c8d22c3d5e still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-05",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 57744cc6-1fc9-46c1-8a90-ea813807fba1 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-06",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 691a5539-a271-4e44-a7a2-191983c3fad3 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-07",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 6d299c4e-8c70-4052-a636-cf0f4ba60917 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-08",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server a0f13d93-94ab-4658-b818-b0d3353f9bc5 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-09",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 1af446be-1320-4630-a6c8-cbdcaebf8685 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-10",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server c164f213-579a-4d37-a847-cc1db95ef145 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-11",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server c78deaad-8811-4a66-805d-8c0f2dc133e5 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-12",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 5deda6ec-e73b-48b7-99a9-00827749be51 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-13",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server e719795a-168e-4d73-8347-1ed209fbba85 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-14",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server e26462de-076c-452a-9856-007850bc9229 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t211200z-15-15",
+          "status_code": 502
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 0,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t211200z-15-01_backend",
+            "bench-t2-20261018t211200z-15-02_backend",
+            "bench-t2-20261018t211200z-15-03_backend",
+            "bench-t2-20261018t211200z-15-04_backend",
+            "bench-t2-20261018t211200z-15-05_backend",
+            "bench-t2-20261018t211200z-15-06_backend",
+            "bench-t2-20261018t211200z-15-07_backend",
+            "bench-t2-20261018t211200z-15-08_backend",
+            "bench-t2-20261018t211200z-15-09_backend",
+            "bench-t2-20261018t211200z-15-10_backend",
+            "bench-t2-20261018t211200z-15-11_backend",
+            "bench-t2-20261018t211200z-15-12_backend",
+            "bench-t2-20261018t211200z-15-13_backend",
+            "bench-t2-20261018t211200z-15-14_backend",
+            "bench-t2-20261018t211200z-15-15_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t211200z-15-01": true,
+            "bench-t2-20261018t211200z-15-02": true,
+            "bench-t2-20261018t211200z-15-03": true,
+            "bench-t2-20261018t211200z-15-04": true,
+            "bench-t2-20261018t211200z-15-05": true,
+            "bench-t2-20261018t211200z-15-06": true,
+            "bench-t2-20261018t211200z-15-07": true,
+            "bench-t2-20261018t211200z-15-08": true,
+            "bench-t2-20261018t211200z-15-09": true,
+            "bench-t2-20261018t211200z-15-10": true,
+            "bench-t2-20261018t211200z-15-11": true,
+            "bench-t2-20261018t211200z-15-12": true,
+            "bench-t2-20261018t211200z-15-13": true,
+            "bench-t2-20261018t211200z-15-14": true,
+            "bench-t2-20261018t211200z-15-15": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t211200z-15-01_backend",
+            "bench-t2-20261018t211200z-15-02_backend",
+            "bench-t2-20261018t211200z-15-03_backend",
+            "bench-t2-20261018t211200z-15-04_backend",
+            "bench-t2-20261018t211200z-15-05_backend",
+            "bench-t2-20261018t211200z-15-06_backend",
+            "bench-t2-20261018t211200z-15-07_backend",
+            "bench-t2-20261018t211200z-15-08_backend",
+            "bench-t2-20261018t211200z-15-09_backend",
+            "bench-t2-20261018t211200z-15-10_backend",
+            "bench-t2-20261018t211200z-15-11_backend",
+            "bench-t2-20261018t211200z-15-12_backend",
+            "bench-t2-20261018t211200z-15-13_backend",
+            "bench-t2-20261018t211200z-15-14_backend",
+            "bench-t2-20261018t211200z-15-15_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t211200z-15-01": true,
+            "bench-t2-20261018t211200z-15-02": true,
+            "bench-t2-20261018t211200z-15-03": true,
+            "bench-t2-20261018t211200z-15-04": true,
+            "bench-t2-20261018t211200z-15-05": true,
+            "bench-t2-20261018t211200z-15-06": true,
+            "bench-t2-20261018t211200z-15-07": true,
+            "bench-t2-20261018t211200z-15-08": true,
+            "bench-t2-20261018t211200z-15-09": true,
+            "bench-t2-20261018t211200z-15-10": true,
+            "bench-t2-20261018t211200z-15-11": true,
+            "bench-t2-20261018t211200z-15-12": true,
+            "bench-t2-20261018t211200z-15-13": true,
+            "bench-t2-20261018t211200z-15-14": true,
+            "bench-t2-20261018t211200z-15-15": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 195,
+        "config_generations_count_before": 188,
+        "events_status": 200,
+        "failure_count": 0,
+        "failures": [],
+        "provision_failed_rows": [],
+        "push_count_delta": 7
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t211200z-15-01": "10.20.30.63",
+          "bench-t2-20261018t211200z-15-02": "10.20.30.60",
+          "bench-t2-20261018t211200z-15-03": "10.20.30.59",
+          "bench-t2-20261018t211200z-15-04": "10.20.30.72",
+          "bench-t2-20261018t211200z-15-05": "10.20.30.4",
+          "bench-t2-20261018t211200z-15-06": "10.20.30.66",
+          "bench-t2-20261018t211200z-15-07": "10.20.30.65",
+          "bench-t2-20261018t211200z-15-08": "10.20.30.61",
+          "bench-t2-20261018t211200z-15-09": "10.20.30.67",
+          "bench-t2-20261018t211200z-15-10": "10.20.30.71",
+          "bench-t2-20261018t211200z-15-11": "10.20.30.68",
+          "bench-t2-20261018t211200z-15-12": "10.20.30.62",
+          "bench-t2-20261018t211200z-15-13": "10.20.30.69",
+          "bench-t2-20261018t211200z-15-14": "10.20.30.64",
+          "bench-t2-20261018t211200z-15-15": "10.20.30.3"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t211200z-15-01": "10.20.30.63",
+            "bench-t2-20261018t211200z-15-02": "10.20.30.60",
+            "bench-t2-20261018t211200z-15-03": "10.20.30.59",
+            "bench-t2-20261018t211200z-15-04": "10.20.30.72",
+            "bench-t2-20261018t211200z-15-05": "10.20.30.4",
+            "bench-t2-20261018t211200z-15-06": "10.20.30.66",
+            "bench-t2-20261018t211200z-15-07": "10.20.30.65",
+            "bench-t2-20261018t211200z-15-08": "10.20.30.61",
+            "bench-t2-20261018t211200z-15-09": "10.20.30.67",
+            "bench-t2-20261018t211200z-15-10": "10.20.30.71",
+            "bench-t2-20261018t211200z-15-11": "10.20.30.68",
+            "bench-t2-20261018t211200z-15-12": "10.20.30.62",
+            "bench-t2-20261018t211200z-15-13": "10.20.30.69",
+            "bench-t2-20261018t211200z-15-14": "10.20.30.64",
+            "bench-t2-20261018t211200z-15-15": "10.20.30.3"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 243.44900530899758,
+      "p95_provisioning_seconds": 265.6035133449033,
+      "sandbox_ids": [
+        "bench-t2-20261018t211200z-15-01",
+        "bench-t2-20261018t211200z-15-02",
+        "bench-t2-20261018t211200z-15-03",
+        "bench-t2-20261018t211200z-15-04",
+        "bench-t2-20261018t211200z-15-05",
+        "bench-t2-20261018t211200z-15-06",
+        "bench-t2-20261018t211200z-15-07",
+        "bench-t2-20261018t211200z-15-08",
+        "bench-t2-20261018t211200z-15-09",
+        "bench-t2-20261018t211200z-15-10",
+        "bench-t2-20261018t211200z-15-11",
+        "bench-t2-20261018t211200z-15-12",
+        "bench-t2-20261018t211200z-15-13",
+        "bench-t2-20261018t211200z-15-14",
+        "bench-t2-20261018t211200z-15-15"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.63"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:18.546Z",
+          "fixed_ip": "10.20.30.63",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.63",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.63",
+          "post_first_http_200_ms": 204062.928223997,
+          "post_started_utc": "2026-10-18T21:17:54.519Z",
+          "provision_elapsed_ms": 202961.13674400112,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.63",
+            "hostname": "bench-t2-20261018t211200z-15-01.cloudpulse.sandbox.example.com",
+            "port_id": "755cc402-ad4d-4d32-8330-6f964509948b",
+            "sandbox_id": "bench-t2-20261018t211200z-15-01",
+            "server_id": "39eccac0-31b2-4e15-8357-978061fa11ab",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-01",
+            "timings_ms": {
+              "allocate": 209,
+              "health": 146565,
+              "port": 656,
+              "server_active": 32641,
+              "sync": 22866,
+              "total": 202946
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-01",
+          "stages_ms": {
+            "allocate": 209,
+            "health": 146565,
+            "port": 656,
+            "server_active": 32641,
+            "sync": 22866,
+            "total": 202946
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.60"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:58.137Z",
+          "fixed_ip": "10.20.30.60",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.60",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.60",
+          "post_first_http_200_ms": 243745.56183399545,
+          "post_started_utc": "2026-10-18T21:17:54.519Z",
+          "provision_elapsed_ms": 243020.05752200057,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.60",
+            "hostname": "bench-t2-20261018t211200z-15-02.cloudpulse.sandbox.example.com",
+            "port_id": "d342a066-ac7c-4ebe-8b76-c45f37e466c2",
+            "sandbox_id": "bench-t2-20261018t211200z-15-02",
+            "server_id": "be63f797-971a-451d-a649-37cd2f32e098",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-02",
+            "timings_ms": {
+              "allocate": 149,
+              "health": 143151,
+              "port": 1522,
+              "server_active": 68080,
+              "sync": 30087,
+              "total": 242996
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-02",
+          "stages_ms": {
+            "allocate": 149,
+            "health": 143151,
+            "port": 1522,
+            "server_active": 68080,
+            "sync": 30087,
+            "total": 242996
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.59"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:17.742Z",
+          "fixed_ip": "10.20.30.59",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.59",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.59",
+          "post_first_http_200_ms": 203268.54330600327,
+          "post_started_utc": "2026-10-18T21:17:54.520Z",
+          "provision_elapsed_ms": 202957.2452220018,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.59",
+            "hostname": "bench-t2-20261018t211200z-15-03.cloudpulse.sandbox.example.com",
+            "port_id": "4eaa4a1a-3839-4e4d-8db3-1568ea05cc25",
+            "sandbox_id": "bench-t2-20261018t211200z-15-03",
+            "server_id": "f4f747e6-7675-48b0-934c-2eac3c9b1214",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-03",
+            "timings_ms": {
+              "allocate": 145,
+              "health": 146943,
+              "port": 1020,
+              "server_active": 20813,
+              "sync": 33998,
+              "total": 202937
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-03",
+          "stages_ms": {
+            "allocate": 145,
+            "health": 146943,
+            "port": 1020,
+            "server_active": 20813,
+            "sync": 33998,
+            "total": 202937
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.72"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:22:18.828Z",
+          "fixed_ip": "10.20.30.72",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.72",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.72",
+          "post_first_http_200_ms": 264460.705356003,
+          "post_started_utc": "2026-10-18T21:17:54.520Z",
+          "provision_elapsed_ms": 243019.3823610025,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.72",
+            "hostname": "bench-t2-20261018t211200z-15-04.cloudpulse.sandbox.example.com",
+            "port_id": "5be474df-d0f0-436b-b8fa-5833eaa0651c",
+            "sandbox_id": "bench-t2-20261018t211200z-15-04",
+            "server_id": "cfb0ece6-7a66-4fcd-b0ce-703fa937a3fd",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-04",
+            "timings_ms": {
+              "allocate": 284,
+              "health": 144861,
+              "port": 1889,
+              "server_active": 95636,
+              "sync": 318,
+              "total": 242995
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-04",
+          "stages_ms": {
+            "allocate": 284,
+            "health": 144861,
+            "port": 1889,
+            "server_active": 95636,
+            "sync": 318,
+            "total": 242995
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.4"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:58.940Z",
+          "fixed_ip": "10.20.30.4",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.4",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.4",
+          "post_first_http_200_ms": 244537.96054900158,
+          "post_started_utc": "2026-10-18T21:17:54.521Z",
+          "provision_elapsed_ms": 243020.06797600188,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.4",
+            "hostname": "bench-t2-20261018t211200z-15-05.cloudpulse.sandbox.example.com",
+            "port_id": "fee0dcc6-2dcc-4229-8ca1-745ef1d058e3",
+            "sandbox_id": "bench-t2-20261018t211200z-15-05",
+            "server_id": "233eb8ed-f540-4f24-b51e-49c8d22c3d5e",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-05",
+            "timings_ms": {
+              "allocate": 184,
+              "health": 152367,
+              "port": 609,
+              "server_active": 50725,
+              "sync": 39101,
+              "total": 242997
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-05",
+          "stages_ms": {
+            "allocate": 184,
+            "health": 152367,
+            "port": 609,
+            "server_active": 50725,
+            "sync": 39101,
+            "total": 242997
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.66"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:33.409Z",
+          "fixed_ip": "10.20.30.66",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.66",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.66",
+          "post_first_http_200_ms": 218960.75683199888,
+          "post_started_utc": "2026-10-18T21:17:54.521Z",
+          "provision_elapsed_ms": 202958.28952999727,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.66",
+            "hostname": "bench-t2-20261018t211200z-15-06.cloudpulse.sandbox.example.com",
+            "port_id": "9ed9a8de-3b28-4609-b6e3-53c48afdfbc6",
+            "sandbox_id": "bench-t2-20261018t211200z-15-06",
+            "server_id": "57744cc6-1fc9-46c1-8a90-ea813807fba1",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-06",
+            "timings_ms": {
+              "allocate": 231,
+              "health": 156186,
+              "port": 1120,
+              "server_active": 38198,
+              "sync": 7191,
+              "total": 202935
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-06",
+          "stages_ms": {
+            "allocate": 231,
+            "health": 156186,
+            "port": 1120,
+            "server_active": 38198,
+            "sync": 7191,
+            "total": 202935
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.65"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:22:22.690Z",
+          "fixed_ip": "10.20.30.65",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.65",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.65",
+          "post_first_http_200_ms": 268270.06531900406,
+          "post_started_utc": "2026-10-18T21:17:54.521Z",
+          "provision_elapsed_ms": 268045.61955700046,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.65",
+            "hostname": "bench-t2-20261018t211200z-15-07.cloudpulse.sandbox.example.com",
+            "port_id": "7f93ec7c-1371-4365-a27f-d2a3f647ec0f",
+            "sandbox_id": "bench-t2-20261018t211200z-15-07",
+            "server_id": "691a5539-a271-4e44-a7a2-191983c3fad3",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-07",
+            "timings_ms": {
+              "allocate": 228,
+              "health": 153994,
+              "port": 596,
+              "server_active": 103573,
+              "sync": 9548,
+              "total": 268025
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-07",
+          "stages_ms": {
+            "allocate": 228,
+            "health": 153994,
+            "port": 596,
+            "server_active": 103573,
+            "sync": 9548,
+            "total": 268025
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.61"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:33.610Z",
+          "fixed_ip": "10.20.30.61",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.61",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.61",
+          "post_first_http_200_ms": 219154.958911,
+          "post_started_utc": "2026-10-18T21:17:54.522Z",
+          "provision_elapsed_ms": 202957.72900199518,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.61",
+            "hostname": "bench-t2-20261018t211200z-15-08.cloudpulse.sandbox.example.com",
+            "port_id": "c3bb6224-cb99-42e4-93c5-92597812e750",
+            "sandbox_id": "bench-t2-20261018t211200z-15-08",
+            "server_id": "6d299c4e-8c70-4052-a636-cf0f4ba60917",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-08",
+            "timings_ms": {
+              "allocate": 177,
+              "health": 143832,
+              "port": 989,
+              "server_active": 56415,
+              "sync": 1503,
+              "total": 202935
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-08",
+          "stages_ms": {
+            "allocate": 177,
+            "health": 143832,
+            "port": 989,
+            "server_active": 56415,
+            "sync": 1503,
+            "total": 202935
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.67"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:22:18.225Z",
+          "fixed_ip": "10.20.30.67",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.67",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.67",
+          "post_first_http_200_ms": 263769.3468799989,
+          "post_started_utc": "2026-10-18T21:17:54.522Z",
+          "provision_elapsed_ms": 243017.46087699576,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.67",
+            "hostname": "bench-t2-20261018t211200z-15-09.cloudpulse.sandbox.example.com",
+            "port_id": "e750ee65-f975-4596-b1d4-4949ff3b9c16",
+            "sandbox_id": "bench-t2-20261018t211200z-15-09",
+            "server_id": "a0f13d93-94ab-4658-b818-b0d3353f9bc5",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-09",
+            "timings_ms": {
+              "allocate": 232,
+              "health": 146454,
+              "port": 1785,
+              "server_active": 84798,
+              "sync": 9715,
+              "total": 242993
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-09",
+          "stages_ms": {
+            "allocate": 232,
+            "health": 146454,
+            "port": 1785,
+            "server_active": 84798,
+            "sync": 9715,
+            "total": 242993
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.71"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:17.541Z",
+          "fixed_ip": "10.20.30.71",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.71",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.71",
+          "post_first_http_200_ms": 203073.6599679949,
+          "post_started_utc": "2026-10-18T21:17:54.523Z",
+          "provision_elapsed_ms": 202953.88050800102,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.71",
+            "hostname": "bench-t2-20261018t211200z-15-10.cloudpulse.sandbox.example.com",
+            "port_id": "4a0d5e1b-f1d9-479f-b624-0cf529b64a33",
+            "sandbox_id": "bench-t2-20261018t211200z-15-10",
+            "server_id": "1af446be-1320-4630-a6c8-cbdcaebf8685",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-10",
+            "timings_ms": {
+              "allocate": 262,
+              "health": 154671,
+              "port": 633,
+              "server_active": 27549,
+              "sync": 19811,
+              "total": 202933
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-10",
+          "stages_ms": {
+            "allocate": 262,
+            "health": 154671,
+            "port": 633,
+            "server_active": 27549,
+            "sync": 19811,
+            "total": 202933
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.68"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:18.143Z",
+          "fixed_ip": "10.20.30.68",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.68",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.68",
+          "post_first_http_200_ms": 203636.74228500167,
+          "post_started_utc": "2026-10-18T21:17:54.523Z",
+          "provision_elapsed_ms": 202956.36634100083,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.68",
+            "hostname": "bench-t2-20261018t211200z-15-11.cloudpulse.sandbox.example.com",
+            "port_id": "1e84c964-fd19-42a1-a9d2-ceb99abc602d",
+            "sandbox_id": "bench-t2-20261018t211200z-15-11",
+            "server_id": "c164f213-579a-4d37-a847-cc1db95ef145",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-11",
+            "timings_ms": {
+              "allocate": 236,
+              "health": 143511,
+              "port": 661,
+              "server_active": 45635,
+              "sync": 12881,
+              "total": 202933
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-11",
+          "stages_ms": {
+            "allocate": 236,
+            "health": 143511,
+            "port": 661,
+            "server_active": 45635,
+            "sync": 12881,
+            "total": 202933
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.62"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:57.535Z",
+          "fixed_ip": "10.20.30.62",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.62",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.62",
+          "post_first_http_200_ms": 243069.56224400346,
+          "post_started_utc": "2026-10-18T21:17:54.523Z",
+          "provision_elapsed_ms": 243011.5701579998,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.62",
+            "hostname": "bench-t2-20261018t211200z-15-12.cloudpulse.sandbox.example.com",
+            "port_id": "7f17f339-8e7b-4541-bb63-1deae4713b8f",
+            "sandbox_id": "bench-t2-20261018t211200z-15-12",
+            "server_id": "c78deaad-8811-4a66-805d-8c0f2dc133e5",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-12",
+            "timings_ms": {
+              "allocate": 194,
+              "health": 144446,
+              "port": 1091,
+              "server_active": 62267,
+              "sync": 34983,
+              "total": 242991
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-12",
+          "stages_ms": {
+            "allocate": 194,
+            "health": 144446,
+            "port": 1091,
+            "server_active": 62267,
+            "sync": 34983,
+            "total": 242991
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.69"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:57.937Z",
+          "fixed_ip": "10.20.30.69",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.69",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.69",
+          "post_first_http_200_ms": 243449.00530899758,
+          "post_started_utc": "2026-10-18T21:17:54.524Z",
+          "provision_elapsed_ms": 243015.0982289997,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.69",
+            "hostname": "bench-t2-20261018t211200z-15-13.cloudpulse.sandbox.example.com",
+            "port_id": "011d2d7f-d1ce-4fa3-8c16-d9c816c7fd83",
+            "sandbox_id": "bench-t2-20261018t211200z-15-13",
+            "server_id": "5deda6ec-e73b-48b7-99a9-00827749be51",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-13",
+            "timings_ms": {
+              "allocate": 246,
+              "health": 144563,
+              "port": 1186,
+              "server_active": 73328,
+              "sync": 23656,
+              "total": 242991
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-13",
+          "stages_ms": {
+            "allocate": 246,
+            "health": 144563,
+            "port": 1186,
+            "server_active": 73328,
+            "sync": 23656,
+            "total": 242991
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.64"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:22:18.627Z",
+          "fixed_ip": "10.20.30.64",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.64",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.64",
+          "post_first_http_200_ms": 264207.88245800213,
+          "post_started_utc": "2026-10-18T21:17:54.524Z",
+          "provision_elapsed_ms": 243012.4105499999,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.64",
+            "hostname": "bench-t2-20261018t211200z-15-14.cloudpulse.sandbox.example.com",
+            "port_id": "8b12bc81-cadd-4240-b6be-e4d24afbd48e",
+            "sandbox_id": "bench-t2-20261018t211200z-15-14",
+            "server_id": "e719795a-168e-4d73-8347-1ed209fbba85",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-14",
+            "timings_ms": {
+              "allocate": 221,
+              "health": 143801,
+              "port": 1764,
+              "server_active": 90766,
+              "sync": 6395,
+              "total": 242991
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-14",
+          "stages_ms": {
+            "allocate": 221,
+            "health": 143801,
+            "port": 1764,
+            "server_active": 90766,
+            "sync": 6395,
+            "total": 242991
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.3"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T21:21:59.141Z",
+          "fixed_ip": "10.20.30.3",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.3",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.3",
+          "post_first_http_200_ms": 244715.15496099892,
+          "post_started_utc": "2026-10-18T21:17:54.527Z",
+          "provision_elapsed_ms": 243014.25980299973,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.3",
+            "hostname": "bench-t2-20261018t211200z-15-15.cloudpulse.sandbox.example.com",
+            "port_id": "059e3c13-31c1-404d-bcee-5e90494f66ea",
+            "sandbox_id": "bench-t2-20261018t211200z-15-15",
+            "server_id": "e26462de-076c-452a-9856-007850bc9229",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t211200z-15-15",
+            "timings_ms": {
+              "allocate": 177,
+              "health": 144623,
+              "port": 1872,
+              "server_active": 78674,
+              "sync": 17633,
+              "total": 242990
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t211200z-15-15",
+          "stages_ms": {
+            "allocate": 177,
+            "health": 144623,
+            "port": 1872,
+            "server_active": 78674,
+            "sync": 17633,
+            "total": 242990
+          },
+          "status": "SUCCESS",
+          "success": true
+        }
+      ],
+      "success_rate": 1.0,
+      "successes": 15,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    }
+  ],
+  "final_sanity": {
+    "active_bench_sandboxes": [],
+    "bench_ports": [],
+    "gateway_validation": {
+      "gw1": {
+        "baseline_backend_count": 2,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=2",
+        "three_baseline_backends": false
+      },
+      "gw2": {
+        "baseline_backend_count": 2,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=2",
+        "three_baseline_backends": false
+      }
+    },
+    "openstack_server_list": {
+      "count": 5,
+      "only_five_permanent_vms": true,
+      "servers": [
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "4b67cdca-2f0b-47bd-88b1-d188357e9546",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "team2",
+          "Networks": {
+            "felcloud-sandbox": [
+              "10.20.30.15"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "d59ff9bb-0d5c-4f09-8ae0-80e96e919e3e",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "team1",
+          "Networks": {
+            "felcloud-sandbox": [
+              "10.20.30.37"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "202bfc2e-5547-4908-8d86-d359f76d8252",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-bastion",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.177",
+              "203.0.113.10"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.246"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.2c2g",
+          "ID": "22dbe5d8-7cea-4918-a521-49c069ac2b87",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-gw2",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.190"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.164"
+            ],
+            "felcloud-sandbox": [
+              "10.20.30.224"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.2c2g",
+          "ID": "ed2433a6-2370-45c1-9886-b65041e86e62",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-gw1",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.82"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.24"
+            ],
+            "felcloud-sandbox": [
+              "10.20.30.86"
+            ]
+          },
+          "Status": "ACTIVE"
+        }
+      ],
+      "status": "READ"
+    }
+  },
+  "health_regression_window_seconds": "5",
+  "max_concurrency": 15,
+  "pool_exhaustion": {
+    "error": "skipped by --skip-pool",
+    "status": "NOT EXECUTED"
+  },
+  "pool_exhaustion_reason": "skipped by --skip-pool",
+  "pool_exhaustion_status": "NOT EXECUTED",
+  "probe_rate_limit_per_second": 5,
+  "process_environment": {
+    "GATEWAY_PROBE_TIMEOUT_SECONDS": "30",
+    "HEALTH_REGRESSION_WINDOW_SECONDS": "5",
+    "MAX_CONCURRENT_PROVISIONS": "15",
+    "PROVISION_TIMEOUT_SECONDS": "360",
+    "RATE_LIMIT_PER_MIN": "120"
+  },
+  "status": "EXECUTED",
+  "test": "T2_concurrent_stress",
+  "timestamp_utc": "2026-10-18T21:12:00.876Z"
+}

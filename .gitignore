@@ -1,0 +1,69 @@
+# ==============================================================================
+# FelCloud / CloudPulse — .gitignore
+# ==============================================================================
+
+# Secrets, Credentials & Keys
+.env
+.env.*
+!.env.example
+.vault_pass
+secrets/
+ansible/.vault_pass
+ansible/group_vars/gateways/vault.yml
+ansible/.ssh/
+*.pem
+*.key
+*.crt
+
+# Go Compiled Binaries & Workspaces
+controlplane/felcloud-controlplane
+controlplane/controlplane
+infra/infra
+*.exe
+*.test
+go.work.sum
+
+# Dashboard Frontend Build Output & Dependencies
+dashboard/node_modules/
+dashboard/dist/
+dist/
+
+# Python Bytecode & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Databases, Local State & SQLite Artifacts
+*.db
+*.db*
+*.sqlite*
+*.db-wal
+*.db-shm
+*.db.bak*
+controlplane/?*
+
+# Logs & Runtime Outputs
+*.log
+scripts/*.log
+bench/report/BENCHMARK_REPORT.md
+output/
+.dashboard_status
+
+# Editor & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.ansible/
+
+# Pulumi State & Stack Outputs
+.pulumi/
+infra/.pulumi/
+*.stack.json

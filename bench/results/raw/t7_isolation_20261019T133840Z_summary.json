@@ -1,0 +1,807 @@
+{
+  "artifacts": {
+    "chart": "bench/results/charts/t7_isolation_20261019T133840Z.png",
+    "raw_csv": "bench/results/raw/t7_isolation_20261019T133840Z.csv",
+    "summary_json": "bench/results/raw/t7_isolation_20261019T133840Z_summary.json"
+  },
+  "cleanup": {
+    "deleted_ports": [
+      "bench-t7-20261019t133840z-a-port",
+      "bench-t7-20261019t133840z-b-port"
+    ],
+    "deleted_servers": [
+      "bench-t7-20261019t133840z-a",
+      "bench-t7-20261019t133840z-b"
+    ],
+    "errors": [],
+    "status": "COMPLETED"
+  },
+  "console_log_finding": "console log empty on this cloud",
+  "creation_method": "direct OpenStack port and server create; provisioning API is not used",
+  "final_sanity": {
+    "bench_ports": [],
+    "gateway_baseline_guard": {
+      "difference": {
+        "gw1": {
+          "missing": [],
+          "unexpected": []
+        },
+        "gw2": {
+          "missing": [],
+          "unexpected": []
+        }
+      },
+      "errors": {},
+      "expected": [
+        "default_maintenance",
+        "team1_backend",
+        "team2_backend"
+      ],
+      "found": {
+        "gw1": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "gw2": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ]
+      },
+      "passed": true
+    },
+    "gateway_validation": {
+      "gw1": {
+        "baseline_backend_count": 3,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=3",
+        "three_baseline_backends": true
+      },
+      "gw2": {
+        "baseline_backend_count": 3,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=3",
+        "three_baseline_backends": true
+      }
+    },
+    "no_bench_ports": true,
+    "only_five_permanent_vms": true,
+    "openstack_server_count": 5,
+    "passed": true,
+    "team1_probe": {
+      "body": "Hello from team1 sandbox (10.20.30.37)!\n",
+      "error": "",
+      "gateway_id": "gw1",
+      "latency_ms": 51.42705599973851,
+      "status": 200,
+      "timestamp_utc": "2026-10-19T13:43:03.787Z"
+    },
+    "team1_returns_200": true
+  },
+  "forbidden_open_connections": [
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.86",
+      "port": 22,
+      "result": "open",
+      "target": "gw1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.224",
+      "port": 22,
+      "result": "open",
+      "target": "gw2"
+    }
+  ],
+  "http_result": {
+    "last_curl_result": "{\"results\":[{\"target\":\"gw1\",\"ip\":\"10.20.30.86\",\"port\":22,\"result\":\"open\",\"classification\":\"forbidden\"},{\"target\":\"gw1\",\"ip\":\"10.20.30.86\",\"port\":80,\"result\":\"open\",\"classification\":\"allowed\"},{\"target\":\"gw1\",\"ip\":\"10.20.30.86\",\"port\":443,\"result\":\"open\",\"classification\":\"allowed\"},{\"target\":\"gw1\",\"ip\":\"10.20.30.86\",\"port\":5555,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"gw2\",\"ip\":\"10.20.30.224\",\"port\":22,\"result\":\"open\",\"classification\":\"forbidden\"},{\"target\":\"gw2\",\"ip\":\"10.20.30.224\",\"port\":80,\"result\":\"open\",\"classification\":\"allowed\"},{\"target\":\"gw2\",\"ip\":\"10.20.30.224\",\"port\":443,\"result\":\"open\",\"classification\":\"allowed\"},{\"target\":\"gw2\",\"ip\":\"10.20.30.224\",\"port\":5555,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"sandbox_b\",\"ip\":\"10.20.30.98\",\"port\":22,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"sandbox_b\",\"ip\":\"10.20.30.98\",\"port\":80,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"sandbox_b\",\"ip\":\"10.20.30.98\",\"port\":8080,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team1\",\"ip\":\"10.20.30.37\",\"port\":22,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team1\",\"ip\":\"10.20.30.37\",\"port\":80,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team1\",\"ip\":\"10.20.30.37\",\"port\":8080,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team2\",\"ip\":\"10.20.30.15\",\"port\":22,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team2\",\"ip\":\"10.20.30.15\",\"port\":80,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"team2\",\"ip\":\"10.20.30.15\",\"port\":8080,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"bastion_edge\",\"ip\":\"10.20.20.177\",\"port\":22,\"result\":\"refused\",\"classification\":\"forbidden\"},{\"target\":\"bastion_mgmt\",\"ip\":\"10.20.10.246\",\"port\":22,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"metadata\",\"ip\":\"169.254.169.254\",\"port\":80,\"result\":\"open\",\"classification\":\"record_only\"},{\"target\":\"gw1_mgmt\",\"ip\":\"10.20.10.24\",\"port\":22,\"result\":\"refused\",\"classification\":\"forbidden\"},{\"target\":\"gw1_mgmt\",\"ip\":\"10.20.10.24\",\"port\":5555,\"result\":\"timeout\",\"classification\":\"forbidden\"},{\"target\":\"gw2_mgmt\",\"ip\":\"10.20.10.164\",\"port\":22,\"result\":\"refused\",\"classification\":\"forbidden\"},{\"target\":\"gw2_mgmt\",\"ip\":\"10.20.10.164\",\"port\":5555,\"result\":\"timeout\",\"classification\":\"forbidden\"}],\"duration_seconds\":45}\n\n200",
+    "last_http_code": "200",
+    "result": {
+      "duration_seconds": 45,
+      "results": [
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.86",
+          "port": 22,
+          "result": "open",
+          "target": "gw1"
+        },
+        {
+          "classification": "allowed",
+          "ip": "10.20.30.86",
+          "port": 80,
+          "result": "open",
+          "target": "gw1"
+        },
+        {
+          "classification": "allowed",
+          "ip": "10.20.30.86",
+          "port": 443,
+          "result": "open",
+          "target": "gw1"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.86",
+          "port": 5555,
+          "result": "timeout",
+          "target": "gw1"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.224",
+          "port": 22,
+          "result": "open",
+          "target": "gw2"
+        },
+        {
+          "classification": "allowed",
+          "ip": "10.20.30.224",
+          "port": 80,
+          "result": "open",
+          "target": "gw2"
+        },
+        {
+          "classification": "allowed",
+          "ip": "10.20.30.224",
+          "port": 443,
+          "result": "open",
+          "target": "gw2"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.224",
+          "port": 5555,
+          "result": "timeout",
+          "target": "gw2"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.98",
+          "port": 22,
+          "result": "timeout",
+          "target": "sandbox_b"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.98",
+          "port": 80,
+          "result": "timeout",
+          "target": "sandbox_b"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.98",
+          "port": 8080,
+          "result": "timeout",
+          "target": "sandbox_b"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.37",
+          "port": 22,
+          "result": "timeout",
+          "target": "team1"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.37",
+          "port": 80,
+          "result": "timeout",
+          "target": "team1"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.37",
+          "port": 8080,
+          "result": "timeout",
+          "target": "team1"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.15",
+          "port": 22,
+          "result": "timeout",
+          "target": "team2"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.15",
+          "port": 80,
+          "result": "timeout",
+          "target": "team2"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.30.15",
+          "port": 8080,
+          "result": "timeout",
+          "target": "team2"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.20.177",
+          "port": 22,
+          "result": "refused",
+          "target": "bastion_edge"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.10.246",
+          "port": 22,
+          "result": "timeout",
+          "target": "bastion_mgmt"
+        },
+        {
+          "classification": "record_only",
+          "ip": "169.254.169.254",
+          "port": 80,
+          "result": "open",
+          "target": "metadata"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.10.24",
+          "port": 22,
+          "result": "refused",
+          "target": "gw1_mgmt"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.10.24",
+          "port": 5555,
+          "result": "timeout",
+          "target": "gw1_mgmt"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.10.164",
+          "port": 22,
+          "result": "refused",
+          "target": "gw2_mgmt"
+        },
+        {
+          "classification": "forbidden",
+          "ip": "10.20.10.164",
+          "port": 5555,
+          "result": "timeout",
+          "target": "gw2_mgmt"
+        }
+      ]
+    },
+    "status": "READ"
+  },
+  "ipam_rows": {
+    "ip_allocations_rows": 0,
+    "no_ipam_rows_exist": true,
+    "sandbox_rows": 0
+  },
+  "ipam_rows_after_cleanup": {
+    "ip_allocations_rows": 0,
+    "no_ipam_rows_exist": true,
+    "sandbox_rows": 0
+  },
+  "live_db_path": "controlplane/ipam/ipam.db",
+  "mode": "full",
+  "port_records": [
+    {
+      "fixed_ip": "10.20.30.98",
+      "id": "20eea6f0-47e7-499c-9d05-57a25e5104c0",
+      "name": "bench-t7-20261019t133840z-b-port",
+      "raw": {
+        "admin_state_up": true,
+        "allowed_address_pairs": [],
+        "binding_host_id": null,
+        "binding_profile": {},
+        "binding_vif_details": {},
+        "binding_vif_type": null,
+        "binding_vnic_type": "normal",
+        "created_at": "2026-10-19T13:38:52Z",
+        "data_plane_status": null,
+        "description": "",
+        "device_id": "",
+        "device_owner": "",
+        "device_profile": null,
+        "dns_assignment": [],
+        "dns_domain": null,
+        "dns_name": null,
+        "extra_dhcp_opts": [],
+        "fixed_ips": [
+          {
+            "ip_address": "10.20.30.98",
+            "subnet_id": "e23529ba-f4f1-44ce-a2a2-3c9b788b9fbd"
+          }
+        ],
+        "hardware_offload_type": null,
+        "hints": "",
+        "id": "20eea6f0-47e7-499c-9d05-57a25e5104c0",
+        "ip_allocation": "immediate",
+        "mac_address": "fa:16:3e:d4:dc:e5",
+        "name": "bench-t7-20261019t133840z-b-port",
+        "network_id": "7d1b48ee-0b28-449b-aba4-869364e72623",
+        "numa_affinity_policy": null,
+        "port_security_enabled": true,
+        "project_id": "4cf528edb38743848dcbf1a270a71cba",
+        "propagate_uplink_status": null,
+        "pvlan_community": null,
+        "pvlan_type": null,
+        "qos_network_policy_id": null,
+        "qos_policy_id": null,
+        "resource_request": null,
+        "revision_number": 1,
+        "security_group_ids": [
+          "9ece0d91-f630-4b92-bf76-6738c028dcf3"
+        ],
+        "status": "DOWN",
+        "tags": [],
+        "trunk_details": null,
+        "trusted": null,
+        "updated_at": "2026-10-19T13:38:52Z"
+      },
+      "security_group_ids": [
+        "9ece0d91-f630-4b92-bf76-6738c028dcf3"
+      ]
+    },
+    {
+      "fixed_ip": "10.20.30.59",
+      "id": "341d6940-090e-4f02-9c4f-3ace460b24ff",
+      "name": "bench-t7-20261019t133840z-a-port",
+      "raw": {
+        "admin_state_up": true,
+        "allowed_address_pairs": [],
+        "binding_host_id": null,
+        "binding_profile": {},
+        "binding_vif_details": {},
+        "binding_vif_type": null,
+        "binding_vnic_type": "normal",
+        "created_at": "2026-10-19T13:38:57Z",
+        "data_plane_status": null,
+        "description": "",
+        "device_id": "",
+        "device_owner": "",
+        "device_profile": null,
+        "dns_assignment": [],
+        "dns_domain": null,
+        "dns_name": null,
+        "extra_dhcp_opts": [],
+        "fixed_ips": [
+          {
+            "ip_address": "10.20.30.59",
+            "subnet_id": "e23529ba-f4f1-44ce-a2a2-3c9b788b9fbd"
+          }
+        ],
+        "hardware_offload_type": null,
+        "hints": "",
+        "id": "341d6940-090e-4f02-9c4f-3ace460b24ff",
+        "ip_allocation": "immediate",
+        "mac_address": "fa:16:3e:8c:62:f9",
+        "name": "bench-t7-20261019t133840z-a-port",
+        "network_id": "7d1b48ee-0b28-449b-aba4-869364e72623",
+        "numa_affinity_policy": null,
+        "port_security_enabled": true,
+        "project_id": "4cf528edb38743848dcbf1a270a71cba",
+        "propagate_uplink_status": null,
+        "pvlan_community": null,
+        "pvlan_type": null,
+        "qos_network_policy_id": null,
+        "qos_policy_id": null,
+        "resource_request": null,
+        "revision_number": 1,
+        "security_group_ids": [
+          "9ece0d91-f630-4b92-bf76-6738c028dcf3"
+        ],
+        "status": "DOWN",
+        "tags": [],
+        "trunk_details": null,
+        "trusted": null,
+        "updated_at": "2026-10-19T13:38:57Z"
+      },
+      "security_group_ids": [
+        "9ece0d91-f630-4b92-bf76-6738c028dcf3"
+      ]
+    }
+  ],
+  "preflight": {
+    "gateways": {
+      "backend_guard_passed": true,
+      "difference": {
+        "gw1": {
+          "missing": [],
+          "unexpected": []
+        },
+        "gw2": {
+          "missing": [],
+          "unexpected": []
+        }
+      },
+      "errors": {},
+      "expected": [
+        "default_maintenance",
+        "team1_backend",
+        "team2_backend"
+      ],
+      "found": {
+        "gw1": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ],
+        "gw2": [
+          "default_maintenance",
+          "team1_backend",
+          "team2_backend"
+        ]
+      }
+    },
+    "leftover_bench_rows": {
+      "counts_by_status": {
+        "RELEASED": 227,
+        "TEARDOWN_FAILED": 3
+      },
+      "known_stale_rows": [
+        {
+          "sandbox_id": "bench-t1-20261017t214147z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 07:53:17"
+        },
+        {
+          "sandbox_id": "bench-t1-20261017t222905z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 07:53:17"
+        },
+        {
+          "sandbox_id": "bench-t1-20261018t082213z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 08:24:41"
+        }
+      ],
+      "non_released_rows": [
+        {
+          "sandbox_id": "bench-t1-20261017t214147z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 07:53:17"
+        },
+        {
+          "sandbox_id": "bench-t1-20261017t222905z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 07:53:17"
+        },
+        {
+          "sandbox_id": "bench-t1-20261018t082213z-01",
+          "status": "TEARDOWN_FAILED",
+          "updated_at": "2026-10-18 08:24:41"
+        }
+      ],
+      "none": true,
+      "unexpected_non_released_rows": []
+    },
+    "openstack_servers": {
+      "count": 5,
+      "only_five_permanent_vms": true
+    },
+    "passed": true,
+    "security_group_rule_errors": {},
+    "security_group_rules": {
+      "sg-gateway": [
+        {
+          "Direction": "egress",
+          "Ethertype": "IPv4",
+          "ID": "0356d0a3-50d8-4fae-ab87-6a57d91b9710",
+          "IP Protocol": null,
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "2907aab3-a4af-455b-93a3-395099d601cb",
+          "IP Protocol": "tcp",
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "443:443",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "5759a1b9-889f-4383-9ea3-aa4af13c7223",
+          "IP Protocol": "tcp",
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "80:80",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "9464c62d-456d-42d5-9503-df65a0e64673",
+          "IP Protocol": "tcp",
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "22:22",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "egress",
+          "Ethertype": "IPv6",
+          "ID": "d996d160-5c3d-4c1d-98f1-a228ae786562",
+          "IP Protocol": null,
+          "IP Range": "::/0",
+          "Port Range": "",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "ea7ab6ee-387d-4c9d-8ea9-3254d1107168",
+          "IP Protocol": "vrrp",
+          "IP Range": "10.20.20.0/24",
+          "Port Range": "",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        }
+      ],
+      "sg-sandbox": [
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "3abd2b7d-da21-4a62-b588-75bb0e960601",
+          "IP Protocol": "tcp",
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "80:80",
+          "Remote Address Group": null,
+          "Remote Security Group": "925d3987-0e07-475d-b418-9b9c3341b10a"
+        },
+        {
+          "Direction": "ingress",
+          "Ethertype": "IPv4",
+          "ID": "5d8707ee-2a43-4aeb-9930-8d9b57912392",
+          "IP Protocol": "tcp",
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "8080:8080",
+          "Remote Address Group": null,
+          "Remote Security Group": "925d3987-0e07-475d-b418-9b9c3341b10a"
+        },
+        {
+          "Direction": "egress",
+          "Ethertype": "IPv4",
+          "ID": "8e526c17-5155-41b8-a34c-3686e7bc21e8",
+          "IP Protocol": null,
+          "IP Range": "0.0.0.0/0",
+          "Port Range": "",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        },
+        {
+          "Direction": "egress",
+          "Ethertype": "IPv6",
+          "ID": "f2307817-6f89-4f3e-b15e-2ef78e0973cf",
+          "IP Protocol": null,
+          "IP Range": "::/0",
+          "Port Range": "",
+          "Remote Address Group": null,
+          "Remote Security Group": null
+        }
+      ]
+    },
+    "security_group_rules_read": true
+  },
+  "probe_result_count": 24,
+  "probe_result_count_expected": 24,
+  "probe_results": [
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.86",
+      "port": 22,
+      "result": "open",
+      "target": "gw1"
+    },
+    {
+      "classification": "allowed",
+      "ip": "10.20.30.86",
+      "port": 80,
+      "result": "open",
+      "target": "gw1"
+    },
+    {
+      "classification": "allowed",
+      "ip": "10.20.30.86",
+      "port": 443,
+      "result": "open",
+      "target": "gw1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.86",
+      "port": 5555,
+      "result": "timeout",
+      "target": "gw1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.224",
+      "port": 22,
+      "result": "open",
+      "target": "gw2"
+    },
+    {
+      "classification": "allowed",
+      "ip": "10.20.30.224",
+      "port": 80,
+      "result": "open",
+      "target": "gw2"
+    },
+    {
+      "classification": "allowed",
+      "ip": "10.20.30.224",
+      "port": 443,
+      "result": "open",
+      "target": "gw2"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.224",
+      "port": 5555,
+      "result": "timeout",
+      "target": "gw2"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.98",
+      "port": 22,
+      "result": "timeout",
+      "target": "sandbox_b"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.98",
+      "port": 80,
+      "result": "timeout",
+      "target": "sandbox_b"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.98",
+      "port": 8080,
+      "result": "timeout",
+      "target": "sandbox_b"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.37",
+      "port": 22,
+      "result": "timeout",
+      "target": "team1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.37",
+      "port": 80,
+      "result": "timeout",
+      "target": "team1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.37",
+      "port": 8080,
+      "result": "timeout",
+      "target": "team1"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.15",
+      "port": 22,
+      "result": "timeout",
+      "target": "team2"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.15",
+      "port": 80,
+      "result": "timeout",
+      "target": "team2"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.30.15",
+      "port": 8080,
+      "result": "timeout",
+      "target": "team2"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.20.177",
+      "port": 22,
+      "result": "refused",
+      "target": "bastion_edge"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.10.246",
+      "port": 22,
+      "result": "timeout",
+      "target": "bastion_mgmt"
+    },
+    {
+      "classification": "record_only",
+      "ip": "169.254.169.254",
+      "port": 80,
+      "result": "open",
+      "target": "metadata"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.10.24",
+      "port": 22,
+      "result": "refused",
+      "target": "gw1_mgmt"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.10.24",
+      "port": 5555,
+      "result": "timeout",
+      "target": "gw1_mgmt"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.10.164",
+      "port": 22,
+      "result": "refused",
+      "target": "gw2_mgmt"
+    },
+    {
+      "classification": "forbidden",
+      "ip": "10.20.10.164",
+      "port": 5555,
+      "result": "timeout",
+      "target": "gw2_mgmt"
+    }
+  ],
+  "probe_vm_ids": {
+    "prober": "72654d22-9c23-4f1f-a675-e46bbef0fae8",
+    "target": "d35ac6dd-3da2-4735-8e62-1892d439a939"
+  },
+  "probe_vm_ips": {
+    "prober": "10.20.30.59",
+    "target": "10.20.30.98"
+  },
+  "probe_vm_names": [
+    "bench-t7-20261019t133840z-a",
+    "bench-t7-20261019t133840z-b"
+  ],
+  "probe_vm_specs": {
+    "flavor": "G0.basic.1c1g",
+    "image": "Ubuntu 24.04 LTS - Noble Numbat",
+    "keypair": "felcloud-resilient-v2",
+    "network_id": "7d1b48ee-0b28-449b-aba4-869364e72623",
+    "network_name": "felcloud-sandbox",
+    "security_group": "sg-sandbox"
+  },
+  "probe_vms_created": [
+    "bench-t7-20261019t133840z-b",
+    "bench-t7-20261019t133840z-a"
+  ],
+  "probe_vms_created_directly": true,
+  "process_environment": {
+    "GATEWAY_PROBE_TIMEOUT_SECONDS": "30",
+    "HEALTH_REGRESSION_WINDOW_SECONDS": "5",
+    "MAX_CONCURRENT_PROVISIONS": "15",
+    "PROVISION_TIMEOUT_SECONDS": "360",
+    "RATE_LIMIT_PER_MIN": "120"
+  },
+  "result_channel": "HTTP via gateway",
+  "status": "FAILED",
+  "team2_dead_web_server_note": "closed and filtered both appear as refused/timeout from this probe",
+  "test": "T7_network_isolation",
+  "timestamp_utc": "2026-10-19T13:38:40.744Z",
+  "user_data": {
+    "prober": "#cloud-config\nwrite_files:\n  - path: /etc/systemd/system/t7-prober-http.service\n    content: |\n      [Unit]\n      Description=T7 result HTTP transport\n      After=network-online.target\n      Wants=network-online.target\n      [Service]\n      ExecStart=/usr/bin/python3 -m http.server 80 --directory /var/www/t7\n      Restart=always\n      [Install]\n      WantedBy=multi-user.target\n  - path: /usr/local/bin/t7-probe.sh\n    permissions: '0755'\n    content: |\n      #!/usr/bin/env bash\n      set +e\n      started=$SECONDS\n      mkdir -p \"$(dirname /var/www/t7/result.json)\"\n      results=\"\"\n      separator=\"\"\n      while IFS='|' read -r target address port classification; do\n        if [ -z \"$target\" ]; then continue; fi\n        if [ \"$((SECONDS-started))\" -ge 110 ]; then\n          result=\"timeout\"\n        else\n          timeout 3 bash -c 'exec 3<>/dev/tcp/$1/$2' _ \"$address\" \"$port\" >/dev/null 2>&1\n          rc=$?\n          if [ \"$rc\" -eq 0 ]; then result=\"open\"\n          elif [ \"$rc\" -eq 124 ]; then result=\"timeout\"\n          else result=\"refused\"\n          fi\n        fi\n        printf -v item '{\"target\":\"%s\",\"ip\":\"%s\",\"port\":%s,\"result\":\"%s\",\"classification\":\"%s\"}' \\\n          \"$target\" \"$address\" \"$port\" \"$result\" \"$classification\"\n        results=\"${results}${separator}${item}\"\n        separator=\",\" \n      done <<'T7_PROBES'\n      gw1|10.20.30.86|22|forbidden\n      gw1|10.20.30.86|80|allowed\n      gw1|10.20.30.86|443|allowed\n      gw1|10.20.30.86|5555|forbidden\n      gw2|10.20.30.224|22|forbidden\n      gw2|10.20.30.224|80|allowed\n      gw2|10.20.30.224|443|allowed\n      gw2|10.20.30.224|5555|forbidden\n      sandbox_b|10.20.30.98|22|forbidden\n      sandbox_b|10.20.30.98|80|forbidden\n      sandbox_b|10.20.30.98|8080|forbidden\n      team1|10.20.30.37|22|forbidden\n      team1|10.20.30.37|80|forbidden\n      team1|10.20.30.37|8080|forbidden\n      team2|10.20.30.15|22|forbidden\n      team2|10.20.30.15|80|forbidden\n      team2|10.20.30.15|8080|forbidden\n      bastion_edge|10.20.20.177|22|forbidden\n      bastion_mgmt|10.20.10.246|22|forbidden\n      metadata|169.254.169.254|80|record_only\n      gw1_mgmt|10.20.10.24|22|forbidden\n      gw1_mgmt|10.20.10.24|5555|forbidden\n      gw2_mgmt|10.20.10.164|22|forbidden\n      gw2_mgmt|10.20.10.164|5555|forbidden\n      T7_PROBES\n      printf -v json '{\"results\":[%s],\"duration_seconds\":%s}' \"$results\" \"$((SECONDS-started))\"\n      result_tmp=\"/var/www/t7/result.json.tmp.$$\"\n      printf '%s\\n' \"$json\" > \"$result_tmp\" && mv -f \"$result_tmp\" \"/var/www/t7/result.json\"\nruncmd:\n  - [mkdir, -p, /var/www/t7]\n  - [systemctl, daemon-reload]\n  - [systemctl, enable, --now, t7-prober-http.service]\n  - [bash, /usr/local/bin/t7-probe.sh]\n",
+    "target": "#cloud-config\nwrite_files:\n  - path: /etc/systemd/system/t7-target-http.service\n    content: |\n      [Unit]\n      Description=T7 target HTTP listener\n      After=network.target\n      [Service]\n      ExecStart=/usr/bin/python3 -m http.server 80 --directory /var/www/t7-target\n      Restart=always\n      [Install]\n      WantedBy=multi-user.target\nruncmd:\n  - [mkdir, -p, /var/www/t7-target]\n  - [systemctl, daemon-reload]\n  - [systemctl, enable, --now, t7-target-http.service]\n"
+  }
+}

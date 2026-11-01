@@ -1,0 +1,117 @@
+{
+  "test": "T1_provisioning_latency",
+  "status": "EXECUTED",
+  "timestamp_utc": "2026-10-18T17:57:09.084Z",
+  "planned_runs": 1,
+  "n": 1,
+  "successful_runs": 1,
+  "failed_runs": 0,
+  "success_rate": 1.0,
+  "failure_reasons": [],
+  "metrics_ms": {
+    "api_elapsed": {
+      "n": 1,
+      "min": 177963.5331,
+      "mean": 177963.5331,
+      "std": 0.0,
+      "p50": 177963.5331,
+      "p90": 177963.5331,
+      "p95": 177963.5331,
+      "p99": 177963.5331,
+      "max": 177963.5331
+    },
+    "client_post_to_first_http_200": {
+      "n": 1,
+      "min": 178103.6928,
+      "mean": 178103.6928,
+      "std": 0.0,
+      "p50": 178103.6928,
+      "p90": 178103.6928,
+      "p95": 178103.6928,
+      "p99": 178103.6928,
+      "max": 178103.6928
+    },
+    "total_latency_to_first_http_200": {
+      "n": 1,
+      "min": 178103.7902,
+      "mean": 178103.7902,
+      "std": 0.0,
+      "p50": 178103.7902,
+      "p90": 178103.7902,
+      "p95": 178103.7902,
+      "p99": 178103.7902,
+      "max": 178103.7902
+    },
+    "dns_lookup": {
+      "n": 1,
+      "min": 68.9883,
+      "mean": 68.9883,
+      "std": 0.0,
+      "p50": 68.9883,
+      "p90": 68.9883,
+      "p95": 68.9883,
+      "p99": 68.9883,
+      "max": 68.9883
+    },
+    "ipam_allocate": {
+      "n": 1,
+      "min": 216,
+      "mean": 216.0,
+      "std": 0.0,
+      "p50": 216,
+      "p90": 216,
+      "p95": 216,
+      "p99": 216,
+      "max": 216
+    },
+    "neutron_port": {
+      "n": 1,
+      "min": 667,
+      "mean": 667.0,
+      "std": 0.0,
+      "p50": 667,
+      "p90": 667,
+      "p95": 667,
+      "p99": 667,
+      "max": 667
+    },
+    "nova_active": {
+      "n": 1,
+      "min": 30011,
+      "mean": 30011.0,
+      "std": 0.0,
+      "p50": 30011,
+      "p90": 30011,
+      "p95": 30011,
+      "p99": 30011,
+      "max": 30011
+    },
+    "health_probe": {
+      "n": 1,
+      "min": 136805,
+      "mean": 136805.0,
+      "std": 0.0,
+      "p50": 136805,
+      "p90": 136805,
+      "p95": 136805,
+      "p99": 136805,
+      "max": 136805
+    },
+    "gateway_rule": {
+      "n": 1,
+      "min": 10168,
+      "mean": 10168.0,
+      "std": 0.0,
+      "p50": 10168,
+      "p90": 10168,
+      "p95": 10168,
+      "p99": 10168,
+      "max": 10168
+    }
+  },
+  "stage_absolute_timestamps": "Unavailable: API returns stage durations in timings_ms, not stage event timestamps.",
+  "cold_warm_status": "NOT EXECUTED: image cache state cannot be controlled or verified by this harness.",
+  "raw_csv": "bench/results/raw/t1_provisioning_20261018T175400Z.csv",
+  "chart_png": "bench/results/charts/t1_provisioning_stages_20261018T175400Z.png",
+  "chart_generated": true
+}

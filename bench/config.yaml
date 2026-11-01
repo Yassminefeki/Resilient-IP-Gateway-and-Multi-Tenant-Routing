@@ -1,0 +1,48 @@
+# Benchmark configuration and mandatory safety gates.
+# Set secrets and live endpoints in the environment. Never put credentials here.
+control_plane:
+  base_url: "${CONTROL_PLANE_URL:-http://127.0.0.1:8081}"
+  request_timeout_seconds: 420
+
+openstack:
+  cloud: "${OS_CLOUD:-felcloud}"
+  ssh_user: "${BENCH_SSH_USER:-ansible}"
+  bastion_host: "${BENCH_BASTION_HOST:-}"
+  ssh_key_path: "${SSH_KEY_PATH:-}"
+  sandbox_flavor: "${BENCH_SANDBOX_FLAVOR:-}"
+
+safety_gates:
+  # Exact SSH destination names/IPs permitted for gateway operations.
+  # Both values are mandatory and have no defaults.
+  allowed_gateway_hosts:
+    primary: "${BENCH_PRIMARY_HOST:-}"
+    standby: "${BENCH_STANDBY_HOST:-}"
+  resource_prefix: "bench-"
+  protected_names:
+    - team1
+    - team2
+  # Cleanup may target only resources whose name starts with this exact prefix.
+  cleanup_name_prefix: "bench-"
+
+network:
+  domain: "${ROUTING_DOMAIN:-}"
+  public_vip: "${PUBLIC_VIP_IP:-}"
+  gateway_scheme: "${GATEWAY_SCHEME:-http}"
+  pool_cidr: "${IP_POOL_CIDR:-}"
+
+benchmark:
+  seed: 42
+  # Sandboxes required for quota headroom; BENCH_MAX_CONCURRENCY overrides default 20.
+  planned_concurrency: "${BENCH_MAX_CONCURRENCY:-20}"
+  concurrency_levels: [10, 20, 30, 50]
+  smoke_iterations: 1
+  t1_runs: 30
+  t2_repetitions_per_level: 5
+  t3_repetitions_per_mode: 20
+  t3_manual_failover_runs: 10
+  t4_recycle_cycles: 100
+  t4_rapid_cycles: 20
+  t5_lease_samples: 20
+  t6_valid_runs: 30
+  t6_invalid_runs: 30
+  t7_sandboxes: 3

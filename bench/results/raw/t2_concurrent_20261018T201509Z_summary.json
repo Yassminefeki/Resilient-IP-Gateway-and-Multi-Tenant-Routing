@@ -1,0 +1,5456 @@
+{
+  "GATEWAY_PROBE_TIMEOUT_SECONDS": "30",
+  "HEALTH_REGRESSION_WINDOW_SECONDS": "5",
+  "RATE_LIMIT_PER_MIN": "120",
+  "artifacts": {
+    "chart": "bench/results/charts/t2_concurrent_20261018T201509Z.png",
+    "raw_csv": "bench/results/raw/t2_concurrent_20261018T201509Z.csv",
+    "summary_json": "bench/results/raw/t2_concurrent_20261018T201509Z_summary.json"
+  },
+  "bursts": [
+    {
+      "burst_size": 3,
+      "cleanup": [
+        {
+          "error": "Nova server ddd8dbfe-cf2e-4ee2-89c1-95909dd4b349 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-3-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server b0ed109d-9d3b-481c-b4f8-43200f6ead11 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-3-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server ff75f878-d5b1-42e6-970d-809117064a49 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-3-03",
+          "status_code": 502
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 0,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-3-01_backend",
+            "bench-t2-20261018t201509z-3-02_backend",
+            "bench-t2-20261018t201509z-3-03_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-3-01": true,
+            "bench-t2-20261018t201509z-3-02": true,
+            "bench-t2-20261018t201509z-3-03": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-3-01_backend",
+            "bench-t2-20261018t201509z-3-02_backend",
+            "bench-t2-20261018t201509z-3-03_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-3-01": true,
+            "bench-t2-20261018t201509z-3-02": true,
+            "bench-t2-20261018t201509z-3-03": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 120,
+        "config_generations_count_before": 117,
+        "events_status": 200,
+        "failure_count": 0,
+        "failures": [],
+        "provision_failed_rows": [],
+        "push_count_delta": 3
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t201509z-3-01": "10.20.30.16",
+          "bench-t2-20261018t201509z-3-02": "10.20.30.14",
+          "bench-t2-20261018t201509z-3-03": "10.20.30.13"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t201509z-3-01": "10.20.30.16",
+            "bench-t2-20261018t201509z-3-02": "10.20.30.14",
+            "bench-t2-20261018t201509z-3-03": "10.20.30.13"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 209.10686436299875,
+      "p95_provisioning_seconds": 209.3043080918993,
+      "sandbox_ids": [
+        "bench-t2-20261018t201509z-3-01",
+        "bench-t2-20261018t201509z-3-02",
+        "bench-t2-20261018t201509z-3-03"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.16"
+          ],
+          "burst_size": 3,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:18:38.660Z",
+          "fixed_ip": "10.20.30.16",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.16",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.16",
+          "post_first_http_200_ms": 209326.24628399935,
+          "post_started_utc": "2026-10-18T20:15:09.496Z",
+          "provision_elapsed_ms": 208581.4606089989,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.16",
+            "hostname": "bench-t2-20261018t201509z-3-01.cloudpulse.sandbox.example.com",
+            "port_id": "3bdb8113-abda-4262-bd44-38f0cbab9d11",
+            "sandbox_id": "bench-t2-20261018t201509z-3-01",
+            "server_id": "ddd8dbfe-cf2e-4ee2-89c1-95909dd4b349",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-3-01",
+            "timings_ms": {
+              "allocate": 376,
+              "health": 155856,
+              "port": 834,
+              "server_active": 26796,
+              "sync": 24684,
+              "total": 208573
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-3-01",
+          "stages_ms": {
+            "allocate": 376,
+            "health": 155856,
+            "port": 834,
+            "server_active": 26796,
+            "sync": 24684,
+            "total": 208573
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.14"
+          ],
+          "burst_size": 3,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:18:38.259Z",
+          "fixed_ip": "10.20.30.14",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.14",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.14",
+          "post_first_http_200_ms": 208921.3610920051,
+          "post_started_utc": "2026-10-18T20:15:09.497Z",
+          "provision_elapsed_ms": 208578.43332399352,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.14",
+            "hostname": "bench-t2-20261018t201509z-3-02.cloudpulse.sandbox.example.com",
+            "port_id": "8ea267d4-0a6a-4c67-98ea-2ab53a3927b3",
+            "sandbox_id": "bench-t2-20261018t201509z-3-02",
+            "server_id": "b0ed109d-9d3b-481c-b4f8-43200f6ead11",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-3-02",
+            "timings_ms": {
+              "allocate": 332,
+              "health": 145745,
+              "port": 676,
+              "server_active": 20981,
+              "sync": 40779,
+              "total": 208566
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-3-02",
+          "stages_ms": {
+            "allocate": 332,
+            "health": 145745,
+            "port": 676,
+            "server_active": 20981,
+            "sync": 40779,
+            "total": 208566
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.13"
+          ],
+          "burst_size": 3,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:18:38.459Z",
+          "fixed_ip": "10.20.30.13",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.13",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.13",
+          "post_first_http_200_ms": 209106.86436299875,
+          "post_started_utc": "2026-10-18T20:15:09.497Z",
+          "provision_elapsed_ms": 208579.14419399458,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.13",
+            "hostname": "bench-t2-20261018t201509z-3-03.cloudpulse.sandbox.example.com",
+            "port_id": "cbe9dfbb-d996-4bdc-991e-da1d3d65505f",
+            "sandbox_id": "bench-t2-20261018t201509z-3-03",
+            "server_id": "ff75f878-d5b1-42e6-970d-809117064a49",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-3-03",
+            "timings_ms": {
+              "allocate": 320,
+              "health": 147333,
+              "port": 786,
+              "server_active": 31867,
+              "sync": 28234,
+              "total": 208566
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-3-03",
+          "stages_ms": {
+            "allocate": 320,
+            "health": 147333,
+            "port": 786,
+            "server_active": 31867,
+            "sync": 28234,
+            "total": 208566
+          },
+          "status": "SUCCESS",
+          "success": true
+        }
+      ],
+      "success_rate": 1.0,
+      "successes": 3,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "burst_size": 5,
+      "cleanup": [
+        {
+          "error": "Nova server 8889c02e-b901-4a74-a7f2-6cf041d32dbc still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-5-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server daaf12aa-063a-4b9b-925d-6bea6c54c5e7 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-5-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 5d7a56b6-4b36-49b4-bb61-4837d9f0598c still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-5-03",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server a7b96836-9149-4cea-b320-ccfce69813d7 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-5-04",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 0a8faacf-5bdd-4421-b9e4-2f430fe31c89 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-5-05",
+          "status_code": 502
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 1,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-5-01_backend",
+            "bench-t2-20261018t201509z-5-03_backend",
+            "bench-t2-20261018t201509z-5-04_backend",
+            "bench-t2-20261018t201509z-5-05_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-5-01": true,
+            "bench-t2-20261018t201509z-5-02": false,
+            "bench-t2-20261018t201509z-5-03": true,
+            "bench-t2-20261018t201509z-5-04": true,
+            "bench-t2-20261018t201509z-5-05": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-5-01_backend",
+            "bench-t2-20261018t201509z-5-03_backend",
+            "bench-t2-20261018t201509z-5-04_backend",
+            "bench-t2-20261018t201509z-5-05_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-5-01": true,
+            "bench-t2-20261018t201509z-5-02": false,
+            "bench-t2-20261018t201509z-5-03": true,
+            "bench-t2-20261018t201509z-5-04": true,
+            "bench-t2-20261018t201509z-5-05": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 126,
+        "config_generations_count_before": 123,
+        "events_status": 200,
+        "failure_count": 0,
+        "failures": [],
+        "provision_failed_rows": [],
+        "push_count_delta": 3
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t201509z-5-01": "10.20.30.17",
+          "bench-t2-20261018t201509z-5-02": "10.20.30.21",
+          "bench-t2-20261018t201509z-5-03": "10.20.30.19",
+          "bench-t2-20261018t201509z-5-04": "10.20.30.18",
+          "bench-t2-20261018t201509z-5-05": "10.20.30.20"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t201509z-5-01": "10.20.30.17",
+            "bench-t2-20261018t201509z-5-02": "10.20.30.21",
+            "bench-t2-20261018t201509z-5-03": "10.20.30.19",
+            "bench-t2-20261018t201509z-5-04": "10.20.30.18",
+            "bench-t2-20261018t201509z-5-05": "10.20.30.20"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 212.81754849449862,
+      "p95_provisioning_seconds": 213.12916140544766,
+      "sandbox_ids": [
+        "bench-t2-20261018t201509z-5-01",
+        "bench-t2-20261018t201509z-5-02",
+        "bench-t2-20261018t201509z-5-03",
+        "bench-t2-20261018t201509z-5-04",
+        "bench-t2-20261018t201509z-5-05"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.17"
+          ],
+          "burst_size": 5,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:23:02.946Z",
+          "fixed_ip": "10.20.30.17",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.17",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.17",
+          "post_first_http_200_ms": 213159.9511309978,
+          "post_started_utc": "2026-10-18T20:19:29.925Z",
+          "provision_elapsed_ms": 212148.5588430005,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.17",
+            "hostname": "bench-t2-20261018t201509z-5-01.cloudpulse.sandbox.example.com",
+            "port_id": "fa87eb1e-53b0-44f0-87d6-95b9820d5b59",
+            "sandbox_id": "bench-t2-20261018t201509z-5-01",
+            "server_id": "8889c02e-b901-4a74-a7f2-6cf041d32dbc",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-5-01",
+            "timings_ms": {
+              "allocate": 140,
+              "health": 146055,
+              "port": 599,
+              "server_active": 20970,
+              "sync": 44326,
+              "total": 212136
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-5-01",
+          "stages_ms": {
+            "allocate": 140,
+            "health": 146055,
+            "port": 599,
+            "server_active": 20970,
+            "sync": 44326,
+            "total": 212136
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "burst_size": 5,
+          "dpa_backend_both": false,
+          "duplicate_ip": false,
+          "errors": [
+            "HTTP 200 not observed before 420-second deadline"
+          ],
+          "fixed_ip": "10.20.30.21",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503
+          ],
+          "ipam_ip": "10.20.30.21",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.21",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:19:29.926Z",
+          "provision_elapsed_ms": 212138.40185899608,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.21",
+            "hostname": "bench-t2-20261018t201509z-5-02.cloudpulse.sandbox.example.com",
+            "port_id": "1fed7607-cd24-4117-8a10-bccf9edfe6be",
+            "sandbox_id": "bench-t2-20261018t201509z-5-02",
+            "server_id": "daaf12aa-063a-4b9b-925d-6bea6c54c5e7",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-5-02",
+            "timings_ms": {
+              "allocate": 203,
+              "health": 154595,
+              "port": 698,
+              "server_active": 43363,
+              "sync": 13245,
+              "total": 212121
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-5-02",
+          "stages_ms": {
+            "allocate": 203,
+            "health": 154595,
+            "port": 698,
+            "server_active": 43363,
+            "sync": 13245,
+            "total": 212121
+          },
+          "status": "HTTP_200_TIMEOUT",
+          "success": false
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.19"
+          ],
+          "burst_size": 5,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:23:02.745Z",
+          "fixed_ip": "10.20.30.19",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.19",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.19",
+          "post_first_http_200_ms": 212954.68629399693,
+          "post_started_utc": "2026-10-18T20:19:29.927Z",
+          "provision_elapsed_ms": 212141.1141159988,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.19",
+            "hostname": "bench-t2-20261018t201509z-5-03.cloudpulse.sandbox.example.com",
+            "port_id": "0bcf3bad-552b-4a5c-98b3-d5d2acae9d4f",
+            "sandbox_id": "bench-t2-20261018t201509z-5-03",
+            "server_id": "5d7a56b6-4b36-49b4-bb61-4837d9f0598c",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-5-03",
+            "timings_ms": {
+              "allocate": 163,
+              "health": 153315,
+              "port": 846,
+              "server_active": 25841,
+              "sync": 31944,
+              "total": 212124
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-5-03",
+          "stages_ms": {
+            "allocate": 163,
+            "health": 153315,
+            "port": 846,
+            "server_active": 25841,
+            "sync": 31944,
+            "total": 212124
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.18"
+          ],
+          "burst_size": 5,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:23:02.344Z",
+          "fixed_ip": "10.20.30.18",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.18",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.18",
+          "post_first_http_200_ms": 212457.7174060032,
+          "post_started_utc": "2026-10-18T20:19:29.927Z",
+          "provision_elapsed_ms": 212138.18589400034,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.18",
+            "hostname": "bench-t2-20261018t201509z-5-04.cloudpulse.sandbox.example.com",
+            "port_id": "beec16ff-563d-409c-8eee-cc87d5c082c9",
+            "sandbox_id": "bench-t2-20261018t201509z-5-04",
+            "server_id": "a7b96836-9149-4cea-b320-ccfce69813d7",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-5-04",
+            "timings_ms": {
+              "allocate": 135,
+              "health": 154837,
+              "port": 1137,
+              "server_active": 31714,
+              "sync": 24286,
+              "total": 212120
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-5-04",
+          "stages_ms": {
+            "allocate": 135,
+            "health": 154837,
+            "port": 1137,
+            "server_active": 31714,
+            "sync": 24286,
+            "total": 212120
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.20"
+          ],
+          "burst_size": 5,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:23:02.545Z",
+          "fixed_ip": "10.20.30.20",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.20",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.20",
+          "post_first_http_200_ms": 212680.41069500032,
+          "post_started_utc": "2026-10-18T20:19:29.928Z",
+          "provision_elapsed_ms": 212138.58516699838,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.20",
+            "hostname": "bench-t2-20261018t201509z-5-05.cloudpulse.sandbox.example.com",
+            "port_id": "1430eabb-9b2a-47c6-b75f-95bbf45ec585",
+            "sandbox_id": "bench-t2-20261018t201509z-5-05",
+            "server_id": "0a8faacf-5bdd-4421-b9e4-2f430fe31c89",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-5-05",
+            "timings_ms": {
+              "allocate": 183,
+              "health": 145790,
+              "port": 1153,
+              "server_active": 36757,
+              "sync": 28229,
+              "total": 212121
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-5-05",
+          "stages_ms": {
+            "allocate": 183,
+            "health": 145790,
+            "port": 1153,
+            "server_active": 36757,
+            "sync": 28229,
+            "total": 212121
+          },
+          "status": "SUCCESS",
+          "success": true
+        }
+      ],
+      "success_rate": 0.8,
+      "successes": 4,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "burst_size": 10,
+      "cleanup": [
+        {
+          "error": "Nova server 683dc735-aae8-4e35-873a-2b26df24205c still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 7925d73d-650c-4082-a266-05db485dead4 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server f431e83e-6246-4875-9239-b0decbfac6f6 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-03",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 14bbb408-f96b-4347-b389-586bffcdbf2e still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-04",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 560fcae9-0b24-46bf-8c11-c89cb766d897 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-05",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 51a38679-a59a-4071-94f7-03385c8d090f still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-06",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 1e8c0aec-7119-4269-b44c-e9e445baecb7 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-07",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server c44ec0c6-556f-48f7-883a-31b72ecac32e still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-08",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 843fab9b-4c52-4c01-b0f8-f0bf87325e46 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-09",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 3af4a117-3ba0-4c49-8a75-08e4cafeb456 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-10-10",
+          "status_code": 502
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 2,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-10-01_backend",
+            "bench-t2-20261018t201509z-10-02_backend",
+            "bench-t2-20261018t201509z-10-03_backend",
+            "bench-t2-20261018t201509z-10-04_backend",
+            "bench-t2-20261018t201509z-10-05_backend",
+            "bench-t2-20261018t201509z-10-06_backend",
+            "bench-t2-20261018t201509z-10-07_backend",
+            "bench-t2-20261018t201509z-10-08_backend",
+            "bench-t2-20261018t201509z-10-09_backend",
+            "bench-t2-20261018t201509z-10-10_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-10-01": true,
+            "bench-t2-20261018t201509z-10-02": true,
+            "bench-t2-20261018t201509z-10-03": true,
+            "bench-t2-20261018t201509z-10-04": true,
+            "bench-t2-20261018t201509z-10-05": true,
+            "bench-t2-20261018t201509z-10-06": true,
+            "bench-t2-20261018t201509z-10-07": true,
+            "bench-t2-20261018t201509z-10-08": true,
+            "bench-t2-20261018t201509z-10-09": true,
+            "bench-t2-20261018t201509z-10-10": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-10-01_backend",
+            "bench-t2-20261018t201509z-10-02_backend",
+            "bench-t2-20261018t201509z-10-03_backend",
+            "bench-t2-20261018t201509z-10-04_backend",
+            "bench-t2-20261018t201509z-10-05_backend",
+            "bench-t2-20261018t201509z-10-06_backend",
+            "bench-t2-20261018t201509z-10-07_backend",
+            "bench-t2-20261018t201509z-10-08_backend",
+            "bench-t2-20261018t201509z-10-09_backend",
+            "bench-t2-20261018t201509z-10-10_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-10-01": true,
+            "bench-t2-20261018t201509z-10-02": true,
+            "bench-t2-20261018t201509z-10-03": true,
+            "bench-t2-20261018t201509z-10-04": true,
+            "bench-t2-20261018t201509z-10-05": true,
+            "bench-t2-20261018t201509z-10-06": true,
+            "bench-t2-20261018t201509z-10-07": true,
+            "bench-t2-20261018t201509z-10-08": true,
+            "bench-t2-20261018t201509z-10-09": true,
+            "bench-t2-20261018t201509z-10-10": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 137,
+        "config_generations_count_before": 131,
+        "events_status": 200,
+        "failure_count": 0,
+        "failures": [],
+        "provision_failed_rows": [],
+        "push_count_delta": 6
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t201509z-10-01": "10.20.30.22",
+          "bench-t2-20261018t201509z-10-02": "10.20.30.23",
+          "bench-t2-20261018t201509z-10-03": "10.20.30.24",
+          "bench-t2-20261018t201509z-10-04": "10.20.30.27",
+          "bench-t2-20261018t201509z-10-05": "10.20.30.29",
+          "bench-t2-20261018t201509z-10-06": "10.20.30.28",
+          "bench-t2-20261018t201509z-10-07": "10.20.30.26",
+          "bench-t2-20261018t201509z-10-08": "10.20.30.25",
+          "bench-t2-20261018t201509z-10-09": "10.20.30.30",
+          "bench-t2-20261018t201509z-10-10": "10.20.30.32"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t201509z-10-01": "10.20.30.22",
+            "bench-t2-20261018t201509z-10-02": "10.20.30.23",
+            "bench-t2-20261018t201509z-10-03": "10.20.30.24",
+            "bench-t2-20261018t201509z-10-04": "10.20.30.27",
+            "bench-t2-20261018t201509z-10-05": "10.20.30.29",
+            "bench-t2-20261018t201509z-10-06": "10.20.30.28",
+            "bench-t2-20261018t201509z-10-07": "10.20.30.26",
+            "bench-t2-20261018t201509z-10-08": "10.20.30.25",
+            "bench-t2-20261018t201509z-10-09": "10.20.30.30",
+            "bench-t2-20261018t201509z-10-10": "10.20.30.32"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 208.87163257549764,
+      "p95_provisioning_seconds": 381.9644856714982,
+      "sandbox_ids": [
+        "bench-t2-20261018t201509z-10-01",
+        "bench-t2-20261018t201509z-10-02",
+        "bench-t2-20261018t201509z-10-03",
+        "bench-t2-20261018t201509z-10-04",
+        "bench-t2-20261018t201509z-10-05",
+        "bench-t2-20261018t201509z-10-06",
+        "bench-t2-20261018t201509z-10-07",
+        "bench-t2-20261018t201509z-10-08",
+        "bench-t2-20261018t201509z-10-09",
+        "bench-t2-20261018t201509z-10-10"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.22"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:34:40.054Z",
+          "fixed_ip": "10.20.30.22",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.22",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.22",
+          "post_first_http_200_ms": 208520.12086600007,
+          "post_started_utc": "2026-10-18T20:31:11.790Z",
+          "provision_elapsed_ms": 207660.51647999848,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.22",
+            "hostname": "bench-t2-20261018t201509z-10-01.cloudpulse.sandbox.example.com",
+            "port_id": "88f01c9b-df5d-4250-a222-5bee26a1a435",
+            "sandbox_id": "bench-t2-20261018t201509z-10-01",
+            "server_id": "683dc735-aae8-4e35-873a-2b26df24205c",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-01",
+            "timings_ms": {
+              "allocate": 155,
+              "health": 144602,
+              "port": 1122,
+              "server_active": 43712,
+              "sync": 18051,
+              "total": 207652
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-01",
+          "stages_ms": {
+            "allocate": 155,
+            "health": 144602,
+            "port": 1122,
+            "server_active": 43712,
+            "sync": 18051,
+            "total": 207652
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.23"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:34:40.656Z",
+          "fixed_ip": "10.20.30.23",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.23",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.23",
+          "post_first_http_200_ms": 208981.59334799857,
+          "post_started_utc": "2026-10-18T20:31:11.790Z",
+          "provision_elapsed_ms": 207676.14435499854,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.23",
+            "hostname": "bench-t2-20261018t201509z-10-02.cloudpulse.sandbox.example.com",
+            "port_id": "d35638ff-48b3-48b9-a479-aeef9bf65243",
+            "sandbox_id": "bench-t2-20261018t201509z-10-02",
+            "server_id": "7925d73d-650c-4082-a266-05db485dead4",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-02",
+            "timings_ms": {
+              "allocate": 152,
+              "health": 155182,
+              "port": 1016,
+              "server_active": 37955,
+              "sync": 13330,
+              "total": 207663
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-02",
+          "stages_ms": {
+            "allocate": 152,
+            "health": 155182,
+            "port": 1016,
+            "server_active": 37955,
+            "sync": 13330,
+            "total": 207663
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.24"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:34:40.455Z",
+          "fixed_ip": "10.20.30.24",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.24",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.24",
+          "post_first_http_200_ms": 208761.67180299672,
+          "post_started_utc": "2026-10-18T20:31:11.790Z",
+          "provision_elapsed_ms": 207665.47194099985,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.24",
+            "hostname": "bench-t2-20261018t201509z-10-03.cloudpulse.sandbox.example.com",
+            "port_id": "7737771e-e414-4d74-bb3d-27b8bedfffad",
+            "sandbox_id": "bench-t2-20261018t201509z-10-03",
+            "server_id": "f431e83e-6246-4875-9239-b0decbfac6f6",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-03",
+            "timings_ms": {
+              "allocate": 172,
+              "health": 139412,
+              "port": 501,
+              "server_active": 32095,
+              "sync": 35436,
+              "total": 207653
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-03",
+          "stages_ms": {
+            "allocate": 172,
+            "health": 139412,
+            "port": 501,
+            "server_active": 32095,
+            "sync": 35436,
+            "total": 207653
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.27"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:37:33.434Z",
+          "fixed_ip": "10.20.30.27",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.27",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.27",
+          "post_first_http_200_ms": 381708.50396499736,
+          "post_started_utc": "2026-10-18T20:31:11.791Z",
+          "provision_elapsed_ms": 207689.99133799662,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.27",
+            "hostname": "bench-t2-20261018t201509z-10-04.cloudpulse.sandbox.example.com",
+            "port_id": "cd761c9f-321d-405a-8bd2-157483f3bc28",
+            "sandbox_id": "bench-t2-20261018t201509z-10-04",
+            "server_id": "14bbb408-f96b-4347-b389-586bffcdbf2e",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-04",
+            "timings_ms": {
+              "allocate": 283,
+              "health": 145240,
+              "port": 1269,
+              "server_active": 60680,
+              "sync": 164,
+              "total": 207677
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-04",
+          "stages_ms": {
+            "allocate": 283,
+            "health": 145240,
+            "port": 1269,
+            "server_active": 60680,
+            "sync": 164,
+            "total": 207677
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.29"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:34:39.652Z",
+          "fixed_ip": "10.20.30.29",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.29",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.29",
+          "post_first_http_200_ms": 207908.32258100272,
+          "post_started_utc": "2026-10-18T20:31:11.791Z",
+          "provision_elapsed_ms": 207657.4578619984,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.29",
+            "hostname": "bench-t2-20261018t201509z-10-05.cloudpulse.sandbox.example.com",
+            "port_id": "7f399a7f-41b8-47a9-8181-42edcc400b5e",
+            "sandbox_id": "bench-t2-20261018t201509z-10-05",
+            "server_id": "560fcae9-0b24-46bf-8c11-c89cb766d897",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-05",
+            "timings_ms": {
+              "allocate": 306,
+              "health": 153282,
+              "port": 570,
+              "server_active": 26873,
+              "sync": 26605,
+              "total": 207644
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-05",
+          "stages_ms": {
+            "allocate": 306,
+            "health": 153282,
+            "port": 570,
+            "server_active": 26873,
+            "sync": 26605,
+            "total": 207644
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.28"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:37:33.836Z",
+          "fixed_ip": "10.20.30.28",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.28",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.28",
+          "post_first_http_200_ms": 382102.32197499863,
+          "post_started_utc": "2026-10-18T20:31:11.794Z",
+          "provision_elapsed_ms": 207710.14273100445,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.28",
+            "hostname": "bench-t2-20261018t201509z-10-06.cloudpulse.sandbox.example.com",
+            "port_id": "0ab123f5-2175-4242-87cd-947ea760c331",
+            "sandbox_id": "bench-t2-20261018t201509z-10-06",
+            "server_id": "51a38679-a59a-4071-94f7-03385c8d090f",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-06",
+            "timings_ms": {
+              "allocate": 287,
+              "health": 155271,
+              "port": 1061,
+              "server_active": 48716,
+              "sync": 2302,
+              "total": 207700
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-06",
+          "stages_ms": {
+            "allocate": 287,
+            "health": 155271,
+            "port": 1061,
+            "server_active": 48716,
+            "sync": 2302,
+            "total": 207700
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.26"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:34:39.853Z",
+          "fixed_ip": "10.20.30.26",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.26",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.26",
+          "post_first_http_200_ms": 208143.05943899672,
+          "post_started_utc": "2026-10-18T20:31:11.794Z",
+          "provision_elapsed_ms": 207655.7210739993,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.26",
+            "hostname": "bench-t2-20261018t201509z-10-07.cloudpulse.sandbox.example.com",
+            "port_id": "3c94ce05-98a7-496a-9055-34fc9b8de71f",
+            "sandbox_id": "bench-t2-20261018t201509z-10-07",
+            "server_id": "1e8c0aec-7119-4269-b44c-e9e445baecb7",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-07",
+            "timings_ms": {
+              "allocate": 279,
+              "health": 155242,
+              "port": 439,
+              "server_active": 20971,
+              "sync": 30705,
+              "total": 207646
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-07",
+          "stages_ms": {
+            "allocate": 279,
+            "health": 155242,
+            "port": 439,
+            "server_active": 20971,
+            "sync": 30705,
+            "total": 207646
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.25"
+          ],
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:37:33.233Z",
+          "fixed_ip": "10.20.30.25",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.25",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.25",
+          "post_first_http_200_ms": 381501.86415499775,
+          "post_started_utc": "2026-10-18T20:31:11.794Z",
+          "provision_elapsed_ms": 207653.68913700513,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.25",
+            "hostname": "bench-t2-20261018t201509z-10-08.cloudpulse.sandbox.example.com",
+            "port_id": "37a2175f-5838-4ddd-9af8-7ec9fd465da3",
+            "sandbox_id": "bench-t2-20261018t201509z-10-08",
+            "server_id": "c44ec0c6-556f-48f7-883a-31b72ecac32e",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-10-08",
+            "timings_ms": {
+              "allocate": 278,
+              "health": 145157,
+              "port": 993,
+              "server_active": 54728,
+              "sync": 6480,
+              "total": 207643
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-10-08",
+          "stages_ms": {
+            "allocate": 278,
+            "health": 145157,
+            "port": 993,
+            "server_active": 54728,
+            "sync": 6480,
+            "total": 207643
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "RemoteProtocolError: Server disconnected without sending a response."
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.30",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.30",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:31:11.795Z",
+          "sandbox_id": "bench-t2-20261018t201509z-10-09",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 10,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "RemoteProtocolError: Server disconnected without sending a response."
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.32",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.32",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:31:11.795Z",
+          "sandbox_id": "bench-t2-20261018t201509z-10-10",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        }
+      ],
+      "success_rate": 0.8,
+      "successes": 8,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "burst_size": 15,
+      "cleanup": [
+        {
+          "error": "Nova server 143ce4f0-d89c-4b76-8a16-5508fd6d77cb still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-01",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 46ad09b6-5a70-470e-8abb-c448e55f4273 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-02",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 7b74e659-2ea1-4e20-9a67-4327b245d1db still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-03",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 73e8ced7-1a9f-492e-8ca8-9b2398c63610 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-04",
+          "status_code": 502
+        },
+        {
+          "error": "gw1 HAProxy is not active",
+          "sandbox_id": "bench-t2-20261018t201509z-15-05",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 4d49bd1b-5730-4444-9ceb-3c071b8bd300 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-06",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server 8536e427-2aca-4be3-9322-7d53268aeee3 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-07",
+          "status_code": 502
+        },
+        {
+          "error": "Nova server c4a6b390-755f-43f8-b721-b2630abfde06 still exists with status ACTIVE",
+          "sandbox_id": "bench-t2-20261018t201509z-15-08",
+          "status_code": 502
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-09",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-10",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-11",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-12",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-13",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-14",
+          "status_code": 200
+        },
+        {
+          "error": "",
+          "sandbox_id": "bench-t2-20261018t201509z-15-15",
+          "status_code": 200
+        }
+      ],
+      "cleanup_remaining_sandboxes": [],
+      "failures": 7,
+      "gateway_configs": {
+        "gw1": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-15-01_backend",
+            "bench-t2-20261018t201509z-15-02_backend",
+            "bench-t2-20261018t201509z-15-03_backend",
+            "bench-t2-20261018t201509z-15-04_backend",
+            "bench-t2-20261018t201509z-15-05_backend",
+            "bench-t2-20261018t201509z-15-06_backend",
+            "bench-t2-20261018t201509z-15-07_backend",
+            "bench-t2-20261018t201509z-15-08_backend",
+            "bench-t2-20261018t201509z-15-09_backend",
+            "bench-t2-20261018t201509z-15-10_backend",
+            "bench-t2-20261018t201509z-15-11_backend",
+            "bench-t2-20261018t201509z-15-12_backend",
+            "bench-t2-20261018t201509z-15-13_backend",
+            "bench-t2-20261018t201509z-15-14_backend",
+            "bench-t2-20261018t201509z-15-15_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-15-01": true,
+            "bench-t2-20261018t201509z-15-02": true,
+            "bench-t2-20261018t201509z-15-03": true,
+            "bench-t2-20261018t201509z-15-04": true,
+            "bench-t2-20261018t201509z-15-05": true,
+            "bench-t2-20261018t201509z-15-06": true,
+            "bench-t2-20261018t201509z-15-07": true,
+            "bench-t2-20261018t201509z-15-08": true,
+            "bench-t2-20261018t201509z-15-09": true,
+            "bench-t2-20261018t201509z-15-10": true,
+            "bench-t2-20261018t201509z-15-11": true,
+            "bench-t2-20261018t201509z-15-12": true,
+            "bench-t2-20261018t201509z-15-13": true,
+            "bench-t2-20261018t201509z-15-14": true,
+            "bench-t2-20261018t201509z-15-15": true
+          },
+          "status": "READ"
+        },
+        "gw2": {
+          "backend_names": [
+            "bench-t2-20261018t201509z-15-01_backend",
+            "bench-t2-20261018t201509z-15-02_backend",
+            "bench-t2-20261018t201509z-15-03_backend",
+            "bench-t2-20261018t201509z-15-04_backend",
+            "bench-t2-20261018t201509z-15-05_backend",
+            "bench-t2-20261018t201509z-15-06_backend",
+            "bench-t2-20261018t201509z-15-07_backend",
+            "bench-t2-20261018t201509z-15-08_backend",
+            "bench-t2-20261018t201509z-15-09_backend",
+            "bench-t2-20261018t201509z-15-10_backend",
+            "bench-t2-20261018t201509z-15-11_backend",
+            "bench-t2-20261018t201509z-15-12_backend",
+            "bench-t2-20261018t201509z-15-13_backend",
+            "bench-t2-20261018t201509z-15-14_backend",
+            "bench-t2-20261018t201509z-15-15_backend",
+            "default_maintenance",
+            "team1_backend",
+            "team2_backend"
+          ],
+          "sandbox_backend_present": {
+            "bench-t2-20261018t201509z-15-01": true,
+            "bench-t2-20261018t201509z-15-02": true,
+            "bench-t2-20261018t201509z-15-03": true,
+            "bench-t2-20261018t201509z-15-04": true,
+            "bench-t2-20261018t201509z-15-05": true,
+            "bench-t2-20261018t201509z-15-06": true,
+            "bench-t2-20261018t201509z-15-07": true,
+            "bench-t2-20261018t201509z-15-08": true,
+            "bench-t2-20261018t201509z-15-09": true,
+            "bench-t2-20261018t201509z-15-10": true,
+            "bench-t2-20261018t201509z-15-11": true,
+            "bench-t2-20261018t201509z-15-12": true,
+            "bench-t2-20261018t201509z-15-13": true,
+            "bench-t2-20261018t201509z-15-14": true,
+            "bench-t2-20261018t201509z-15-15": true
+          },
+          "status": "READ"
+        }
+      },
+      "gateway_sync": {
+        "config_generations_count_after": 155,
+        "config_generations_count_before": 147,
+        "events_status": 200,
+        "failure_count": 7,
+        "failures": [
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-11",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-12",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-15",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-10",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-13",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-14",
+            "type": "FAILED"
+          },
+          {
+            "error_text": "step=gateway_sync error=context canceled",
+            "sandbox_id": "bench-t2-20261018t201509z-15-09",
+            "type": "FAILED"
+          }
+        ],
+        "provision_failed_rows": [],
+        "push_count_delta": 8
+      },
+      "ipam_neutron": {
+        "duplicate_ip_addresses_in_ipam": [],
+        "duplicate_ip_addresses_in_neutron_ports": [],
+        "ipam": {
+          "bench-t2-20261018t201509z-15-01": "10.20.30.33",
+          "bench-t2-20261018t201509z-15-02": "10.20.30.38",
+          "bench-t2-20261018t201509z-15-03": "10.20.30.41",
+          "bench-t2-20261018t201509z-15-04": "10.20.30.39",
+          "bench-t2-20261018t201509z-15-05": "10.20.30.35",
+          "bench-t2-20261018t201509z-15-06": "10.20.30.40",
+          "bench-t2-20261018t201509z-15-07": "10.20.30.36",
+          "bench-t2-20261018t201509z-15-08": "10.20.30.34",
+          "bench-t2-20261018t201509z-15-09": "10.20.30.44",
+          "bench-t2-20261018t201509z-15-10": "10.20.30.42",
+          "bench-t2-20261018t201509z-15-11": "10.20.30.46",
+          "bench-t2-20261018t201509z-15-12": "10.20.30.43",
+          "bench-t2-20261018t201509z-15-13": "10.20.30.47",
+          "bench-t2-20261018t201509z-15-14": "10.20.30.45",
+          "bench-t2-20261018t201509z-15-15": "10.20.30.48"
+        },
+        "neutron_ports": {
+          "ips": {
+            "bench-t2-20261018t201509z-15-01": "10.20.30.33",
+            "bench-t2-20261018t201509z-15-02": "10.20.30.38",
+            "bench-t2-20261018t201509z-15-03": "10.20.30.41",
+            "bench-t2-20261018t201509z-15-04": "10.20.30.39",
+            "bench-t2-20261018t201509z-15-05": "10.20.30.35",
+            "bench-t2-20261018t201509z-15-06": "10.20.30.40",
+            "bench-t2-20261018t201509z-15-07": "10.20.30.36",
+            "bench-t2-20261018t201509z-15-08": "10.20.30.34"
+          },
+          "status": "READ"
+        },
+        "team1_team2_drift_excluded": true
+      },
+      "p50_provisioning_seconds": 207.9188961684995,
+      "p95_provisioning_seconds": 240.2590570242959,
+      "sandbox_ids": [
+        "bench-t2-20261018t201509z-15-01",
+        "bench-t2-20261018t201509z-15-02",
+        "bench-t2-20261018t201509z-15-03",
+        "bench-t2-20261018t201509z-15-04",
+        "bench-t2-20261018t201509z-15-05",
+        "bench-t2-20261018t201509z-15-06",
+        "bench-t2-20261018t201509z-15-07",
+        "bench-t2-20261018t201509z-15-08",
+        "bench-t2-20261018t201509z-15-09",
+        "bench-t2-20261018t201509z-15-10",
+        "bench-t2-20261018t201509z-15-11",
+        "bench-t2-20261018t201509z-15-12",
+        "bench-t2-20261018t201509z-15-13",
+        "bench-t2-20261018t201509z-15-14",
+        "bench-t2-20261018t201509z-15-15"
+      ],
+      "sandbox_rows": [
+        {
+          "body_ips_found": [
+            "10.20.30.33"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:43:43.034Z",
+          "fixed_ip": "10.20.30.33",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.33",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.33",
+          "post_first_http_200_ms": 207139.6547040058,
+          "post_started_utc": "2026-10-18T20:40:15.931Z",
+          "provision_elapsed_ms": 206760.03170100012,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.33",
+            "hostname": "bench-t2-20261018t201509z-15-01.cloudpulse.sandbox.example.com",
+            "port_id": "7ee96e67-6705-47d7-9960-d245a0840900",
+            "sandbox_id": "bench-t2-20261018t201509z-15-01",
+            "server_id": "143ce4f0-d89c-4b76-8a16-5508fd6d77cb",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-01",
+            "timings_ms": {
+              "allocate": 151,
+              "health": 146027,
+              "port": 974,
+              "server_active": 31788,
+              "sync": 27804,
+              "total": 206751
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-01",
+          "stages_ms": {
+            "allocate": 151,
+            "health": 146027,
+            "port": 974,
+            "server_active": 31788,
+            "sync": 27804,
+            "total": 206751
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.38"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:43:43.436Z",
+          "fixed_ip": "10.20.30.38",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.38",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.38",
+          "post_first_http_200_ms": 207591.51628700056,
+          "post_started_utc": "2026-10-18T20:40:15.932Z",
+          "provision_elapsed_ms": 206766.97061100276,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.38",
+            "hostname": "bench-t2-20261018t201509z-15-02.cloudpulse.sandbox.example.com",
+            "port_id": "5d4b4d39-9ebd-4fb2-ac68-8b7fa755fa46",
+            "sandbox_id": "bench-t2-20261018t201509z-15-02",
+            "server_id": "46ad09b6-5a70-470e-8abb-c448e55f4273",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-02",
+            "timings_ms": {
+              "allocate": 183,
+              "health": 146588,
+              "port": 988,
+              "server_active": 48007,
+              "sync": 10974,
+              "total": 206754
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-02",
+          "stages_ms": {
+            "allocate": 183,
+            "health": 146588,
+            "port": 988,
+            "server_active": 48007,
+            "sync": 10974,
+            "total": 206754
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.41"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:44:03.123Z",
+          "fixed_ip": "10.20.30.41",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.41",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.41",
+          "post_first_http_200_ms": 227285.32571500546,
+          "post_started_utc": "2026-10-18T20:40:15.932Z",
+          "provision_elapsed_ms": 206759.090653999,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.41",
+            "hostname": "bench-t2-20261018t201509z-15-03.cloudpulse.sandbox.example.com",
+            "port_id": "d14afb58-75cc-4c01-a5b8-58eee25a2301",
+            "sandbox_id": "bench-t2-20261018t201509z-15-03",
+            "server_id": "7b74e659-2ea1-4e20-9a67-4327b245d1db",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-03",
+            "timings_ms": {
+              "allocate": 205,
+              "health": 154162,
+              "port": 911,
+              "server_active": 42949,
+              "sync": 8510,
+              "total": 206746
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-03",
+          "stages_ms": {
+            "allocate": 205,
+            "health": 154162,
+            "port": 911,
+            "server_active": 42949,
+            "sync": 8510,
+            "total": 206746
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.39"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:44:16.204Z",
+          "fixed_ip": "10.20.30.39",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.39",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.39",
+          "post_first_http_200_ms": 240332.21056699404,
+          "post_started_utc": "2026-10-18T20:40:15.932Z",
+          "provision_elapsed_ms": 239997.21832200157,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.39",
+            "hostname": "bench-t2-20261018t201509z-15-04.cloudpulse.sandbox.example.com",
+            "port_id": "1fec0c92-96f1-4daf-8c49-80d82b8ce42c",
+            "sandbox_id": "bench-t2-20261018t201509z-15-04",
+            "server_id": "73e8ced7-1a9f-492e-8ca8-9b2398c63610",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-04",
+            "timings_ms": {
+              "allocate": 183,
+              "health": 155496,
+              "port": 1265,
+              "server_active": 54007,
+              "sync": 29021,
+              "total": 239982
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-04",
+          "stages_ms": {
+            "allocate": 183,
+            "health": 155496,
+            "port": 1265,
+            "server_active": 54007,
+            "sync": 29021,
+            "total": 239982
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.35"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:44:16.003Z",
+          "fixed_ip": "10.20.30.35",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.35",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.35",
+          "post_first_http_200_ms": 240123.20044499938,
+          "post_started_utc": "2026-10-18T20:40:15.932Z",
+          "provision_elapsed_ms": 239996.67199399846,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.35",
+            "hostname": "bench-t2-20261018t201509z-15-05.cloudpulse.sandbox.example.com",
+            "port_id": "0ebc7554-83c4-443d-b86a-e98ed12e3dde",
+            "sandbox_id": "bench-t2-20261018t201509z-15-05",
+            "server_id": "6adaa373-2546-4847-b6f0-815745bcab3a",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-05",
+            "timings_ms": {
+              "allocate": 169,
+              "health": 154287,
+              "port": 1383,
+              "server_active": 59747,
+              "sync": 24391,
+              "total": 239983
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-05",
+          "stages_ms": {
+            "allocate": 169,
+            "health": 154287,
+            "port": 1383,
+            "server_active": 59747,
+            "sync": 24391,
+            "total": 239983
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.40"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:43:43.637Z",
+          "fixed_ip": "10.20.30.40",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.40",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.40",
+          "post_first_http_200_ms": 207824.06810700195,
+          "post_started_utc": "2026-10-18T20:40:15.933Z",
+          "provision_elapsed_ms": 206775.46197999618,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.40",
+            "hostname": "bench-t2-20261018t201509z-15-06.cloudpulse.sandbox.example.com",
+            "port_id": "e27276aa-9271-4365-a430-ad8bb3c969b4",
+            "sandbox_id": "bench-t2-20261018t201509z-15-06",
+            "server_id": "4d49bd1b-5730-4444-9ceb-3c071b8bd300",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-06",
+            "timings_ms": {
+              "allocate": 184,
+              "health": 141170,
+              "port": 1139,
+              "server_active": 37815,
+              "sync": 26427,
+              "total": 206761
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-06",
+          "stages_ms": {
+            "allocate": 184,
+            "health": 141170,
+            "port": 1139,
+            "server_active": 37815,
+            "sync": 26427,
+            "total": 206761
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.36"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:43:43.235Z",
+          "fixed_ip": "10.20.30.36",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.36",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.36",
+          "post_first_http_200_ms": 207362.08417500166,
+          "post_started_utc": "2026-10-18T20:40:15.934Z",
+          "provision_elapsed_ms": 206758.22482099466,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.36",
+            "hostname": "bench-t2-20261018t201509z-15-07.cloudpulse.sandbox.example.com",
+            "port_id": "84761ca4-082e-4c20-b8a3-39b4e1af140d",
+            "sandbox_id": "bench-t2-20261018t201509z-15-07",
+            "server_id": "8536e427-2aca-4be3-9322-7d53268aeee3",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-07",
+            "timings_ms": {
+              "allocate": 169,
+              "health": 144137,
+              "port": 535,
+              "server_active": 20889,
+              "sync": 40995,
+              "total": 206745
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-07",
+          "stages_ms": {
+            "allocate": 169,
+            "health": 144137,
+            "port": 535,
+            "server_active": 20889,
+            "sync": 40995,
+            "total": 206745
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "body_ips_found": [
+            "10.20.30.34"
+          ],
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [],
+          "first_http_200_utc": "2026-10-18T20:43:43.837Z",
+          "fixed_ip": "10.20.30.34",
+          "gateway_id": "gw1",
+          "http_statuses": [
+            200
+          ],
+          "identity_ok": true,
+          "ipam_ip": "10.20.30.34",
+          "ipam_neutron_match": true,
+          "neutron_ip": "10.20.30.34",
+          "post_first_http_200_ms": 208013.72422999702,
+          "post_started_utc": "2026-10-18T20:40:15.935Z",
+          "provision_elapsed_ms": 206791.14455799572,
+          "provision_http_status": 201,
+          "provision_response": {
+            "fixed_ip": "10.20.30.34",
+            "hostname": "bench-t2-20261018t201509z-15-08.cloudpulse.sandbox.example.com",
+            "port_id": "08416bfb-62cf-4ca5-bd93-efeaf5ee6c3b",
+            "sandbox_id": "bench-t2-20261018t201509z-15-08",
+            "server_id": "c4a6b390-755f-43f8-b721-b2630abfde06",
+            "state": "ACTIVE",
+            "team": "bench-t2-20261018t201509z-15-08",
+            "timings_ms": {
+              "allocate": 148,
+              "health": 145043,
+              "port": 530,
+              "server_active": 26274,
+              "sync": 34737,
+              "total": 206778
+            }
+          },
+          "sandbox_id": "bench-t2-20261018t201509z-15-08",
+          "stages_ms": {
+            "allocate": 148,
+            "health": 145043,
+            "port": 530,
+            "server_active": 26274,
+            "sync": 34737,
+            "total": 206778
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.44",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.935Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-09",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.42",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.935Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-10",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.46",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.935Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-11",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.43",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.935Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-12",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.47",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.936Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-13",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.45",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.936Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-14",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        },
+        {
+          "burst_size": 15,
+          "dpa_backend_both": true,
+          "duplicate_ip": false,
+          "errors": [
+            "ReadTimeout: "
+          ],
+          "http_statuses": [],
+          "ipam_ip": "10.20.30.48",
+          "ipam_neutron_match": false,
+          "neutron_ip": "",
+          "post_first_http_200_ms": null,
+          "post_started_utc": "2026-10-18T20:40:15.936Z",
+          "sandbox_id": "bench-t2-20261018t201509z-15-15",
+          "stages_ms": {},
+          "status": "ERROR",
+          "success": false
+        }
+      ],
+      "success_rate": 0.5333333333333333,
+      "successes": 8,
+      "team1_prober": {
+        "dropped_count": 0,
+        "http_429_count": 0,
+        "non_200_count": 0,
+        "samples": []
+      }
+    }
+  ],
+  "final_sanity": {
+    "active_bench_sandboxes": [],
+    "bench_ports": [],
+    "gateway_validation": {
+      "gw1": {
+        "baseline_backend_count": 2,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=2",
+        "three_baseline_backends": false
+      },
+      "gw2": {
+        "baseline_backend_count": 2,
+        "haproxy_config_valid": true,
+        "output": "Configuration file is valid\nBASELINE_BACKENDS=2",
+        "three_baseline_backends": false
+      }
+    },
+    "openstack_server_list": {
+      "count": 5,
+      "only_five_permanent_vms": true,
+      "servers": [
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "4b67cdca-2f0b-47bd-88b1-d188357e9546",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "team2",
+          "Networks": {
+            "felcloud-sandbox": [
+              "10.20.30.15"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "d59ff9bb-0d5c-4f09-8ae0-80e96e919e3e",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "team1",
+          "Networks": {
+            "felcloud-sandbox": [
+              "10.20.30.37"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.1c1g",
+          "ID": "202bfc2e-5547-4908-8d86-d359f76d8252",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-bastion",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.177",
+              "203.0.113.10"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.246"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.2c2g",
+          "ID": "22dbe5d8-7cea-4918-a521-49c069ac2b87",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-gw2",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.190"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.164"
+            ],
+            "felcloud-sandbox": [
+              "10.20.30.224"
+            ]
+          },
+          "Status": "ACTIVE"
+        },
+        {
+          "Flavor": "G0.basic.2c2g",
+          "ID": "ed2433a6-2370-45c1-9886-b65041e86e62",
+          "Image": "Ubuntu 24.04 LTS - Noble Numbat",
+          "Name": "felcloud-gw1",
+          "Networks": {
+            "felcloud-edge": [
+              "10.20.20.82"
+            ],
+            "felcloud-mgmt": [
+              "10.20.10.24"
+            ],
+            "felcloud-sandbox": [
+              "10.20.30.86"
+            ]
+          },
+          "Status": "ACTIVE"
+        }
+      ],
+      "status": "READ"
+    }
+  },
+  "health_regression_window_seconds": "5",
+  "max_concurrency": 15,
+  "pool_exhaustion": {
+    "allocate_429_count": 2,
+    "allocated_count": 248,
+    "allocated_set_matches": true,
+    "allocation_safety_bound": 257,
+    "ending_ipam_counts": {
+      "ALLOCATED": 4,
+      "FREE": 248,
+      "QUARANTINED": 0,
+      "RESERVED": 0
+    },
+    "error": "",
+    "exhaustion_error": "No free IPs available in subnet 'sandbox' (check quarantined addresses).",
+    "exhaustion_response": {
+      "error": "No free IPs available in subnet 'sandbox' (check quarantined addresses).",
+      "http_status": 409,
+      "response": {
+        "error": "No free IPs available in subnet 'sandbox' (check quarantined addresses)."
+      }
+    },
+    "health_regression_window_seconds": "5",
+    "ipam_signature_after": "7501b7897a220cd1d037cf7abe73309c7ff891e35652af91a2f49dc0f26acc95",
+    "ipam_signature_before": "7501b7897a220cd1d037cf7abe73309c7ff891e35652af91a2f49dc0f26acc95",
+    "ipam_signature_matches": true,
+    "isolated_db_path": "/tmp/felcloud-t2-pool-ufxkb6d3/ipam-copy.db",
+    "live_db_written": false,
+    "pool_cidr": "10.20.30.0/24",
+    "pool_size": 252,
+    "port_8082_free_after": true,
+    "port_8082_free_before": true,
+    "quarantine_wait_seconds": 0.0,
+    "read_429_count": 0,
+    "reclaim_429_count": 0,
+    "reclaim_calls_during_wait": 0,
+    "release_429_count": 1,
+    "release_results": [
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.2",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-001"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.15",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-002"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.31",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-003"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.37",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-004"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.49",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-005"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.50",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-006"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.51",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-007"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.52",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-008"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.53",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-009"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.54",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-010"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.55",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-011"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.56",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-012"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.57",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-013"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.58",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-014"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.59",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-015"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.60",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-016"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.61",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-017"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.3",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-018"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.4",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-019"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.62",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-020"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.63",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-021"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.64",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-022"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.65",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-023"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.66",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-024"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.67",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-025"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.68",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-026"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.69",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-027"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.71",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-028"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.72",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-029"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.73",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-030"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.74",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-031"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.75",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-032"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.76",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-033"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.77",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-034"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.78",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-035"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.79",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-036"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.80",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-037"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.81",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-038"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.82",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-039"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.83",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-040"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.84",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-041"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.85",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-042"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.87",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-043"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.88",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-044"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.89",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-045"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.90",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-046"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.91",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-047"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.92",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-048"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.93",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-049"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.94",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-050"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.95",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-051"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.96",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-052"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.97",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-053"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.98",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-054"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.99",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-055"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.100",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-056"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.101",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-057"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.102",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-058"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.103",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-059"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.104",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-060"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.105",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-061"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.106",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-062"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.107",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-063"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.108",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-064"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.109",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-065"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.110",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-066"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.111",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-067"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.112",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-068"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.113",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-069"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.114",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-070"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.115",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-071"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.116",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-072"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.117",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-073"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.118",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-074"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.119",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-075"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.120",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-076"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.5",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-077"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.6",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-078"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.7",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-079"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.8",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-080"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.9",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-081"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.10",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-082"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.11",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-083"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.12",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-084"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.13",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-085"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.14",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-086"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.16",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-087"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.17",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-088"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.18",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-089"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.19",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-090"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.20",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-091"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.21",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-092"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.22",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-093"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.23",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-094"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.24",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-095"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.25",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-096"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.26",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-097"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.27",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-098"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.28",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-099"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.29",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-100"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.30",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-101"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.32",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-102"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.33",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-103"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.34",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-104"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.35",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-105"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.36",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-106"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.38",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-107"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.39",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-108"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.40",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-109"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.41",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-110"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.42",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-111"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.43",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-112"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.44",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-113"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.45",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-114"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.46",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-115"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.47",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-116"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.48",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-117"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.121",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-118"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.122",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-119"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.123",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-120"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.124",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-121"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.125",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-122"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.126",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-123"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.127",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-124"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.128",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-125"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.129",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-126"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.130",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-127"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.131",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-128"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.132",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-129"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.133",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-130"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.134",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-131"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.135",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-132"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.136",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-133"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.137",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-134"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.138",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-135"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.139",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-136"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.140",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-137"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.141",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-138"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.142",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-139"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.143",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-140"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.144",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-141"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.145",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-142"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.146",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-143"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.147",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-144"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.148",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-145"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.149",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-146"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.150",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-147"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.151",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-148"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.152",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-149"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.153",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-150"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.154",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-151"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.155",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-152"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.156",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-153"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.157",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-154"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.158",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-155"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.159",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-156"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.160",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-157"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.161",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-158"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.162",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-159"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.163",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-160"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.164",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-161"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.165",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-162"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.166",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-163"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.167",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-164"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.168",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-165"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.169",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-166"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.170",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-167"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.171",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-168"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.172",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-169"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.173",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-170"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.174",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-171"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.175",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-172"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.176",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-173"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.177",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-174"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.178",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-175"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.179",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-176"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.180",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-177"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.181",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-178"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.182",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-179"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.183",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-180"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.184",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-181"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.185",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-182"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.186",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-183"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.187",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-184"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.188",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-185"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.189",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-186"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.190",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-187"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.191",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-188"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.193",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-189"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.194",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-190"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.195",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-191"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.196",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-192"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.197",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-193"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.198",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-194"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.199",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-195"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.200",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-196"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.201",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-197"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.202",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-198"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.203",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-199"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.204",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-200"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.205",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-201"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.206",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-202"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.207",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-203"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.208",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-204"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.209",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-205"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.210",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-206"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.211",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-207"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.212",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-208"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.213",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-209"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.214",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-210"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.215",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-211"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.216",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-212"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.217",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-213"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.218",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-214"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.219",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-215"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.220",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-216"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.221",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-217"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.222",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-218"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.223",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-219"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.225",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-220"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.226",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-221"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.227",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-222"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.228",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-223"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.229",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-224"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.230",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-225"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.231",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-226"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.232",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-227"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.233",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-228"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.234",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-229"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.235",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-230"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.236",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-231"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.237",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-232"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.238",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-233"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.239",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-234"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.240",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-235"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.241",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-236"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.242",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-237"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.243",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-238"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.244",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-239"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.245",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-240"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.246",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-241"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.247",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-242"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.248",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-243"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.249",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-244"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.250",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-245"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.251",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-246"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.252",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-247"
+      },
+      {
+        "error": "",
+        "http_status": 200,
+        "ip_address": "10.20.30.253",
+        "sandbox_id": "bench-t2-pool-20261018t201509z-248"
+      }
+    ],
+    "released_all_allocated_leases": true,
+    "source_db_backup": "controlplane/ipam/ipam.db",
+    "starting_ipam_counts": {
+      "ALLOCATED": 4,
+      "FREE": 248,
+      "QUARANTINED": 0,
+      "RESERVED": 0
+    },
+    "status": "PASSED",
+    "temporary_db_deleted": true,
+    "total_429_count": 3,
+    "unexpected_changes": []
+  },
+  "probe_rate_limit_per_second": 5,
+  "process_environment": {
+    "GATEWAY_PROBE_TIMEOUT_SECONDS": "30",
+    "HEALTH_REGRESSION_WINDOW_SECONDS": "5",
+    "RATE_LIMIT_PER_MIN": "120"
+  },
+  "status": "EXECUTED",
+  "test": "T2_concurrent_stress",
+  "timestamp_utc": "2026-10-18T20:15:09.148Z"
+}
